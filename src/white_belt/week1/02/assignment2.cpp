@@ -16,6 +16,6 @@ int main(int argc, char* argv[]) {
 
     auto it = std::min_element( v.begin(), v.end() );
 
-    std::cout << "Min element: " << *it << std::endl;
+    std::cout << *it << std::endl;
 
 }
