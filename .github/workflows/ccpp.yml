@@ -31,9 +31,9 @@ jobs:
     - name: run
       run: |
         export PATH=/tmp/ccpp/bin:$PATH
-        echo 2 3 | assignment1 | if grep -q 5 ; then echo 'SUCCESS'; else echo 'FAIL'; fi
-        echo 'milk milkshake month' | assignment2 | if grep -q milk ; then echo 'SUCCESS'; else echo 'FAIL'; fi
-        echo 2 5 2 | assignment3 | if grep -q 'x1:-0.5 x2:-2' ; then echo 'SUCCESS'; else echo 'FAIL'; fi
-        echo 2 4 2 | assignment3 | if grep -q 'x1:-1 x2:-1' ; then echo 'SUCCESS'; else echo 'FAIL'; fi
-        echo 2 1 2 | assignment3 | if grep -q 'x1:nan x2:nan' ; then echo 'SUCCESS'; else echo 'FAIL'; fi
-        echo 0 4 10 | assignment3 | if grep -q 'x:-2.5' ; then echo 'SUCCESS'; else echo 'FAIL'; fi
+        echo 2 3 | assignment1 | assert 5
+        echo 'milk milkshake month' | assert milk
+        echo 2 5 2 | assignment3 | assert 'x1:-0.5 x2:-2'
+        echo 2 4 2 | assignment3 | assert 'x1:-1 x2:-1'
+        echo 2 1 2 | assignment3 | assert'x1:nan x2:nan'
+        echo 0 4 10 | assignment3 | assert 'x:-2.5'
