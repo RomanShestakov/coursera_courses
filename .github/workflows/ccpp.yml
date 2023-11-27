@@ -19,7 +19,9 @@ jobs:
 
     - name: configure
       run: |
-        mkdir -p build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+        export CCPP_INSTALL_DIR=/tmp/ccpp
+        mkdir -p ${CCPP_INSTALL_DIR} build
+        cmake -S . -B ./build -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX:PATH=${CCPP_INSTALL_DIR}
 
     - name: make
       run: |
@@ -28,5 +30,6 @@ jobs:
 
     - name: run
       run: |
+        export PATH=/tmp/ccpp/bin:$PATH
         echo 2 3 | assignment1
         echo 'milk milkshake month' | assignment2
