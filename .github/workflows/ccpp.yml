@@ -43,3 +43,6 @@ jobs:
         echo comfort f | assignment5 | assert task5 -1
         echo coffee f | assignment5 | assert task5 3
         echo car f | assignment5 | assert task5 -2
+        echo 25 27 | assignment6 | assert task6 1
+        echo 13 13 | assignment6 | assert task6 13
+        echo 12 16 | assignment6 | assert task6 4
