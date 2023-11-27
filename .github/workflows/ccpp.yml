@@ -19,14 +19,12 @@ jobs:
 
     - name: configure
       run: |
-        INSTALL_DIR=/usr/local/ccpp
-        sudo mkdir -p ${INSTALL_DIR}
-        sudo mkdir -p build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_DIR} ..
+        mkdir -p build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
 
     - name: make
       run: cd build && make install
 
     - name: run
       run: |
-        echo 2 3 | ${INSTALL_DIR}/bin/assignment1
-        echo 'milk milkshake month' | ${INSTALL_DIR}/bin/assignment2
+        echo 2 3 | assignment1
+        echo 'milk milkshake month' | assignment2
