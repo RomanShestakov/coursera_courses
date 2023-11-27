@@ -15,7 +15,7 @@ assignment1
 assignment2
 assignment3
 assignment4
-assignment4
+assignment5
 )
 
 install(TARGETS ${NAMES} DESTINATION bin)

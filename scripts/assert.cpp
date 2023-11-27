@@ -9,16 +9,17 @@ int main(int argc, char* argv[]) {
     }
 
     std::string expected = argv[ 1 ];
+    std::string name = argv[ 0 ];
     std::string result;
 
     std::getline(std::cin, result );
 
     if( result != expected ) {
-        std::cout << "Found:" << result << " expected:" << expected << " FAIL" << std::endl;
+        std::cout << name << " Found:" << result << " expected:" << expected << " FAIL" << std::endl;
         return 1;
     }
     else {
-        std::cout << "Found:" << result << " expected:" << expected << " PASSED" << std::endl;
+        std::cout << name << " Found:" << result << " expected:" << expected << " PASSED" << std::endl;
     }
 
     return 0;
