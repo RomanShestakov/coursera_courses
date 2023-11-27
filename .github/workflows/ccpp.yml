@@ -35,5 +35,5 @@ jobs:
         echo 'milk milkshake month' | assignment2 | assert milk
         echo 2 5 2 | assignment3 | assert 'x1:-0.5 x2:-2'
         echo 2 4 2 | assignment3 | assert 'x1:-1 x2:-1'
-        echo 2 1 2 | assignment3 | assert'x1:nan x2:nan'
+        echo 2 1 2 | assignment3 | assert 'x1:nan x2:nan'
         echo 0 4 10 | assignment3 | assert 'x:-2.5'
