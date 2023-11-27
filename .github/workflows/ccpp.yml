@@ -32,7 +32,7 @@ jobs:
       run: |
         export PATH=/tmp/ccpp/bin:$PATH
         echo 2 3 | assignment1 | assert task1 5
-        echo 'milk milkshake month' | assignment2 | task2 assert milk
+        echo 'milk milkshake month' | assignment2 | assert task2 milk
         echo 2 5 2 | assignment3 | assert task3 'x1:-0.5 x2:-2'
         echo 2 4 2 | assignment3 | assert task3 'x1:-1 x2:-1'
         echo 2 1 2 | assignment3 | assert task3 'x1:nan x2:nan'
