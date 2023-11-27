@@ -40,3 +40,6 @@ jobs:
         echo 10 2 | assignment4 | assert 5
         echo 3 5 | assignment4 | assert 0
         echo 11 0 | assignment4 | assert impossible
+        echo comfort f | assignment5 | assert -1
+        echo coffee f | assignment5 | assert 3
+        echo car f | assignment5 | assert -2
