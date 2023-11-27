@@ -37,3 +37,6 @@ jobs:
         echo 2 4 2 | assignment3 | assert 'x1:-1 x2:-1'
         echo 2 1 2 | assignment3 | assert 'x1:nan x2:nan'
         echo 0 4 10 | assignment3 | assert 'x:-2.5'
+        echo 10 2 | assignment4 | assert 5
+        echo 3 5 | assignment4 | assert 0
+        echo 11 0 | assignment4 | assert impossible
