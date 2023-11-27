@@ -31,15 +31,15 @@ jobs:
     - name: run
       run: |
         export PATH=/tmp/ccpp/bin:$PATH
-        echo 2 3 | assignment1 | assert 5
-        echo 'milk milkshake month' | assignment2 | assert milk
-        echo 2 5 2 | assignment3 | assert 'x1:-0.5 x2:-2'
-        echo 2 4 2 | assignment3 | assert 'x1:-1 x2:-1'
-        echo 2 1 2 | assignment3 | assert 'x1:nan x2:nan'
-        echo 0 4 10 | assignment3 | assert 'x:-2.5'
-        echo 10 2 | assignment4 | assert 5
-        echo 3 5 | assignment4 | assert 0
-        echo 11 0 | assignment4 | assert impossible
-        echo comfort f | assignment5 | assert -1
-        echo coffee f | assignment5 | assert 3
-        echo car f | assignment5 | assert -2
+        echo 2 3 | assignment1 | assert task1 5
+        echo 'milk milkshake month' | assignment2 | task2 assert milk
+        echo 2 5 2 | assignment3 | assert task3 'x1:-0.5 x2:-2'
+        echo 2 4 2 | assignment3 | assert task3 'x1:-1 x2:-1'
+        echo 2 1 2 | assignment3 | assert task3 'x1:nan x2:nan'
+        echo 0 4 10 | assignment3 | assert task3 'x:-2.5'
+        echo 10 2 | assignment4 | assert task4 5
+        echo 3 5 | assignment4 | assert task4 0
+        echo 11 0 | assignment4 | assert task4 impossible
+        echo comfort f | assignment5 | assert task5 -1
+        echo coffee f | assignment5 | assert task5 3
+        echo car f | assignment5 | assert task5 -2

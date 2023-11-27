@@ -3,13 +3,13 @@
 
 int main(int argc, char* argv[]) {
 
-    if( argc != 2 ) {
-        std::cout << "Usage: assert <expectedResult>" << std::endl;
+    if( argc != 3 ) {
+        std::cout << "Usage: assert < progname expectedResult>" << std::endl;
         exit( 1 );
     }
 
-    std::string expected = argv[ 1 ];
-    std::string name = argv[ 0 ];
+    std::string name = argv[ 1 ];
+    std::string expected = argv[ 2 ];
     std::string result;
 
     std::getline(std::cin, result );
