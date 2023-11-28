@@ -46,3 +46,6 @@ jobs:
         echo 25 27 | assignment6 | assert task6 1
         echo 13 13 | assignment6 | assert task6 13
         echo 12 16 | assignment6 | assert task6 4
+        echo 5 | assignment7 | assert task7 101
+        echo 32 | assignment7 | assert task7 100000
+        echo 1 | assignment7 | assert task7 1
