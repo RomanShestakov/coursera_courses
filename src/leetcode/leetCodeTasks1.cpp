@@ -7,6 +7,8 @@
 
 namespace leetcode {
 
+    using namespace std;
+
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -101,6 +103,49 @@ vector<int> twoSum(vector<int>& nums, int target) {
 }
 
 
+
+// Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+// Example 1:
+
+// Input: nums =  [-4,-1,0,3,10]
+// Output: [0,1,9,16,100]
+// Explanation: After squaring, the array becomes [16,1,0,9,100].
+// After sorting, it becomes [0,1,9,16,100].
+// Example 2:
+
+// Input: nums = [-7,-3,2,3,11]
+// Output: [4,9,9,49,121]
+
+
+// O(n * log(n)) solution
+std::vector<int> sortedSquares(std::vector<int>& nums) {
+    for( int i = 0; i < nums.size(); ++i)
+    nums[ i ] = nums[ i ] * nums[ i ];
+    std::sort( nums.begin(), nums.end());
+    return nums;
+}
+
+
+// O(N) solution
+std::vector<int> sortedSquares1(std::vector<int>& nums) {
+    std::vector<int> v( nums.size() );
+    int l = 0;
+    int r = nums.size() - 1;
+    int sqrt;
+
+    for( int i = nums.size() - 1; i >= 0; --i) {
+        if( abs( nums[ l ] ) < abs( nums[ r ]) ) {
+            sqrt = nums[ r-- ];
+        }
+        else {
+            sqrt = nums[ l++ ];
+        }
+        v[ i ] = sqrt * sqrt;
+    }
+    return v;
+}
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -114,4 +159,17 @@ TEST(reverseString, case2) {
     std::vector<char> expected = {'o','l','l','e','h'};
     reverseString( v );
     EXPECT_EQ( expected, v );
+}
+
+TEST(sortedSqr, case1) {
+    std::vector<int> v = {-4,-1,0,3,10};
+    std::vector<int> expected = {0,1,9,16,100};
+    EXPECT_EQ( expected, sortedSquares( v ) );
+}
+
+
+TEST(sortedSqr, case2) {
+    std::vector<int> v = {-4,-1,0,3,10};
+    std::vector<int> expected = {0,1,9,16,100};
+    EXPECT_EQ( expected, sortedSquares1( v ) );
 }
