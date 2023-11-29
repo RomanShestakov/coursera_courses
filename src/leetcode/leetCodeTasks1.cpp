@@ -5,6 +5,8 @@
 #include <vector>
 
 
+namespace leetcode {
+
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -68,9 +70,48 @@ vector<int> twoSum(vector<int>& nums, int target) {
 
 
 
-TEST(twoSum, case1) {
 
+// reverse string
+// Write a function that reverses a string. The input string is given as an array of characters s.
+
+// You must do this by modifying the input array in-place with O(1) extra memory.
+
+// Example 1:
+
+// Input: s = ["h","e","l","l","o"]
+// Output: ["o","l","l","e","h"]
+// Example 2:
+
+// Input: s = ["H","a","n","n","a","h"]
+// Output: ["h","a","n","n","a","H"]
+
+
+    void reverseString(vector<char>& s) {
+        int l = 0;
+        int r = s.size() - 1;
+        char tmp;
+
+        while( l < r ){
+            tmp = s[ l ];
+            s[ l++ ] = s[ r ];
+            s[ r-- ] = tmp;
+
+        }
+    }
+}
+
+
+using namespace leetcode;
+TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
-    std:vector<int> expected = {0,1};
+    std::vector<int> expected = {0,1};
     EXPECT_EQ( expected, twoSum( v, 9) );
+}
+
+
+TEST(reverseString, case2) {
+    std::vector<char> v = {'h','e','l','l','o'};
+    std::vector<char> expected = {'o','l','l','e','h'};
+    reverseString( v );
+    EXPECT_EQ( expected, v );
 }

@@ -10,7 +10,7 @@ add_executable(isPolindrom ./isPolindrom.cpp)
 set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
   runLeetcodeTest.cpp
-  twoSums.cpp
+  leetCodeTasks1.cpp
 )
 target_include_directories(${RUN_LEET_CODE_TEST}
    ${GTEST_INCLUDE_DIRS} PUBLIC
