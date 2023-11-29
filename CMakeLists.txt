@@ -31,3 +31,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # add dirs where other CMakelists are expected to be
 add_subdirectory(${PROJECT_SOURCE_DIR}/scripts)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/white_belt)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/leetcode)

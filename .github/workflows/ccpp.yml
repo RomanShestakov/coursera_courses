@@ -49,3 +49,5 @@ jobs:
         echo 5 | assignment7 | assert task7 101
         echo 32 | assignment7 | assert task7 100000
         echo 1 | assignment7 | assert task7 1
+        echo aasssaa | isPolindrom | assert isPolindrom true
+        echo aasssab | isPolindrom | assert isPolindrom false
