@@ -20,7 +20,7 @@ int main() {
 
     std::cin >> str;
 
-    std::cout << "IsPolindrom:" << std::boolalpha << isPolindrom( str ) << std::endl;
+    std::cout << std::boolalpha << isPolindrom( str ) << std::endl;
 
     return 0;
 }
