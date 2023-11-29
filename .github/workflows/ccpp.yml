@@ -51,3 +51,4 @@ jobs:
         echo 1 | assignment7 | assert task7 1
         echo aasssaa | isPolindrom | assert isPolindrom true
         echo aasssab | isPolindrom | assert isPolindrom false
+        runLeetcodeTest
