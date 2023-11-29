@@ -120,8 +120,9 @@ vector<int> twoSum(vector<int>& nums, int target) {
 
 // O(n * log(n)) solution
 std::vector<int> sortedSquares(std::vector<int>& nums) {
-    for( int i = 0; i < nums.size(); ++i)
-    nums[ i ] = nums[ i ] * nums[ i ];
+    for( int i = 0; i < nums.size(); ++i) {
+        nums[ i ] = nums[ i ] * nums[ i ];
+    }
     std::sort( nums.begin(), nums.end());
     return nums;
 }
@@ -145,6 +146,54 @@ std::vector<int> sortedSquares1(std::vector<int>& nums) {
     }
     return v;
 }
+
+
+// sliding window
+
+// Example 1: Given an array of positive integers nums and an integer k, find the length of the longest subarray whose sum is less than or equal to k. This is the problem we have been talking about above. We will now formally solve it.
+
+int findLength( const std::vector<int>& v, int k ) {
+    int l = 0;
+    int r = 0;
+    int total = 0;
+
+    for( int i = 0; i < v.size(); ++i ) {
+        total += v[ r++ ];
+
+        while( total > k ) {
+            total -= v[ l++ ];
+        }
+    }
+
+    return std::max( 0, r - l + 1 );
+}
+
+
+
+// Example 2: You are given a binary string s (a string containing only "0" and "1"). You may choose up to one "0" and flip it to a "1". What is the length of the longest substring achievable that contains only "1"?
+
+// For example, given s = "1101100111", the answer is 5. If you perform the flip at index 2, the string becomes 1111100111.
+int findLongestString( const std::string& v ) {
+    int total = 0;
+    bool flip = false;
+    std::vector<int> a;
+
+    for( int r = 0 ; r < v.size(); ++r) {
+        if( v[ r ] == '1' ) {
+            total++;
+        } else if( !flip ) {
+            total++;
+            flip = true;
+        } else {
+            a.push_back(total);
+            total = 0;
+            flip = false;
+        }
+    }
+
+    return *std::max_element(a.begin(), a.end());
+}
+
 
 using namespace leetcode;
 TEST(twoSum, case1) {
@@ -172,4 +221,18 @@ TEST(sortedSqr, case2) {
     std::vector<int> v = {-4,-1,0,3,10};
     std::vector<int> expected = {0,1,9,16,100};
     EXPECT_EQ( expected, sortedSquares1( v ) );
+}
+
+
+TEST(findLength, case1) {
+    std::vector<int> v = {3, 1, 2, 7, 4, 2, 1, 1, 5};
+    int expected = 4;
+    EXPECT_EQ( expected, findLength( v, 8 ) );
+}
+
+
+TEST(findLongestString, case1) {
+    std::string v = "1101100111";
+    int expected = 5;
+    EXPECT_EQ( expected, findLongestString( v ) );
 }
