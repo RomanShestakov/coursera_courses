@@ -195,6 +195,35 @@ int findLongestString( const std::string& v ) {
 }
 
 
+// different solution
+// "1101100111"
+int findLongestString1( const std::string& v ) {
+
+    int l = 0;
+    int r = 0;
+    int curr = 0;
+
+    while(  r < v.size() ) {
+
+        if( v[ r++ ] == '0' ) {
+            curr++;
+        }
+
+        while( curr > 1 ) {
+            if( v[ l++ ] == '0' ) {
+                curr--;
+            }
+        }
+
+        //std::cout << "r:" << r << "l:" << l << "curr:" << curr << std::endl;
+    }
+
+    return std::max( 0, r - l + 1);
+}
+
+
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -235,4 +264,10 @@ TEST(findLongestString, case1) {
     std::string v = "1101100111";
     int expected = 5;
     EXPECT_EQ( expected, findLongestString( v ) );
+}
+
+TEST(findLongestString1, case1) {
+    std::string v = "1101100111";
+    int expected = 5;
+    EXPECT_EQ( expected, findLongestString1( v ) );
 }
