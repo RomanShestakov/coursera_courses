@@ -223,8 +223,6 @@ int findLongestString1( const std::string& v ) {
 }
 
 
-
-
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
