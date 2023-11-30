@@ -11,13 +11,13 @@ int main() {
 
     for(int i = 0; i < 100; ++i) {
 
-        if( i % 3 && i % 5 ) {
+        if( i % 3 == 0 && i % 5 == 0 ) {
             std::cout << "fizzbuz,";
         }
-        else if( i % 3 ) {
+        else if( i % 3 == 0 ) {
             std::cout << "fizz,";
         }
-        else if( i % 5 ) {
+        else if( i % 5 == 0 ) {
             std::cout << "buzz,";
         }
         else {
