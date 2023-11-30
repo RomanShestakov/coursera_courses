@@ -17,7 +17,7 @@ jobs:
         sudo apt-get install cmake
         sudo apt-get install libgtest-dev
         sudo apt-get install ansible
-        sudo ansible-galaxy install -v --roles-path /usr/share/ansible/roles git+https://github.com/RomanShestakov/ansible-role-rapidcheck.git
+        sudo ansible-galaxy install -vvvv --roles-path /usr/share/ansible/roles git+https://github.com/RomanShestakov/ansible-role-rapidcheck.git
 
     - name: configure
       run: |
