@@ -195,6 +195,7 @@ int findLongestString( const std::string& v ) {
 }
 
 
+// Because the string can only contain "1" and "0", another way to look at this problem is "what is the longest substring that contains at most one "0"?". Th
 // different solution
 // "1101100111"
 int findLongestString1( const std::string& v ) {
