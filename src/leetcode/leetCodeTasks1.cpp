@@ -4,10 +4,10 @@
 #include <numeric>
 #include <vector>
 
+using namespace std;
 
 namespace leetcode {
 
-    using namespace std;
 
 // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
@@ -251,6 +251,52 @@ int numSubarrayProductLessThanK( const std::vector<int>& nums, int k) {
 }
 
 
+
+//Example 4: Given an integer array nums and an integer k, find the sum of the subarray with the largest sum whose length is k.
+//{3, -1, 4,12,-8,5,6};
+
+int largestSumOfsubarrays( const std::vector<int>& nums, int k) {
+    int sum = 0;
+    int answ = 0;
+
+    for(int r = 0; r < k; r++) {
+        sum += nums[ r ];
+    }
+
+    answ = sum;
+
+    for(int r = k; r < nums.size(); r++) {
+        sum += nums[ r ] - nums[ r - k ];
+        answ = std::max(answ, sum);
+    }
+
+    return answ;
+}
+
+
+// second solution
+int largestSumOfsubarrays1( const std::vector<int>& nums, int k) {
+
+    int l = 0;
+    int sum = 0;
+    int answ = 0;
+
+    for(int r = 0; r < nums.size(); r++) {
+
+        if( r < k ) {
+            sum += nums[ r ];
+        }
+        else {
+            sum += nums[ r ] - nums[ r - k ];
+        }
+
+        answ = std::max( sum, answ);
+    }
+
+    return answ;
+}
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -304,4 +350,22 @@ TEST(numSubarrayProductLessThanK, case1) {
     std::vector<int> v = {10, 5, 2, 6};
     int expected = 8;
     EXPECT_EQ( expected, numSubarrayProductLessThanK( v, 100 ) );
+}
+
+
+TEST(largestSumOfsubarrays, case1) {
+    //testing::internal::CaptureStdout();
+    std::vector<int> v = {3, -1, 4,12,-8,5,6};
+    int expected = 18;
+    EXPECT_EQ( expected, largestSumOfsubarrays( v, 4 ) );
+    //std::string output = testing::internal::GetCapturedStdout();
+
+    //std::cerr << output << std::endl;
+
+}
+
+TEST(largestSumOfsubarrays1, case1) {
+    std::vector<int> v = {3, -1, 4,12,-8,5,6};
+    int expected = 18;
+    EXPECT_EQ( expected, largestSumOfsubarrays1( v, 4 ) );
 }

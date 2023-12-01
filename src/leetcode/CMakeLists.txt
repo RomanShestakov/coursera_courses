@@ -8,6 +8,7 @@ find_package(rapidcheck REQUIRED)
 # EXEC
 add_executable(isPolindrom ./isPolindrom.cpp)
 add_executable(fizzbuz ./fizzbuz.cpp)
+add_executable(largestSum ./main.cpp)
 
 set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
@@ -39,6 +40,7 @@ target_link_libraries(${RUN_RC_TEST}
 set(NAMES
 isPolindrom
 fizzbuz
+largestSum
 ${RUN_LEET_CODE_TEST}
 )
 
