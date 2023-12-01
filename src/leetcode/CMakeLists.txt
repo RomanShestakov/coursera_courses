@@ -12,7 +12,7 @@ add_executable(largestSum ./main.cpp)
 
 set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
-  runLeetcodeTest.cpp
+  ../runGTest.cpp
   leetCodeTasks1.cpp
 )
 target_include_directories(${RUN_LEET_CODE_TEST}
