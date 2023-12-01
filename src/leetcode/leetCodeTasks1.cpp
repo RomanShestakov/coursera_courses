@@ -297,6 +297,37 @@ int largestSumOfsubarrays1( const std::vector<int>& nums, int k) {
 }
 
 
+// You are given an integer array nums consisting of n elements, and an integer k.
+
+// Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+
+
+// Example 1:
+
+// Input: nums = [1,12,-5,-6,50,3], k = 4
+// Output: 12.75000
+// Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+
+double findMaxAverage(vector<int>& nums, int k) {
+    double sum;
+    double a;
+
+    for( int i = 0; i < k; i++ ) {
+        sum += nums[ i ];
+    }
+
+    a = sum / k;
+
+    for( int i = k; i < nums.size(); i++ ) {
+        sum += nums[ i ] - nums[ i - k];
+        double m = sum / k;
+        a= std::max( a, m );
+    }
+
+    return a;
+}
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -368,4 +399,10 @@ TEST(largestSumOfsubarrays1, case1) {
     std::vector<int> v = {3, -1, 4,12,-8,5,6};
     int expected = 18;
     EXPECT_EQ( expected, largestSumOfsubarrays1( v, 4 ) );
+}
+
+TEST(findMaxAverage, case1) {
+    std::vector<int> v = {1,12,-5,-6,50,3};
+    double expected = 12.75;
+    EXPECT_EQ( expected, findMaxAverage( v, 4 ) );
 }
