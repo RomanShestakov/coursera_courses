@@ -201,25 +201,27 @@ int findLongestString( const std::string& v ) {
 int findLongestString1( const std::string& v ) {
 
     int l = 0;
-    int r = 0;
     int curr = 0;
+    int a = 0;
 
-    while(  r < v.size() ) {
+    for( int r = 0; r < v.size(); r++ ) {
 
-        if( v[ r++ ] == '0' ) {
+        if( v[ r ] == '0' ) {
             curr++;
         }
 
         while( curr > 1 ) {
-            if( v[ l++ ] == '0' ) {
+            if( v[ l ] == '0' ) {
                 curr--;
             }
+            l++;
         }
 
+        a = std::max( a, r - l + 1);
         //std::cout << "r:" << r << "l:" << l << "curr:" << curr << std::endl;
     }
 
-    return std::max( 0, r - l + 1);
+    return a;
 }
 
 
@@ -328,6 +330,67 @@ double findMaxAverage(vector<int>& nums, int k) {
     return a;
 }
 
+
+//Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+
+// Example 1:
+
+// Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+// Output: 6
+// Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+// Example 2:
+
+// Input: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3
+// Output: 10
+// Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
+// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+
+int longestOnes(vector<int>& nums, int k) {
+    int l = 0;
+    int a = 0;
+    int curr = 0;
+
+    for( int r = 0; r < nums.size(); r++ ) {
+
+        if( nums[ r ] == 0 ) {
+            curr++;
+        }
+        while( curr > k && l < r) {
+            if( nums[ l ] == 0 ) {
+                curr--;
+            }
+            l++;
+        }
+
+        a = std::max(a, r -l + 1);
+    }
+    return a;
+}
+
+
+// leetcode solution
+// int longestOnes(vector<int>& nums, int k) {
+//     int left = 0, right;
+//     int n = nums.size();
+//     for (right = 0; right < n; right++) {
+//         // If we included a zero in the window we reduce the value of k.
+//         // Since k is the maximum zeros allowed in a window.
+//         if (nums[right] == 0) {
+//             k--;
+//         }
+//         // A negative k denotes we have consumed all allowed flips and window has
+//         // more than allowed zeros, thus increment left pointer by 1 to keep the window size same.
+//         if (k < 0) {
+//             // If the left element to be thrown out is zero we increase k.
+//             k += 1 - nums[left];
+//             left++;
+//         }
+//     }
+//     return right - left;
+// }
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -406,3 +469,27 @@ TEST(findMaxAverage, case1) {
     double expected = 12.75;
     EXPECT_EQ( expected, findMaxAverage( v, 4 ) );
 }
+
+
+TEST(longestOnes, case1) {
+    std::vector<int> v = {1,1,1,0,0,0,1,1,1,1,0};
+    double expected = 6;
+    EXPECT_EQ( expected, longestOnes( v, 2 ) );
+}
+
+TEST(longestOnes, case2) {
+    std::vector<int> v = {0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1};
+    double expected = 10;
+    EXPECT_EQ( expected, longestOnes( v, 3 ) );
+}
+
+// Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+// Output: 6
+// Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+// Example 2:
+
+// Input: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3
+// Output: 10
+// Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
+// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
