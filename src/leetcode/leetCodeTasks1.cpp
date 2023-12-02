@@ -391,6 +391,66 @@ int longestOnes(vector<int>& nums, int k) {
 // }
 
 
+// Example 1: Given an integer array nums, an array queries where queries[i] = [x, y] and an integer limit, return a boolean array that represents the answer to each query. A query is true if the sum of the subarray from x to y is less than limit, or false otherwise.
+
+// For example, given nums = [1, 6, 3, 2, 7, 2], queries = [[0, 3], [2, 5], [2, 4]], and limit = 13, the answer is [true, false, true]. For each query, the subarray sums are [12, 14, 12].
+
+std::vector<bool> answerQueries( std::vector<int> & nums, std::vector<std::vector<int>>& q, int limit ) {
+    std::vector<int> sums = { nums[0] };
+    std::vector< bool > a;
+
+    for(int i = 1; i < nums.size(); i++ ) {
+        sums.push_back(  nums[ i ] + sums[ i - 1] );
+    }
+
+    for( auto el : q ){
+        int s = sums[ el[ 1 ] ] - sums[ el[ 0 ] ] + nums[ el[ 0 ] ];
+        a.push_back( ( s < limit ) );
+    }
+
+    return a;
+}
+
+
+
+// You are given a 0-indexed integer array nums of length n.
+
+// nums contains a valid split at index i if the following are true:
+
+// The sum of the first i + 1 elements is greater than or equal to the sum of the last n - i - 1 elements.
+// There is at least one element to the right of i. That is, 0 <= i < n - 1.
+// Return the number of valid splits in nums.
+
+// Example 1:
+
+// Input: nums = [10,4,-8,7]
+// Output: 2
+// Explanation:
+// There are three ways of splitting nums into two non-empty parts:
+// - Split nums at index 0. Then, the first part is [10], and its sum is 10. The second part is [4,-8,7], and its sum is 3. Since 10 >= 3, i = 0 is a valid split.
+// - Split nums at index 1. Then, the first part is [10,4], and its sum is 14. The second part is [-8,7], and its sum is -1. Since 14 >= -1, i = 1 is a valid split.
+// - Split nums at index 2. Then, the first part is [10,4,-8], and its sum is 6. The second part is [7], and its sum is 7. Since 6 < 7, i = 2 is not a valid split.
+// Thus, the number of valid splits in nums is 2.
+
+int waysToSplitArray(std::vector<int>& nums ) {
+    std::vector<long> sums = { nums[0]};
+    int a = 0;
+
+    for(int i = 1; i < nums.size(); i++ ) {
+        sums.push_back( sums.back() + nums[ i ] );
+    }
+
+    for(int i = 0 ; i < sums.size() - 1; i++ ) {
+        if( sums[ i ] >= sums[ nums.size() - 1 ] - sums[ i + 1 ] + nums[ i + 1] ) {
+            a++;
+        }
+    }
+
+    return a;
+}
+
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -482,6 +542,28 @@ TEST(longestOnes, case2) {
     double expected = 10;
     EXPECT_EQ( expected, longestOnes( v, 3 ) );
 }
+
+
+TEST(answerQueries, case1) {
+    std::vector<int> v = {1, 6, 3, 2, 7, 2};
+    std::vector<std::vector<int>> q = {{0, 3}, {2, 5}, {2, 4}};
+    std::vector<bool> expected = {true, false, true};
+    EXPECT_EQ( expected, answerQueries( v, q, 14 ) );
+}
+
+
+TEST(waystoSplitarray, case1) {
+    std::vector<int> v = {10,4,-8,7};
+    int expected = 2;
+    EXPECT_EQ( expected, waysToSplitArray( v ) );
+}
+
+
+
+
+// For example, given nums = [1, 6, 3, 2, 7, 2], queries = [[0, 3], [2, 5], [2, 4]], and limit = 13, the answer is [true, false, true]. For each query, the subarray sums are [12, 14, 12].
+
+
 
 // Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
 // Output: 6
