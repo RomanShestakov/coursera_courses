@@ -441,9 +441,14 @@ int waysToSplitArray(std::vector<int>& nums ) {
     }
 
     for(int i = 0 ; i < sums.size() - 1; i++ ) {
-        if( sums[ i ] >= sums[ nums.size() - 1 ] - sums[ i + 1 ] + nums[ i + 1] ) {
+        // if( sums[ i ] >= sums[ nums.size() - 1 ] - sums[ i + 1 ] + nums[ i + 1] ) {
+        //     a++;
+        // }
+        // better solution
+        if( sums[ i ] >= sums.back() - sums[ i ] ) {
             a++;
         }
+
     }
 
     return a;
