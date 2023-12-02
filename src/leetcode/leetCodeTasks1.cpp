@@ -456,6 +456,34 @@ int waysToSplitArray(std::vector<int>& nums ) {
 
 
 
+
+// TODO
+
+// Given an array of integers nums, you start with an initial positive value startValue.
+
+// In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left to right).
+
+// Return the minimum positive value of startValue such that the step by step sum is never less than 1.
+
+
+
+// Example 1:
+
+// Input: nums = [-3,2,-3,4,2]
+// Output: 5
+// Explanation: If you choose startValue = 4, in the third iteration your step by step sum is less than 1.
+// step by step sum
+// startValue = 4 | startValue = 5 | nums
+//   (4 -3 ) = 1  | (5 -3 ) = 2    |  -3
+//   (1 +2 ) = 3  | (2 +2 ) = 4    |   2
+//   (3 -3 ) = 0  | (4 -3 ) = 1    |  -3
+//   (0 +4 ) = 4  | (1 +4 ) = 5    |   4
+//   (4 +2 ) = 6  | (5 +2 ) = 7    |   2
+
+// int minStartValue( std::vector< int>& nums ) {
+// }
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -564,19 +592,14 @@ TEST(waystoSplitarray, case1) {
 }
 
 
+// TEST(minstartValue, case1) {
+//     std::vector<int> v = {-3,2,-3,4,2};
+//     int expected = 5;
+//     EXPECT_EQ( expected, minStartValue( v ) );
+// }
 
-
-// For example, given nums = [1, 6, 3, 2, 7, 2], queries = [[0, 3], [2, 5], [2, 4]], and limit = 13, the answer is [true, false, true]. For each query, the subarray sums are [12, 14, 12].
-
-
-
-// Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
-// Output: 6
-// Explanation: [1,1,1,0,0,1,1,1,1,1,1]
-// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
-// Example 2:
-
-// Input: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3
-// Output: 10
-// Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
-// Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+// TEST(minstartValue, case2) {
+//     std::vector<int> v = {1,2};
+//     int expected = 1;
+//     EXPECT_EQ( expected, minStartValue( v ) );
+// }
