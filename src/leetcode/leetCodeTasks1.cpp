@@ -692,6 +692,56 @@ void moveZeros( std::vector<int>& nums) {
 }
 
 
+// Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.
+
+// Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
+
+
+
+// Example 1:
+
+// Input: s = "abciiidef", k = 3
+// Output: 3
+// Explanation: The substring "iii" contains 3 vowel letters.
+// Example 2:
+
+// Input: s = "aeiou", k = 2
+// Output: 2
+// Explanation: Any substring of length 2 contains 2 vowels.
+// Example 3:
+
+// Input: s = "leetcode", k = 3
+// Output: 2
+// Explanation: "lee", "eet" and "ode" contain 2 vowels.
+
+
+int maxVowels(string s, int k) {
+    int l = 0;
+    int a = 0;
+    int curr = 0;
+
+    std::string ss = "aeiou";
+
+    auto isVowel = [ &ss ]( char c ){ return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'; };
+    for( int r = 0; r < s.size(); r++ ) {
+        if( isVowel( s[ r ] ) ) {
+            curr++;
+        }
+        // 0 - 2
+
+        if( r >= k ) {
+            if( isVowel( s[ l ] ) ) {
+                curr--;
+            }
+            l++;
+        }
+
+        a = max( a, curr);
+
+    }
+
+    return a;
+}
 
 
 using namespace leetcode;
@@ -853,4 +903,11 @@ TEST(minSubArrayLen, case2) {
     std::vector<int> v = {1,4,4};
     int expected = 1;
     EXPECT_EQ( expected, minSubArrayLen( 4, v ) );
+}
+
+
+TEST(maxVowels, case1) {
+    std::string s = "abciiidef";
+    int expected = 3;
+    EXPECT_EQ( expected, maxVowels( s, 3 ) );
 }
