@@ -618,6 +618,82 @@ void moveZeros( std::vector<int>& nums) {
 
 
 
+
+// Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
+
+// For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3 (inclusive). The resulting string will be "dcbaefd".
+// Return the resulting string.
+
+
+
+// Example 1:
+
+// Input: word = "abcdefd", ch = "d"
+// Output: "dcbaefd"
+// Explanation: The first occurrence of "d" is at index 3.
+// Reverse the part of word from 0 to 3 (inclusive), the resulting string is "dcbaefd".
+// Example 2:
+
+// Input: word = "xyxzxe", ch = "z"
+// Output: "zxyxxe"
+// Explanation: The first and only occurrence of "z" is at index 3.
+// Reverse the part of word from 0 to 3 (inclusive), the resulting string is "zxyxxe".
+// Example 3:
+
+// Input: word = "abcd", ch = "z"
+// Output: "abcd"
+// Explanation: "z" does not exist in word.
+// You should not do any reverse operation, the resulting string is "abcd".
+
+
+
+// Given an array of positive integers nums and a positive integer target, return the minimal length of a
+// subarray
+//  whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+
+
+
+// Example 1:
+
+// Input: target = 7, nums = [2,3,1,2,4,3]
+// Output: 2
+// Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+// Example 2:
+
+// Input: target = 4, nums = [1,4,4]
+// Output: 1
+// Example 3:
+
+// Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+// Output: 0
+
+ int minSubArrayLen(int target, vector<int>& nums) {
+    std::vector< int> sums = { nums[ 0 ]};
+    for( int i = 1; i < nums.size(); i++ ) {
+        sums.push_back( sums.back() + nums[ i ] );
+    }
+    if( sums.back() < target ) return 0;
+    int a = nums.size();
+    int l = 0;
+    for( int r = 0; r < sums.size(); r++ ) {
+        if( sums[ r ] < target ) {
+            continue;
+        }
+        while( l <= r ) {
+            if( sums[ r ] - sums[ l ] + nums[ l ] >= target ) {
+                a = min( r - l + 1, a);
+                l++;
+            }
+            else
+            break;
+        }
+    }
+    return a;
+}
+
+
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -764,4 +840,17 @@ TEST(moveZero, case1) {
     std::vector<int> expected = {1,3,12,0,0};
     moveZeros( v );
     EXPECT_EQ( expected, v );
+}
+
+
+TEST(minSubArrayLen, case1) {
+    std::vector<int> v = {2,3,1,2,4,3};
+    int expected = 2;
+    EXPECT_EQ( expected, minSubArrayLen( 7, v ) );
+}
+
+TEST(minSubArrayLen, case2) {
+    std::vector<int> v = {1,4,4};
+    int expected = 1;
+    EXPECT_EQ( expected, minSubArrayLen( 4, v ) );
 }
