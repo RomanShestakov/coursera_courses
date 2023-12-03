@@ -583,6 +583,41 @@ std::string reverseStr( std::string s ) {
 
 
 
+
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
+
+
+
+// Example 1:
+
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+// Example 2:
+
+// Input: nums = [0]
+// Output: [0]
+void moveZeros( std::vector<int>& nums) {
+    int firstNonZero = 0;
+
+    // move all not zeros to from
+    // fill the rest with zeros
+
+    for( int i = 0; i < nums.size(); i++ ) {
+        if( nums[ i ] != 0 ) {
+            nums[ firstNonZero++] = nums[ i ];
+        }
+    }
+
+    for( int i = firstNonZero; i< nums.size(); i++ ) {
+        nums[ i ] = 0 ;
+    }
+
+}
+
+
+
 using namespace leetcode;
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
@@ -712,13 +747,21 @@ TEST(waystoSplitarray, case1) {
 //     EXPECT_EQ( expected, getAverages( v, 3 ) );
 // }
 
-
-
-
 // Input: s = "ab-cd"
 // Output: "dc-ba"
 TEST(reverseStr, case1) {
     std::string s = "ab-cd";
     std::string expected = "dc-ba";
     EXPECT_EQ( expected, reverseStr( s ) );
+}
+
+
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+
+TEST(moveZero, case1) {
+    std::vector<int> v = {0,1,0,3,12};
+    std::vector<int> expected = {1,3,12,0,0};
+    moveZeros( v );
+    EXPECT_EQ( expected, v );
 }
