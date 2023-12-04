@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -62,6 +63,26 @@ vector<int> twoSum(vector<int>& nums, int target) {
 
     return {v[l].second, v[r].second};
 }
+
+
+
+vector<int> twoSum1(vector<int>& nums, int target) {
+    std::unordered_map<int,int> m;
+
+    for(int i = 0; i < nums.size(); i++) {
+        int comp = target - nums[ i ];
+        auto it = m.find( comp );
+        if(  it != m.end() ) {
+            return { i, it -> second};
+        }
+
+        m[ nums[ i ] ] = i;
+    }
+
+    return { -1, -1};
+}
+
+
 
 
 // vector<int> twoSum1(vector<int>& nums, int target) {
@@ -876,10 +897,17 @@ int equalSubstring(string s, string t, int maxCost) {
 
 
 using namespace leetcode;
+
 TEST(twoSum, case1) {
     std::vector<int> v = {2,7,11,15};
-    std::vector<int> expected = {0,1};
-    EXPECT_EQ( expected, twoSum( v, 9) );
+    std::vector<int> result = twoSum( v, 9);
+    EXPECT_TRUE( ( 1 == result[ 0 ] && 0 == result[ 1] ) || ( 0 == result[ 0 ]) && 1 == result[ 1 ] );
+}
+
+TEST(twoSum1, case1) {
+    std::vector<int> v = {2,7,11,15};
+    std::vector<int> result = twoSum1( v, 9);
+    EXPECT_TRUE( ( 1 == result[ 0 ] && 0 == result[ 1] ) || ( 0 == result[ 0 ]) && 1 == result[ 1 ] );
 }
 
 
