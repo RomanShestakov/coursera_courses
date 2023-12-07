@@ -2,6 +2,7 @@
 #include "gtest/gtest.h"
 #include <algorithm>
 #include <numeric>
+#include <unordered_set>
 #include <vector>
 #include <unordered_map>
 
@@ -896,6 +897,154 @@ int equalSubstring(string s, string t, int maxCost) {
 // numArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
 
 
+// Given a string s consisting of lowercase English letters, return the first letter to appear twice.
+
+// Note:
+
+// A letter a appears twice before another letter b if the second occurrence of a is before the second occurrence of b.
+// s will contain at least one letter that appears twice.
+
+
+// Example 1:
+
+// Input: s = "abccbaacz"
+// Output: "c"
+// Explanation:
+// The letter 'a' appears on the indexes 0, 5 and 6.
+// The letter 'b' appears on the indexes 1 and 4.
+// The letter 'c' appears on the indexes 2, 3 and 7.
+// The letter 'z' appears on the index 8.
+// The letter 'c' is the first letter to appear twice, because out of all the letters the index of its second occurrence is the smallest.
+
+
+//Example 3: Given an integer array nums, find all the unique numbers x in nums that satisfy the following: x + 1 is not in nums, and x - 1 is not in nums.
+std::vector< int > uniqNumber( std::vector< int > nums ) {
+    std::unordered_set<int> set (nums.begin(), nums.end());
+    std::vector< int > v;
+    for( int n : nums ) {
+        if( set.find( n + 1 ) == set.end() && set.find( n - 1 ) == set.end() ) {
+            v.push_back( n);
+        }
+    }
+
+    return v;
+}
+
+
+
+// A pangram is a sentence where every letter of the English alphabet appears at least once.
+
+// Given a string sentence containing only lowercase English letters, return true if sentence is a pangram, or false otherwise.
+
+
+
+// Example 1:
+
+// Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+// Output: true
+// Explanation: sentence contains at least one of every letter of the English alphabet.
+// Example 2:
+
+// Input: sentence = "leetcode"
+// Output: false
+
+
+
+// Example 1: You are given a string s and an integer k. Find the length of the longest substring that contains at most k distinct characters.
+// For example, given s = "eceba" and k = 2, return 3. The longest substring with at most 2 distinct characters is "ece".
+
+int longestsubst( std::string s, int k) {
+
+    int a = 0;
+    int l = 0;
+
+    std::unordered_map< char, int > m;
+
+    for( int r = 0; r < s.size(); r++ ) {
+        m[ s[ r ] ]++;
+
+        std::cout << r << " + " << s[ r ] << " " << m[ s[ r ] ]<< std::endl;
+
+        while( m.size() > k && l < r ) {
+            m[ s[ l ] ]--;
+            if( m[ s[ l ] ] == 0 ) {
+                m.erase( s[ l ] );
+            }
+            std::cout << l << " -- " << s[ l ] << " " << m[ s[ l ] ]<< std::endl;
+            l++;
+        }
+
+        a = max( a, r - l + 1 );
+    }
+
+    return a;
+}
+
+
+// Example 2: 2248. Intersection of Multiple Arrays
+
+// Given a 2D array nums that contains n arrays of distinct integers, return a sorted array containing all the numbers that appear in all n arrays.
+
+// For example, given nums = [[3,1,2,4,5],[1,2,3,4],[3,4,5,6]], return [3, 4]. 3 and 4 are the only numbers that are in all arrays.
+
+
+
+
+
+// Example 3: 1941. Check if All Characters Have Equal Number of Occurrences
+
+// Given a string s, determine if all characters have the same frequency.
+
+// For example, given s = "abacbc", return true. All characters appear twice. Given s = "aaabb", return false. "a" appears 3 times, "b" appears 2 times. 3 != 2.
+
+
+
+// Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+// A subarray is a contiguous non-empty sequence of elements within an array.
+// Example 1:
+
+// Input: nums = [1,1,1], k = 2
+// Output: 2
+// Example 2:
+
+// Input: nums = [1,2,3], k = 3
+// Output: 2
+
+// 1 1 1
+//   1 1
+//     1
+
+// 1 2 3 4 5 6
+// 1
+
+// 1 2 3
+//   2 3
+//     3
+
+// brute force
+int subarraySum( std::vector< int >& nums, int k ) {
+    int a = 0;
+
+    for( int i = 0; i < nums.size(); i++ ){
+
+        for( int j = 0; j <= i; j++ ) {
+
+            int s = 0;
+
+            for( int l = j; l <= i; l++ ) {
+                s += nums[ l ];
+            }
+
+            if( s == k ) {
+                a++;
+            }
+        }
+    }
+    return a;
+
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1077,4 +1226,38 @@ TEST(equalSubstring, case1) {
     std::string t = "bcdf";
     int expected = 3;
     EXPECT_EQ( expected, equalSubstring( s, t, 3 ) );
+}
+
+
+
+// For example, given s = "eceba" and k = 2, return 3. The longest substring with at most 2 distinct characters is "ece".
+
+//int longestsubst( std::string s, int k) {
+
+TEST(longestsubst, case1) {
+    std::string s = "eceba";
+    int expected = 3;
+    EXPECT_EQ( expected, longestsubst( s, 2 ) );
+}
+
+
+
+// Input: nums = [1,1,1], k = 2
+// Output: 2
+// Example 2:
+
+TEST(subarraySum, case1) {
+    std::vector<int> v = {1,1,1};
+    int expected = 2;
+    EXPECT_EQ( expected, subarraySum( v, 2 ) );
+}
+
+
+// Input: nums = [1,2,3], k = 3
+// Output: 2
+
+TEST(subarraySum, case2) {
+    std::vector<int> v = {1, 2, 3};
+    int expected = 2;
+    EXPECT_EQ( expected, subarraySum( v, 3 ) );
 }
