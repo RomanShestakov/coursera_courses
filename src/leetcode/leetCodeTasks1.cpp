@@ -1045,6 +1045,113 @@ int subarraySum( std::vector< int >& nums, int k ) {
 }
 
 
+
+
+// Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+// A subarray is a contiguous non-empty sequence of elements within an array.
+// Example 1:
+
+// Input: nums = [1,1,1], k = 2
+// Output: 2
+// Example 2:
+
+// Input: nums = [1,2,3], k = 3
+// Output: 2
+
+
+// 1 2 3
+int subarraySum1( std::vector< int >& nums, int k ) {
+    std::unordered_map< int, int> m;
+    int curr = 0;
+    int a = 0 ;
+    m[ 0 ] = 1;
+
+    for( int i = 0; i < nums.size(); i++ ) {
+        curr += nums[ i ];
+        a+=m[ curr - k];
+        m[ curr ]++;
+    }
+
+    return a;
+
+}
+
+
+
+// Example 5: 1248. Count Number of Nice Subarrays
+
+// Given an array of positive integers nums and an integer k. Find the number of subarrays with exactly k odd numbers in them.
+
+// For example, given nums = [1, 1, 2, 1, 1], k = 3, the answer is 2. The subarrays with 3 odd numbers in them are [1, 1, 2, 1, 1] and [1, 1, 2, 1, 1].
+
+// Example 1:
+
+// Input: nums = [1,1,2,1,1], k = 3
+// Output: 2
+// Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].
+// Example 2:
+
+// Input: nums = [2,4,6], k = 1
+// Output: 0
+// Explanation: There is no odd numbers in the array.
+// Example 3:
+
+// Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+// Output: 16
+
+
+
+int numberOfSubarrays(vector<int>& nums, int k) {
+    std::vector< int > v;
+
+    for( int i = 0; i < nums.size(); i++ ) {
+        nums[ i ] % 2 == 0 ? v.push_back( 0 ) : v.push_back( 1 );
+    }
+
+    std::unordered_map< int, int > m;
+    m[ 0 ] = 1;
+
+    int curr = 0;
+    int a = 0;
+
+    for( int n : v ) {
+        curr += n;
+        a += m[ curr - k ];
+        m[ curr ]++;
+    }
+
+    return a;
+}
+
+
+
+// 930. Binary Subarrays With Sum
+// Medium
+// Topics
+// Companies
+// Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+
+// A subarray is a contiguous part of the array.
+
+
+
+// Example 1:
+
+// Input: nums = [1,0,1,0,1], goal = 2
+// Output: 4
+// Explanation: The 4 subarrays are bolded and underlined below:
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// Example 2:
+
+// Input: nums = [0,0,0,0,0], goal = 0
+// Output: 15
+
+
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1260,4 +1367,52 @@ TEST(subarraySum, case2) {
     std::vector<int> v = {1, 2, 3};
     int expected = 2;
     EXPECT_EQ( expected, subarraySum( v, 3 ) );
+}
+
+
+
+TEST(subarraySum1, case1) {
+    std::vector<int> v = {1,1,1};
+    int expected = 2;
+    EXPECT_EQ( expected, subarraySum1( v, 2 ) );
+}
+
+TEST(subarraySum1, case2) {
+    std::vector<int> v = {1, 2, 3};
+    int expected = 2;
+    EXPECT_EQ( expected, subarraySum1( v, 3 ) );
+}
+
+
+
+// Input: nums = [1,1,2,1,1], k = 3
+// Output: 2
+// Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].
+// Example 2:
+
+// Input: nums = [2,4,6], k = 1
+// Output: 0
+// Explanation: There is no odd numbers in the array.
+// Example 3:
+
+// Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+// Output: 16
+
+
+TEST(numberOfSubarrays, case1) {
+    std::vector<int> v = {1,1,2,1,1};
+    int expected = 2;
+    EXPECT_EQ( expected, numberOfSubarrays( v, 3 ) );
+}
+
+TEST(numberOfSubarrays, case2) {
+    std::vector<int> v = {2,4,6};
+    int expected = 0;
+    EXPECT_EQ( expected, numberOfSubarrays( v, 1 ) );
+}
+
+TEST(numberOfSubarrays, case3) {
+    std::vector<int> v = {2,2,2,1,2,2,1,2,2,2};
+    int expected = 16;
+    EXPECT_EQ( expected, numberOfSubarrays( v, 2 ) );
 }
