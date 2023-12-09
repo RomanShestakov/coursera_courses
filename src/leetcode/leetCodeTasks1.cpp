@@ -1244,6 +1244,48 @@ int largestUniqueNumber(vector<int>& nums) {
     return -1;
 }
 
+
+
+// Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+// You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+
+
+// Example 1:
+
+
+
+// Input: text = "nlaebolko"
+// Output: 1
+// Example 2:
+int maxNumberOfBalloons(string text) {
+        std::unordered_map< char, int> m { {'b', 0},
+                                          {'a', 0},
+                                          {'l',0},
+                                          {'o',0},
+                                          {'n',0}};
+
+
+        for( auto c : text ) {
+            if( m.find( c ) != m.end() ) {
+                m[ c ]++;
+            }
+        }
+
+        std::vector<int> v;
+        for( auto& el : m ) {
+            if( el.first == 'l' || el.first == 'o' ) {
+                v.push_back( el.second / 2 );
+            }
+            v.push_back( el.second );
+        }
+
+        return *std::min_element( v.begin(), v.end() );
+
+    }
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1537,4 +1579,16 @@ TEST(largestUniqueNumber, case1) {
     std::vector<int> v = {5,7,3,9,4,9,8,3,1};
     int expected = 8;
     EXPECT_EQ( expected, largestUniqueNumber( v ) );
+}
+
+
+
+// Input: text = "nlaebolko"
+// Output: 1
+// Example 2:
+//int maxNumberOfBalloons(string text) {
+TEST(maxNumberOfBalloons, case1) {
+    std::string s = "nlaebolko";
+    int expected = 1;
+    EXPECT_EQ( expected, maxNumberOfBalloons( s ) );
 }
