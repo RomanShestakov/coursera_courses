@@ -1368,6 +1368,71 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
  }
 
 
+
+
+// Example 3: 2342. Max Sum of a Pair With Equal Sum of Digits
+
+// Given an array of integers nums, find the maximum value of nums[i] + nums[j], where nums[i] and nums[j] have the same digit sum (the sum of their individual digits). Return -1 if there is no pair of numbers with the same digit sum.
+
+
+// Example 1:
+
+// Input: nums = [18,43,36,13,7]
+// Output: 54
+// Explanation: The pairs (i, j) that satisfy the conditions are:
+// - (0, 2), both numbers have a sum of digits equal to 9, and their sum is 18 + 36 = 54.
+// - (1, 4), both numbers have a sum of digits equal to 7, and their sum is 43 + 7 = 50.
+// So the maximum sum that we can obtain is 54.
+// Example 2:
+
+// Input: nums = [10,12,19,14]
+// Output: -1
+// Explanation: There are no two numbers that satisfy the conditions, so we return -1.
+
+
+//[229,398,269,317,420,464,491,218,439,153,482,169,411,93,147,50,347,210,251,366,401]
+// answer = 973
+
+// how to find sum of digits
+// int getDigitSum(int num) {
+//         int digitSum = 0;
+//         while (num > 0) {
+//             digitSum += num % 10;
+//             num /= 10;
+//         }
+
+//         return digitSum;
+//     }
+
+int maximumSum(vector<int>& nums) {
+    std::unordered_map< int, std::vector<int>> m;
+
+    std::string s;
+    for( int i = 0; i < nums.size(); i++ ) {
+        s = to_string( nums[ i ]);
+        int acc = 0;
+        for( auto c : s ) {
+            int n = c - 48;
+            acc += n;
+            m[ acc ].push_back( nums[ i ] );
+        }
+    }
+
+    int a = -1;
+
+    for( auto el : m ) {
+        int curr = 0 ;
+        if( el.second.size() > 1 ) {
+            std::sort( el.second.begin(), el.second.end(), greater<int>());
+            a = std::max( a, el.second[ 0 ] + el.second[ 1 ]);
+        }
+    }
+
+    return a;
+
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1703,4 +1768,14 @@ TEST(minimumCardPickup, case1) {
     std::vector<int> v = {3,4,2,3,4,7};
     int expected = 4;
     EXPECT_EQ( expected, minimumCardPickup( v ) );
+}
+
+
+
+//[229,398,269,317,420,464,491,218,439,153,482,169,411,93,147,50,347,210,251,366,401]
+// answer = 973
+TEST(maximumSum, case1) {
+    std::vector<int> v = {229,398,269,317,420,464,491,218,439,153,482,169,411,93,147,50,347,210,251,366,401};
+    int expected = 973;
+    EXPECT_EQ( expected, maximumSum( v ) );
 }
