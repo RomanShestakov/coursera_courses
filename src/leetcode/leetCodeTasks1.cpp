@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <vector>
 #include <unordered_map>
+#include <limits>
 
 using namespace std;
 
@@ -1326,6 +1327,47 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
 
 
+// You are given an integer array cards where cards[i] represents the value of the ith card. A pair of cards are matching if the cards have the same value.
+
+// Return the minimum number of consecutive cards you have to pick up to have a pair of matching cards among the picked cards. If it is impossible to have matching cards, return -1.
+
+
+
+// Example 1:
+
+// Input: cards = [3,4,2,3,4,7]
+// Output: 4
+// Explanation: We can pick up the cards [3,4,2,3] which contain a matching pair of cards with value 3. Note that picking up the cards [4,2,3,4] is also optimal.
+// Example 2:
+
+// Input: cards = [1,0,5,3]
+// Output: -1
+// Explanation: There is no way to pick up a set of consecutive cards that contain a pair of matching cards.
+
+
+
+ int minimumCardPickup(vector<int>& cards) {
+
+     std::unordered_map< int, std::vector<int>> m;
+
+     for( int i = 0; i < cards.size(); i++ ) {
+         m[ cards[ i ] ].push_back( i );
+     }
+
+     int a = std::numeric_limits<int>::max();
+
+     for( auto& [ k, arr] : m ) {
+         for( int i = 1; i < arr.size(); i++ ) {
+             a = std::min( a, arr[ i ] - arr[ i - 1 ] + 1 );
+         }
+     }
+
+     a = a == std::numeric_limits<int>::max() ? -1 : a;
+     return a;
+
+ }
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1654,4 +1696,11 @@ TEST(groupAnagrams, case1) {
     }
 
     EXPECT_EQ( expected, r );
+}
+
+
+TEST(minimumCardPickup, case1) {
+    std::vector<int> v = {3,4,2,3,4,7};
+    int expected = 4;
+    EXPECT_EQ( expected, minimumCardPickup( v ) );
 }
