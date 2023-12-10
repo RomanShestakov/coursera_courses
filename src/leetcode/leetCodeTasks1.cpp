@@ -1286,6 +1286,46 @@ int maxNumberOfBalloons(string text) {
     }
 
 
+
+// Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+
+
+// Example 1:
+
+// Input: strs = ["eat","tea","tan","ate","nat","bat"]
+// Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+// Example 2:
+
+// Input: strs = [""]
+// Output: [[""]]
+// Example 3:
+
+// Input: strs = ["a"]
+// Output: [["a"]]
+
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+
+    vector<vector<string>> a;
+    std::unordered_map< std::string, std::vector<std::string>> m;
+
+    for( auto& str : strs ) {
+        auto s = str;
+        std::sort( s.begin(), s.end());
+        m[ s ].push_back( str );
+    }
+
+    for( auto el : m ) {
+        a.push_back( el.second);
+    }
+
+    return a;
+}
+
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1591,4 +1631,27 @@ TEST(maxNumberOfBalloons, case1) {
     std::string s = "nlaebolko";
     int expected = 1;
     EXPECT_EQ( expected, maxNumberOfBalloons( s ) );
+}
+
+
+
+
+// Input: strs = ["eat","tea","tan","ate","nat","bat"]
+// Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+TEST(groupAnagrams, case1) {
+    std::vector<std::string> v = {"eat","tea","tan","ate","nat","bat"};
+    std::vector<std::vector<std::string>> expected = {{"bat"},{"nat","tan"},{"ate","eat","tea"}};
+
+    auto r = groupAnagrams( v );
+
+    for( auto& v : r ) {
+        std::sort( v.begin(), v.end());
+    }
+
+    for( auto& v : expected ) {
+        std::sort( v.begin(), v.end());
+    }
+
+    EXPECT_EQ( expected, r );
 }
