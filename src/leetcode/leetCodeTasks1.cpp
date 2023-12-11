@@ -1433,6 +1433,51 @@ int maximumSum(vector<int>& nums) {
 }
 
 
+
+
+// Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
+
+// A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
+// Example 1:
+
+
+// Input: grid = [[3,2,1],[1,7,6],[2,7,7]]
+// Output: 1
+// Explanation: There is 1 equal row and column pair:
+// - (Row 2, Column 1): [2,7,7]
+int equalPairs(vector<vector<int>>& grid) {
+    std::unordered_map< std::string, int> rows;
+    std::unordered_map< std::string, int> columns;
+
+    for( int r = 0; r < grid.size(); r ++ ) {
+        std::stringstream ss;
+        for( int c = 0; c < grid[ r ].size(); c++ ) {
+            ss << to_string( grid[ r ][ c ] ) << ',';
+        }
+        rows [ ss.str() ]++;
+        std::cout << "r:" << ss.str() << std::endl;
+    }
+
+    for( int r = 0; r < grid.size(); r ++ ) {
+        std::stringstream ss;
+        for( int c = 0; c < grid[ r ].size(); c++ ) {
+            ss << to_string( grid[ c ][ r ] ) << ',';
+        }
+        columns [ ss.str() ]++;
+        std::cout << "c:" << ss.str() << std::endl;
+    }
+
+    int a = 0;
+    for( auto el : rows ) {
+        if( columns.find( el.first ) != columns.end() ) {
+            a += el.second * columns[ el.first ];
+        }
+    }
+
+    return a;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1778,4 +1823,19 @@ TEST(maximumSum, case1) {
     std::vector<int> v = {229,398,269,317,420,464,491,218,439,153,482,169,411,93,147,50,347,210,251,366,401};
     int expected = 973;
     EXPECT_EQ( expected, maximumSum( v ) );
+}
+
+
+
+
+
+// Input: grid = [[3,2,1],[1,7,6],[2,7,7]]
+// Output: 1
+// Explanation: There is 1 equal row and column pair:
+// - (Row 2, Column 1): [2,7,7]
+//int equalPairs(vector<vector<int>>& grid) {
+TEST(equalPairs, case1) {
+    std::vector<std::vector<int>> v = {{3,2,1},{1,7,6},{2,7,7}};
+    int expected = 1;
+    EXPECT_EQ( expected, equalPairs( v ) );
 }
