@@ -1478,6 +1478,48 @@ int equalPairs(vector<vector<int>>& grid) {
 }
 
 
+
+// Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+// Each letter in magazine can only be used once in ransomNote.
+
+
+
+// Example 1:
+
+// Input: ransomNote = "a", magazine = "b"
+// Output: false
+// Example 2:
+
+// Input: ransomNote = "aa", magazine = "ab"
+// Output: false
+// Example 3:
+
+// Input: ransomNote = "aa", magazine = "aab"
+//     Output: true
+
+bool canConstruct(string ransomNote, string magazine) {
+    std::unordered_map< char, int > m;
+
+    for( auto c : magazine ) {
+        m[ c ]++;
+    }
+
+    for( auto n : ransomNote ) {
+        if( m.find( n ) != m.end() ) {
+            m[ n ]--;
+            if( m[ n ] == 0 ) {
+                m.erase( n );
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1816,7 +1858,6 @@ TEST(minimumCardPickup, case1) {
 }
 
 
-
 //[229,398,269,317,420,464,491,218,439,153,482,169,411,93,147,50,347,210,251,366,401]
 // answer = 973
 TEST(maximumSum, case1) {
@@ -1824,9 +1865,6 @@ TEST(maximumSum, case1) {
     int expected = 973;
     EXPECT_EQ( expected, maximumSum( v ) );
 }
-
-
-
 
 
 // Input: grid = [[3,2,1],[1,7,6],[2,7,7]]
@@ -1838,4 +1876,14 @@ TEST(equalPairs, case1) {
     std::vector<std::vector<int>> v = {{3,2,1},{1,7,6},{2,7,7}};
     int expected = 1;
     EXPECT_EQ( expected, equalPairs( v ) );
+}
+
+//bool canConstruct(string ransomNote, string magazine) {
+// Input:  ransomNote = "aa", magazine = "aab"
+//     Output: true
+TEST(canConstruct, case1) {
+    std::string ransomNote = "aa";
+    std::string magazine = "aab";
+    int expected = true;
+    EXPECT_EQ( expected, canConstruct( ransomNote, magazine ) );
 }
