@@ -1520,6 +1520,35 @@ bool canConstruct(string ransomNote, string magazine) {
 }
 
 
+
+// You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+// Letters are case sensitive, so "a" is considered a different type of stone from "A".
+
+
+
+// Example 1:
+
+// Input: jewels = "aA", stones = "aAAbbbb"
+// Output: 3
+// Example 2:
+
+// Input: jewels = "z", stones = "ZZ"
+// Output: 0
+
+int numJewelsInStones(string jewels, string stones) {
+    std::unordered_set<char> s( jewels.begin(), jewels.end() );
+    int a = 0;
+    for( auto c : stones  ) {
+        if( s.find( c ) != s.end() ) {
+            a++;
+        }
+    }
+
+    return a;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1886,4 +1915,20 @@ TEST(canConstruct, case1) {
     std::string magazine = "aab";
     int expected = true;
     EXPECT_EQ( expected, canConstruct( ransomNote, magazine ) );
+}
+
+
+// Input: jewels = "aA", stones = "aAAbbbb"
+// Output: 3
+// Example 2:
+// Input: jewels = "z", stones = "ZZ"
+// Output: 0
+//int numJewelsInStones(string jewels, string stones) {
+
+TEST(numJewelsInStones, case1) {
+    std::string jewels = "aA";
+    std::string stones = "aAAbbbb";
+    int expected = 3;
+    EXPECT_EQ( expected, numJewelsInStones( jewels, stones ) );
+
 }
