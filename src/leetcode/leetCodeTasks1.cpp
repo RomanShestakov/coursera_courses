@@ -1549,6 +1549,46 @@ int numJewelsInStones(string jewels, string stones) {
 }
 
 
+
+// Given a string s, find the length of the longest substring without repeating characters.
+// Example 1:
+// Input: s = "abcabcbb"
+// Output: 3
+//     Explanation: The answer is "abc", with the length of 3.
+
+int lengthOfLongestSubstring(string s) {
+    std::unordered_set< char > set;
+
+    int a = 0;
+    int curr = 0;
+    int l = 0;
+
+    for( int r = 0; r < s.size(); r++ ) {
+        if( set.find( s[ r ] ) == set.end() ) {
+            set.insert( s[ r ] );
+            curr++;
+        }
+        else
+            {
+                while( l < r ) {
+                    if( s[ l ] == s[ r ] ) {
+                        l++;
+                        break;
+                    }
+                    curr--;
+                    set.erase( s[ l ] );
+                    l++;
+                }
+            }
+
+        a = max( a, curr );
+
+    }
+
+    return a;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1930,5 +1970,16 @@ TEST(numJewelsInStones, case1) {
     std::string stones = "aAAbbbb";
     int expected = 3;
     EXPECT_EQ( expected, numJewelsInStones( jewels, stones ) );
+
+}
+
+
+// Input: s = "abcabcbb"
+// Output: 3
+//     Explanation: The answer is "abc", with the length of 3.
+TEST(lengthOfLongestSubstring, case1) {
+    std::string s = "abcabcbb";
+    int expected = 3;
+    EXPECT_EQ( expected, lengthOfLongestSubstring( s ) );
 
 }
