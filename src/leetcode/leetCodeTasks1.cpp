@@ -1589,6 +1589,96 @@ int lengthOfLongestSubstring(string s) {
 }
 
 
+
+// You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
+
+// It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
+
+
+
+// Example 1:
+
+// Input: paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+// Output: "Sao Paulo"
+// Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+
+string destCity(vector<vector<string>>& paths) {
+    std::unordered_map< std::string, std::string> m;
+
+    for( auto path : paths ) {
+        m[ path[ 0 ] ] = path[ 1 ];
+    }
+
+    for( auto& [ k, v] : m ) {
+        if( m.find( v ) == m.end() ) {
+            return v;
+        }
+    }
+
+    return "";
+}
+
+
+
+// Given a string path, where path[i] = 'N', 'S', 'E' or 'W', each representing moving one unit north, south, east, or west, respectively. You start at the origin (0, 0) on a 2D plane and walk on the path specified by path.
+
+// Return true if the path crosses itself at any point, that is, if at any time you are on a location you have previously visited. Return false otherwise.
+
+
+//string destCity(vector<vector<string>>& paths) {
+struct Point {
+    int x;
+    int y;
+
+    bool operator== ( const Point& point ) const {
+        return point.x == x && point.y == y ;
+    }
+
+    friend std::ostream& operator<<( std::ostream& os, const Point& point ) {
+        return os << "x:" << point.x << " y:" << point.y;
+    }
+};
+
+struct Hasher {
+    std::hash< int > hasher_;
+
+    size_t operator()( const Point& point ) const {
+        const size_t coeff = 2'999'551;
+        return coeff * coeff * hasher_( point.x ) + coeff * coeff * hasher_( point.y );
+    }
+};
+
+bool isPathCrossing(string path) {
+    std::unordered_set< Point, Hasher > s;
+
+    Point point{ 0, 0 };
+    s.insert( point );
+
+    for( char c : path ) {
+        switch( c ) {
+            case 'N': point.y++; break;
+            case 'S': point.y--; break;
+            case 'E': point.x++; break;
+            case 'W': point.x--; break;
+            default:
+            std::cout << "unexpected_value:" << c << std::endl;
+        }
+
+        auto it = s.find( point );
+        if(  it != s.end() ) {
+            std::cout <<*it << std::endl;
+            return true;
+        } else {
+            auto ref = s.insert( point );
+            std::cout << *ref.first << std::endl;
+        }
+    }
+
+    return false;
+}
+
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -1982,4 +2072,27 @@ TEST(lengthOfLongestSubstring, case1) {
     int expected = 3;
     EXPECT_EQ( expected, lengthOfLongestSubstring( s ) );
 
+}
+
+
+// Input: paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+// Output: "Sao Paulo"
+// Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+TEST(destCity, case1) {
+    std::vector<std::vector<std::string>> v = {{"London","New York"},{"New York","Lima"},{"Lima","Sao Paulo"}};
+    std::string expected = "Sao Paulo";
+    EXPECT_EQ( expected, destCity( v ) );
+}
+
+
+TEST(isPathCrossing, case1) {
+    std::string s = "NSEW";
+    bool expected = true;
+    EXPECT_EQ( expected, isPathCrossing( s ) );
+}
+
+TEST(isPathCrossing, case2) {
+    std::string s = "NESWW";
+    bool expected = true;
+    EXPECT_EQ( expected, isPathCrossing( s ) );
 }
