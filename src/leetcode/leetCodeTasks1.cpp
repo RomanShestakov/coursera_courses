@@ -1679,6 +1679,77 @@ bool isPathCrossing(string path) {
 
 
 
+
+// You are given an integer array nums. The unique elements of an array are the elements that appear exactly once in the array.
+
+// Return the sum of all the unique elements of nums.
+
+
+
+// Example 1:
+
+// Input: nums = [1,2,3,2]
+// Output: 4
+// Explanation: The unique elements are [1,3], and the sum is 4.
+// Example 2:
+
+// Input: nums = [1,1,1,1,1]
+// Output: 0
+// Explanation: There are no unique elements, and the sum is 0.
+// Example 3:
+
+// Input: nums = [1,2,3,4,5]
+// Output: 15
+// Explanation: The unique elements are [1,2,3,4,5], and the sum is 15.
+
+
+int  sumOfUnique(vector<int>& nums) {
+    std::unordered_map<int, int > m;//( nums.begin(), nums.end() );
+    for( auto n : nums ) {
+        m[ n ]++;
+    }
+    return std::accumulate( m.begin(), m.end(), 0, []( int sum, auto& a ){ return a.second == 1 ? sum + a.first : sum; });
+}
+
+
+// Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
+
+// Return the largest lucky integer in the array. If there is no lucky integer return -1.
+// Example 1:
+
+// Input: arr = [2,2,3,4]
+// Output: 2
+// Explanation: The only lucky number in the array is 2 because frequency[2] == 2.
+// Example 2:
+
+// Input: arr = [1,2,2,3,3,3]
+// Output: 3
+// Explanation: 1, 2 and 3 are all lucky numbers, return the largest of them.
+// Example 3:
+
+// Input: arr = [2,2,2,3,3]
+// Output: -1
+// Explanation: There are no lucky numbers in the array.
+int findLucky(vector<int>& arr) {
+    std::unordered_map< int, int > m;
+    for( auto n : arr ) {
+        m[ n ]++;
+    }
+
+    auto it = m.begin();
+    int a = -1;
+    while( it != m.end() ) {
+
+        it = std::find_if( it, m.end(), []( auto& el ){ return el.second == el.first; } );
+        if( it != m.end() ) {
+            a = std::max( a, it -> first );
+            it++;
+        }
+    }
+
+    return a;
+}
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2060,7 +2131,6 @@ TEST(numJewelsInStones, case1) {
     std::string stones = "aAAbbbb";
     int expected = 3;
     EXPECT_EQ( expected, numJewelsInStones( jewels, stones ) );
-
 }
 
 
@@ -2071,7 +2141,6 @@ TEST(lengthOfLongestSubstring, case1) {
     std::string s = "abcabcbb";
     int expected = 3;
     EXPECT_EQ( expected, lengthOfLongestSubstring( s ) );
-
 }
 
 
@@ -2095,4 +2164,54 @@ TEST(isPathCrossing, case2) {
     std::string s = "NESWW";
     bool expected = true;
     EXPECT_EQ( expected, isPathCrossing( s ) );
+}
+
+
+//int  sumOfUnique(vector<int>& nums) {
+TEST(sumOfUnique, case1) {
+    std::vector<int> v = {1,2,3,2};
+    int expected = 4;
+    EXPECT_EQ( expected, sumOfUnique( v ) );
+}
+
+
+
+// Input: arr =  [2,2,3,4]
+// Output: 2
+// Explanation: The only lucky number in the array is 2 because frequency[2] == 2.
+// Example 2:
+
+// Input: arr =  [1,2,2,3,3,3]
+// Output: 3
+// Explanation: 1, 2 and 3 are all lucky numbers, return the largest of them.
+// Example 3:
+
+// Input: arr = [2,2,2,3,3]
+// Output: -1
+// Explanation: There are no lucky numbers in the array.
+
+//int findLucky(vector<int>& arr) {
+TEST(findLucky, case1) {
+    std::vector<int> v = {2,2,3,4};
+    int expected = 2;
+    EXPECT_EQ( expected, findLucky( v ) );
+}
+
+
+TEST(findLucky, case2) {
+    std::vector<int> v = {1,2,2,3,3,3};
+    int expected = 3;
+    EXPECT_EQ( expected, findLucky( v ) );
+}
+
+TEST(findLucky, case3) {
+    std::vector<int> v = {2,2,2,3,3};
+    int expected = -1;
+    EXPECT_EQ( expected, findLucky( v ) );
+}
+
+TEST(findLucky, case4) {
+    std::vector<int> v = {1,2,2,3,3, 3};
+    int expected = 3;
+    EXPECT_EQ( expected, findLucky( v ) );
 }
