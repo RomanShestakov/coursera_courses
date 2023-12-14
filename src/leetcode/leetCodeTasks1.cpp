@@ -1750,6 +1750,40 @@ int findLucky(vector<int>& arr) {
     return a;
 }
 
+
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+// Example 1:
+// Input: arr = [1,2,2,1,1,3]
+// Output: true
+// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+// Example 2:
+
+// Input: arr = [1,2]
+// Output: false
+// Example 3:
+
+// Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+// Output: true
+bool uniqueOccurrences(vector<int>& arr) {
+    std::unordered_map< int, int > m;
+    std::unordered_set<int> s;
+
+    for( auto n : arr ) {
+        m[ n ]++;
+    }
+
+    for( auto&[ k, v ] : m ){
+        if( s.find( v ) != s.end() ) {
+            return false;
+        }
+        s.insert( v );
+    }
+
+    return true;
+
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2214,4 +2248,33 @@ TEST(findLucky, case4) {
     std::vector<int> v = {1,2,2,3,3, 3};
     int expected = 3;
     EXPECT_EQ( expected, findLucky( v ) );
+}
+
+
+
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+// Example 1:
+// Input: arr = [1,2,2,1,1,3]
+// Output: true
+// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+// Example 2:
+
+// Input: arr = [1,2]
+// Output: false
+// Example 3:
+
+// Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+// Output: true
+//bool uniqueOccurrences(vector<int>& arr) {
+
+TEST(uniqueOccurrences, case1) {
+    std::vector<int> v = {1,2,2,1,1,3};
+    bool expected = true;
+    EXPECT_EQ( expected, uniqueOccurrences( v ) );
+}
+
+TEST(uniqueOccurrences, case2) {
+    std::vector<int> v = {1,2 };
+    bool expected = false;
+    EXPECT_EQ( expected, uniqueOccurrences( v ) );
 }
