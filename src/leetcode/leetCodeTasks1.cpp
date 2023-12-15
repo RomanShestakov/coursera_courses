@@ -1869,6 +1869,20 @@ int numIdenticalPairs(vector<int>& nums) {
 }
 
 
+// leetcode solution
+// int numIdenticalPairs(vector<int>& nums) {
+//     unordered_map<int, int> counts;
+//     int ans = 0;
+
+//     for (int num: nums) {
+//         ans += counts[num];
+//         counts[num]++;
+//     }
+
+//     return ans;
+// }
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
