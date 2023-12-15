@@ -1784,6 +1784,53 @@ bool uniqueOccurrences(vector<int>& arr) {
 }
 
 
+
+// Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+
+// Return the sorted string. If there are multiple answers, return any of them.
+
+
+
+// Example 1:
+
+// Input: s = "tree"
+// Output: "eert"
+// Explanation: 'e' appears twice while 'r' and 't' both appear once.
+// So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+// Example 2:
+
+// Input: s = "cccaaa"
+// Output: "aaaccc"
+// Explanation: Both 'c' and 'a' appear three times, so both "cccaaa" and "aaaccc" are valid answers.
+// Note that "cacaca" is incorrect, as the same characters must be together.
+// Example 3:
+
+// Input: s = "Aabb"
+// Output: "bbAa"
+// Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
+// Note that 'A' and 'a' are treated as two different characters.
+
+string frequencySort(string s) {
+    std::unordered_map< char, int> m;
+
+    for( auto c : s ) {
+        m[ c ]++;
+    }
+
+    std::vector< std::pair<char, int>> v( m.begin(), m.end());
+    std::sort( v.begin(), v.end(), []( auto& a, auto&b ){ return a.second > b.second; } );
+
+    //std::string ss( v.size(), ' ');
+    //std::transform( v.cbegin(), v.cend(), ss.begin(), []( auto& a){ return a.first; } );
+
+    std::stringstream ss;
+    for( auto&[ c, n ] : v ) {
+        ss << std::string( n, c );
+    }
+
+    return ss.str();
+}
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2277,4 +2324,10 @@ TEST(uniqueOccurrences, case2) {
     std::vector<int> v = {1,2 };
     bool expected = false;
     EXPECT_EQ( expected, uniqueOccurrences( v ) );
+}
+
+TEST(frequencySort, case2) {
+    std::string s = "tree";
+    std::string expected = "eert";
+    EXPECT_EQ( expected, frequencySort( s ) );
 }
