@@ -1831,6 +1831,44 @@ string frequencySort(string s) {
     return ss.str();
 }
 
+
+// Given an array of integers nums, return the number of good pairs.
+
+// A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+// Example 1:
+
+// Input: nums = [1,2,3,1,1,3]
+// Output: 4
+// Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+// Example 2:
+
+// Input: nums = [1,1,1,1]
+// Output: 6
+// Explanation: Each pair in the array are good.
+// Example 3:
+
+// Input: nums = [1,2,3]
+// Output: 0
+int numIdenticalPairs(vector<int>& nums) {
+    std::unordered_map< int, std::vector< int >> m;
+
+    for( int i = 0; i < nums.size(); i++ ) {
+        m[ nums[ i ] ].push_back( i );
+    }
+
+    int a = 0;
+
+    for( auto&[ n, v ] : m ) {
+        for( int i = 1; i < v.size(); i++ ) {
+            a += v.size() - i;
+        }
+
+    }
+
+    return a;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2330,4 +2368,13 @@ TEST(frequencySort, case2) {
     std::string s = "tree";
     std::string expected = "eert";
     EXPECT_EQ( expected, frequencySort( s ) );
+}
+
+
+
+//int numIdenticalPairs(vector<int>& nums) {
+TEST(numIdenticalPairs, case1) {
+    std::vector<int> v = {1,2,3,1,1,3};
+    int expected = 4;
+    EXPECT_EQ( expected, numIdenticalPairs( v ) );
 }
