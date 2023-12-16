@@ -1883,6 +1883,46 @@ int numIdenticalPairs(vector<int>& nums) {
 // }
 
 
+// You are given an array of positive integers nums and want to erase a subarray containing unique elements. The score you get by erasing the subarray is equal to the sum of its elements.
+
+// Return the maximum score you can get by erasing exactly one subarray.
+
+// An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it is equal to a[l],a[l+1],...,a[r] for some (l,r).
+
+
+
+// Example 1:
+
+// Input: nums = [4,2,4,5,6]
+// Output: 17
+// Explanation: The optimal subarray here is [2,4,5,6].
+// Example 2:
+
+// Input: nums = [5,2,1,2,5,2,1,2,5]
+// Output: 8
+// Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
+
+int maximumUniqueSubarray(vector<int>& nums) {
+    std::unordered_map<int, int > m;
+
+    int curr = 0;
+    int l = 0;
+    int a = 0;
+    for( int r = 0; r < nums.size(); r++ ) {
+        m[ nums[ r ] ]++;
+        curr += nums[ r ];
+        while( m[ nums[ r ] ] > 1 && l < r ) {
+            curr -= nums[ l ];
+            m[ nums[ l++ ] ]--;
+        }
+
+        a = std::max( a, curr );
+    }
+
+    return a;
+}
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2391,4 +2431,31 @@ TEST(numIdenticalPairs, case1) {
     std::vector<int> v = {1,2,3,1,1,3};
     int expected = 4;
     EXPECT_EQ( expected, numIdenticalPairs( v ) );
+}
+
+
+// Input: nums = [4,2,4,5,6]
+// Output: 17
+// Explanation: The optimal subarray here is [2,4,5,6].
+// Example 2:
+
+// Input: nums = [5,2,1,2,5,2,1,2,5]
+// Output: 8
+// Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
+
+//int maximumUniqueSubarray(vector<int>& nums) {
+
+TEST(maximumUniqueSubarray, case1) {
+    std::vector<int> v = {4,2,4,5,6};
+    int expected = 17;
+    EXPECT_EQ( expected, maximumUniqueSubarray( v ) );
+}
+
+
+// // Input: nums = [5,2,1,2,5,2,1,2,5]
+// // Output: 8
+TEST(maximumUniqueSubarray, case2) {
+    std::vector<int> v = {5,2,1,2,5,2,1,2,5};
+    int expected = 8;
+    EXPECT_EQ( expected, maximumUniqueSubarray( v ) );
 }
