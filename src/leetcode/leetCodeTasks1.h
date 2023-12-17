@@ -920,298 +920,298 @@ namespace leetcode {
         int y;
 
         bool operator== ( const Point& point ) const {
-        return point.x == x && point.y == y ;
-    }
+            return point.x == x && point.y == y ;
+        }
 
-    friend std::ostream& operator<<( std::ostream& os, const Point& point ) {
-        return os << "x:" << point.x << " y:" << point.y;
-}
-};
+        friend std::ostream& operator<<( std::ostream& os, const Point& point ) {
+            return os << "x:" << point.x << " y:" << point.y;
+        }
+    };
 
-struct Hasher {
-    std::hash< int > hasher_;
+    struct Hasher {
+        std::hash< int > hasher_;
 
-    size_t operator()( const Point& point ) const {
-    const size_t coeff = 2'999'551;
-    return coeff * coeff * hasher_( point.x ) + coeff * coeff * hasher_( point.y );
-}
-};
+        size_t operator()( const Point& point ) const {
+            const size_t coeff = 2'999'551;
+            return coeff * coeff * hasher_( point.x ) + coeff * coeff * hasher_( point.y );
+        }
+    };
 
-bool isPathCrossing(std::string path);
-
-
-// You are given an integer array nums. The unique elements of an array are the elements that appear exactly once in the array.
-
-// Return the sum of all the unique elements of nums.
+    bool isPathCrossing(std::string path);
 
 
+    // You are given an integer array nums. The unique elements of an array are the elements that appear exactly once in the array.
 
-// Example 1:
-
-// Input: nums = [1,2,3,2]
-// Output: 4
-// Explanation: The unique elements are [1,3], and the sum is 4.
-// Example 2:
-
-// Input: nums = [1,1,1,1,1]
-// Output: 0
-// Explanation: There are no unique elements, and the sum is 0.
-// Example 3:
-
-// Input: nums = [1,2,3,4,5]
-// Output: 15
-// Explanation: The unique elements are [1,2,3,4,5], and the sum is 15.
-
-
-int  sumOfUnique(std::vector<int>& nums);
-
-
-// Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
-
-// Return the largest lucky integer in the array. If there is no lucky integer return -1.
-// Example 1:
-
-// Input: arr = [2,2,3,4]
-// Output: 2
-// Explanation: The only lucky number in the array is 2 because frequency[2] == 2.
-// Example 2:
-
-// Input: arr = [1,2,2,3,3,3]
-// Output: 3
-// Explanation: 1, 2 and 3 are all lucky numbers, return the largest of them.
-// Example 3:
-
-// Input: arr = [2,2,2,3,3]
-// Output: -1
-// Explanation: There are no lucky numbers in the array.
-int findLucky(std::vector<int>& arr);
-
-
-// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
-// Example 1:
-// Input: arr = [1,2,2,1,1,3]
-// Output: true
-// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
-// Example 2:
-
-// Input: arr = [1,2]
-// Output: false
-// Example 3:
-
-// Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
-// Output: true
-bool uniqueOccurrences(std::vector<int>& arr);
+    // Return the sum of all the unique elements of nums.
 
 
 
-// Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+    // Example 1:
 
-// Return the sorted string. If there are multiple answers, return any of them.
+    // Input: nums = [1,2,3,2]
+    // Output: 4
+    // Explanation: The unique elements are [1,3], and the sum is 4.
+    // Example 2:
+
+    // Input: nums = [1,1,1,1,1]
+    // Output: 0
+    // Explanation: There are no unique elements, and the sum is 0.
+    // Example 3:
+
+    // Input: nums = [1,2,3,4,5]
+    // Output: 15
+    // Explanation: The unique elements are [1,2,3,4,5], and the sum is 15.
+
+
+    int  sumOfUnique(std::vector<int>& nums);
+
+
+    // Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
+
+    // Return the largest lucky integer in the array. If there is no lucky integer return -1.
+    // Example 1:
+
+    // Input: arr = [2,2,3,4]
+    // Output: 2
+    // Explanation: The only lucky number in the array is 2 because frequency[2] == 2.
+    // Example 2:
+
+    // Input: arr = [1,2,2,3,3,3]
+    // Output: 3
+    // Explanation: 1, 2 and 3 are all lucky numbers, return the largest of them.
+    // Example 3:
+
+    // Input: arr = [2,2,2,3,3]
+    // Output: -1
+    // Explanation: There are no lucky numbers in the array.
+    int findLucky(std::vector<int>& arr);
+
+
+    // Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+    // Example 1:
+    // Input: arr = [1,2,2,1,1,3]
+    // Output: true
+    // Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+    // Example 2:
+
+    // Input: arr = [1,2]
+    // Output: false
+    // Example 3:
+
+    // Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+    // Output: true
+    bool uniqueOccurrences(std::vector<int>& arr);
 
 
 
-// Example 1:
+    // Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
 
-// Input: s = "tree"
-// Output: "eert"
-// Explanation: 'e' appears twice while 'r' and 't' both appear once.
-// So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
-// Example 2:
+    // Return the sorted string. If there are multiple answers, return any of them.
 
-// Input: s = "cccaaa"
-// Output: "aaaccc"
-// Explanation: Both 'c' and 'a' appear three times, so both "cccaaa" and "aaaccc" are valid answers.
-// Note that "cacaca" is incorrect, as the same characters must be together.
-// Example 3:
 
-// Input: s = "Aabb"
-// Output: "bbAa"
-// Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
-// Note that 'A' and 'a' are treated as two different characters.
+
+    // Example 1:
+
+    // Input: s = "tree"
+    // Output: "eert"
+    // Explanation: 'e' appears twice while 'r' and 't' both appear once.
+    // So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+    // Example 2:
+
+    // Input: s = "cccaaa"
+    // Output: "aaaccc"
+    // Explanation: Both 'c' and 'a' appear three times, so both "cccaaa" and "aaaccc" are valid answers.
+    // Note that "cacaca" is incorrect, as the same characters must be together.
+    // Example 3:
+
+    // Input: s = "Aabb"
+    // Output: "bbAa"
+    // Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
+    // Note that 'A' and 'a' are treated as two different characters.
 
     std::string frequencySort(std::string s);
 
 
-// Given an array of integers nums, return the number of good pairs.
+    // Given an array of integers nums, return the number of good pairs.
 
-// A pair (i, j) is called good if nums[i] == nums[j] and i < j.
-// Example 1:
+    // A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+    // Example 1:
 
-// Input: nums = [1,2,3,1,1,3]
-// Output: 4
-// Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
-// Example 2:
+    // Input: nums = [1,2,3,1,1,3]
+    // Output: 4
+    // Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+    // Example 2:
 
-// Input: nums = [1,1,1,1]
-// Output: 6
-// Explanation: Each pair in the array are good.
-// Example 3:
+    // Input: nums = [1,1,1,1]
+    // Output: 6
+    // Explanation: Each pair in the array are good.
+    // Example 3:
 
-// Input: nums = [1,2,3]
-// Output: 0
-int numIdenticalPairs(std::vector<int>& nums);
-
-
-// leetcode solution
-// int numIdenticalPairs(vector<int>& nums) {
-//     unordered_map<int, int> counts;
-//     int ans = 0;
-
-//     for (int num: nums) {
-//         ans += counts[num];
-//         counts[num]++;
-//     }
-
-//     return ans;
-// }
+    // Input: nums = [1,2,3]
+    // Output: 0
+    int numIdenticalPairs(std::vector<int>& nums);
 
 
-// You are given an array of positive integers nums and want to erase a subarray containing unique elements. The score you get by erasing the subarray is equal to the sum of its elements.
+    // leetcode solution
+    // int numIdenticalPairs(vector<int>& nums) {
+    //     unordered_map<int, int> counts;
+    //     int ans = 0;
 
-// Return the maximum score you can get by erasing exactly one subarray.
+    //     for (int num: nums) {
+    //         ans += counts[num];
+    //         counts[num]++;
+    //     }
 
-// An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it is equal to a[l],a[l+1],...,a[r] for some (l,r).
+    //     return ans;
+    // }
 
 
+    // You are given an array of positive integers nums and want to erase a subarray containing unique elements. The score you get by erasing the subarray is equal to the sum of its elements.
 
-// Example 1:
+    // Return the maximum score you can get by erasing exactly one subarray.
 
-// Input: nums = [4,2,4,5,6]
-// Output: 17
-// Explanation: The optimal subarray here is [2,4,5,6].
-// Example 2:
-
-// Input: nums = [5,2,1,2,5,2,1,2,5]
-// Output: 8
-// Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
-
-int maximumUniqueSubarray(std::vector<int>& nums);
-
-// optimal solution
-// int maximumUniqueSubarray(vector<int>& nums) {
-//        int result = 0, currentSum = 0, start = 0;
-//        unordered_set<int> seen;
-//        for (int end = 0; end < nums.size(); end++) {
-//            // increment start until subarray has unique elements
-//            while (seen.find(nums[end]) != seen.end()) {
-//                seen.erase(nums[start]);
-//                currentSum -= nums[start];
-//                start++;
-//            }
-//            currentSum += nums[end];
-//            seen.insert(nums[end]);
-//            // update result with maximum sum found so far
-//            result = max(result, currentSum);
-//        }
-//        return result;
-//    }
+    // An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it is equal to a[l],a[l+1],...,a[r] for some (l,r).
 
 
 
-// Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+    // Example 1:
 
-// In other words, return true if one of s1's permutations is the substring of s2.
+    // Input: nums = [4,2,4,5,6]
+    // Output: 17
+    // Explanation: The optimal subarray here is [2,4,5,6].
+    // Example 2:
 
+    // Input: nums = [5,2,1,2,5,2,1,2,5]
+    // Output: 8
+    // Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
 
+    int maximumUniqueSubarray(std::vector<int>& nums);
 
-// Example 1:
-
-// Input: s1 = "ab", s2 = "eidbaooo"
-// Output: true
-// Explanation: s2 contains one permutation of s1 ("ba").
-// Example 2:
-
-// Input: s1 = "ab", s2 = "eidboaoo"
-// Output: false
-
-// // adc
-// // "dcda"
-// bool checkInclusion(string s1, string s2) {
-//     std::unordered_set< char > s( s1.begin(), s1.end() );
-//     std::unordered_map< char, std::vector< int >> m;
-
-
-
-//     //bool curr = false;
-//     for( int r = 0 ; r < s2.size(); r++ ){
-//         if( s.find( s1[ r ] ) != s.end() ) {
-//             m[ s1[ r ] ].push_back( r );
-//         }
-//     }
-
-//     int distance = s1.size();
-
-//     // return false;
-// }
+    // optimal solution
+    // int maximumUniqueSubarray(vector<int>& nums) {
+    //        int result = 0, currentSum = 0, start = 0;
+    //        unordered_set<int> seen;
+    //        for (int end = 0; end < nums.size(); end++) {
+    //            // increment start until subarray has unique elements
+    //            while (seen.find(nums[end]) != seen.end()) {
+    //                seen.erase(nums[start]);
+    //                currentSum -= nums[start];
+    //                start++;
+    //            }
+    //            currentSum += nums[end];
+    //            seen.insert(nums[end]);
+    //            // update result with maximum sum found so far
+    //            result = max(result, currentSum);
+    //        }
+    //        return result;
+    //    }
 
 
 
-// Given two strings s and t, determine if they are isomorphic.
+    // Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
 
-// Two strings s and t are isomorphic if the characters in s can be replaced to get t.
-
-// All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
-// Example 1:
-
-// Input: s = "egg", t = "add"
-// Output: true
-// Example 2:
-
-// Input: s = "foo", t = "bar"
-// Output: false
-// Example 3:
-
-// Input: s = "paper", t = "title"
-// Output: true
-
-bool isIsomorphic(std::string s, std::string t);
-
-// Given a pattern and a string s, find if s follows the same pattern.
-
-// Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+    // In other words, return true if one of s1's permutations is the substring of s2.
 
 
 
-// Example 1:
+    // Example 1:
 
-// Input: pattern = "abba", s = "dog cat cat dog"
-// Output: true
-// Example 2:
+    // Input: s1 = "ab", s2 = "eidbaooo"
+    // Output: true
+    // Explanation: s2 contains one permutation of s1 ("ba").
+    // Example 2:
 
-// Input: pattern = "abba", s = "dog cat cat fish"
-// Output: false
-// Example 3:
+    // Input: s1 = "ab", s2 = "eidboaoo"
+    // Output: false
 
-// Input: pattern = "aaaa", s = "dog cat cat dog"
-// Output: false
-
-bool wordPattern(std::string pattern, std::string s);
-
-
-
-
-// You are given two strings order and s. All the characters of order are unique and were sorted in some custom order previously.
-
-// Permute the characters of s so that they match the order that order was sorted. More specifically, if a character x occurs before a character y in order, then x should occur before y in the permuted string.
-
-// Return any permutation of s that satisfies this property.
+    // // adc
+    // // "dcda"
+    // bool checkInclusion(string s1, string s2) {
+    //     std::unordered_set< char > s( s1.begin(), s1.end() );
+    //     std::unordered_map< char, std::vector< int >> m;
 
 
 
-// Example 1:
+    //     //bool curr = false;
+    //     for( int r = 0 ; r < s2.size(); r++ ){
+    //         if( s.find( s1[ r ] ) != s.end() ) {
+    //             m[ s1[ r ] ].push_back( r );
+    //         }
+    //     }
 
-// Input: order = "cba", s = "abcd"
-// Output: "cbad"
-// Explanation:
-// "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a".
-// Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
-// Example 2:
+    //     int distance = s1.size();
 
-// Input: order = "cbafg", s = "abcd"
-// Output: "cbad"
+    //     // return false;
+    // }
+
+
+
+    // Given two strings s and t, determine if they are isomorphic.
+
+    // Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+    // All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+    // Example 1:
+
+    // Input: s = "egg", t = "add"
+    // Output: true
+    // Example 2:
+
+    // Input: s = "foo", t = "bar"
+    // Output: false
+    // Example 3:
+
+    // Input: s = "paper", t = "title"
+    // Output: true
+
+    bool isIsomorphic(std::string s, std::string t);
+
+    // Given a pattern and a string s, find if s follows the same pattern.
+
+    // Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+
+
+
+    // Example 1:
+
+    // Input: pattern = "abba", s = "dog cat cat dog"
+    // Output: true
+    // Example 2:
+
+    // Input: pattern = "abba", s = "dog cat cat fish"
+    // Output: false
+    // Example 3:
+
+    // Input: pattern = "aaaa", s = "dog cat cat dog"
+    // Output: false
+
+    bool wordPattern(std::string pattern, std::string s);
+
+
+
+
+    // You are given two strings order and s. All the characters of order are unique and were sorted in some custom order previously.
+
+    // Permute the characters of s so that they match the order that order was sorted. More specifically, if a character x occurs before a character y in order, then x should occur before y in the permuted string.
+
+    // Return any permutation of s that satisfies this property.
+
+
+
+    // Example 1:
+
+    // Input: order = "cba", s = "abcd"
+    // Output: "cbad"
+    // Explanation:
+    // "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a".
+    // Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
+    // Example 2:
+
+    // Input: order = "cbafg", s = "abcd"
+    // Output: "cbad"
     std::string customSortString(std::string order, std::string s);
 
-// leetcode solution
+    // leetcode solution
     std::string customSortString1(std::string order, std::string s);
 
 }
