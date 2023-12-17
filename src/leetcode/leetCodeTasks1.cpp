@@ -1922,6 +1922,167 @@ int maximumUniqueSubarray(vector<int>& nums) {
     return a;
 }
 
+// optimal solution
+ // int maximumUniqueSubarray(vector<int>& nums) {
+ //        int result = 0, currentSum = 0, start = 0;
+ //        unordered_set<int> seen;
+ //        for (int end = 0; end < nums.size(); end++) {
+ //            // increment start until subarray has unique elements
+ //            while (seen.find(nums[end]) != seen.end()) {
+ //                seen.erase(nums[start]);
+ //                currentSum -= nums[start];
+ //                start++;
+ //            }
+ //            currentSum += nums[end];
+ //            seen.insert(nums[end]);
+ //            // update result with maximum sum found so far
+ //            result = max(result, currentSum);
+ //        }
+ //        return result;
+ //    }
+
+
+
+// Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+// In other words, return true if one of s1's permutations is the substring of s2.
+
+
+
+// Example 1:
+
+// Input: s1 = "ab", s2 = "eidbaooo"
+// Output: true
+// Explanation: s2 contains one permutation of s1 ("ba").
+// Example 2:
+
+// Input: s1 = "ab", s2 = "eidboaoo"
+// Output: false
+
+// // adc
+// // "dcda"
+// bool checkInclusion(string s1, string s2) {
+//     std::unordered_set< char > s( s1.begin(), s1.end() );
+//     std::unordered_map< char, std::vector< int >> m;
+
+
+
+//     //bool curr = false;
+//     for( int r = 0 ; r < s2.size(); r++ ){
+//         if( s.find( s1[ r ] ) != s.end() ) {
+//             m[ s1[ r ] ].push_back( r );
+//         }
+//     }
+
+//     int distance = s1.size();
+
+//     // return false;
+// }
+
+
+
+// Given two strings s and t, determine if they are isomorphic.
+
+// Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+// All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+// Example 1:
+
+// Input: s = "egg", t = "add"
+// Output: true
+// Example 2:
+
+// Input: s = "foo", t = "bar"
+// Output: false
+// Example 3:
+
+// Input: s = "paper", t = "title"
+// Output: true
+
+bool isIsomorphic(string s, string t) {
+    std::unordered_map<char, char> m;
+    std::unordered_map< char, char> m1;
+
+    if( s.size() != t.size() ) {
+        return false;
+    }
+
+    for( int i = 0; i < s.size(); i++) {
+        auto it = m.find( s[ i ] );
+        auto it1 = m1.find( t[ i ] );
+
+        if( it == m.end() && it1 == m1.end() ) {
+            m[ s[ i ] ] = t[ i ];
+            m1[ t[ i ] ] = s[ i ];
+        }
+        else if ( ( it != m.end() && it1 == m1.end() ) || ( it == m.end() && it1 != m1.end() ) ) {
+            return false;
+        }
+        else {
+            if( it -> second != t[ i ] && it1 -> second != s[ i ] ) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// Given a pattern and a string s, find if s follows the same pattern.
+
+// Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+
+
+
+// Example 1:
+
+// Input: pattern = "abba", s = "dog cat cat dog"
+// Output: true
+// Example 2:
+
+// Input: pattern = "abba", s = "dog cat cat fish"
+// Output: false
+// Example 3:
+
+// Input: pattern = "aaaa", s = "dog cat cat dog"
+// Output: false
+
+bool wordPattern(string pattern, string s) {
+    std::unordered_map< char, std::string> m;
+    std::unordered_map< std::string, char> m1;
+
+    std::stringstream ss( s );
+    std::vector< std::string > v;
+
+    std::string w;
+    while( ss >> w ) {
+        v.push_back( w );
+    }
+
+    if( v.size() != pattern.size() ) {
+        return false;
+    }
+
+    for( int i = 0; i < pattern.size(); i++ ) {
+        auto it = m.find( pattern[ i ] );
+        auto it1 = m1.find( v[ i ] );
+
+        if( it == m.end() && it1 == m1.end() ) {
+            m[ pattern[ i ] ] = v[ i ];
+            m1[ v[ i ] ] = pattern[ i ];
+        }
+        else if( ( it != m.end() && it1 == m1.end() ) ||
+                 ( it == m.end() && it1 != m1.end()) ) {
+                     return false;
+                 }
+        else {
+            if( it -> second != v[ i ] ) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 
 using namespace leetcode;
 
@@ -2425,7 +2586,6 @@ TEST(frequencySort, case2) {
 }
 
 
-
 //int numIdenticalPairs(vector<int>& nums) {
 TEST(numIdenticalPairs, case1) {
     std::vector<int> v = {1,2,3,1,1,3};
@@ -2458,4 +2618,69 @@ TEST(maximumUniqueSubarray, case2) {
     std::vector<int> v = {5,2,1,2,5,2,1,2,5};
     int expected = 8;
     EXPECT_EQ( expected, maximumUniqueSubarray( v ) );
+}
+
+
+
+// //bool checkInclusion(string s1, string s2) {
+// TEST(checkInclusion, case1) {
+//     std::string s1 = "adc";
+//     std::string s2 = "dcda";
+//     bool expected = true;
+//     EXPECT_EQ( expected, checkInclusion( s1, s2 ) );
+// }
+
+
+// Input: s = "egg", t = "add"
+// Output: true
+// Example 2:
+
+// Input: s = "foo", t = "bar"
+// Output: false
+// Example 3:
+
+// Input: s = "paper", t = "title"
+// Output: true
+
+//bool isIsomorphic(string s, string t) {
+TEST(isIsomorphic, case1) {
+    std::string s1 = "egg";
+    std::string s2 = "add";
+    bool expected = true;
+    EXPECT_EQ( expected, isIsomorphic( s1, s2 ) );
+}
+
+TEST(isIsomorphic, case2) {
+    std::string s1 = "foo";
+    std::string s2 = "bar";
+    bool expected = false;
+    EXPECT_EQ( expected, isIsomorphic( s1, s2 ) );
+}
+
+TEST(isIsomorphic, case3) {
+    std::string s1 = "paper";
+    std::string s2 = "title";
+    bool expected = true;
+    EXPECT_EQ( expected, isIsomorphic( s1, s2 ) );
+}
+
+
+
+// Input: pattern = "abba", s = "dog cat cat dog"
+// Output: true
+// Example 2:
+
+// Input: pattern = "abba", s = "dog cat cat fish"
+// Output: false
+// Example 3:
+
+// Input: pattern = "aaaa", s = "dog cat cat dog"
+// Output: false
+
+//bool wordPattern(string pattern, string s) {
+TEST(wordPattern, case3) {
+    std::string s1 = "abba";
+    std::string s2 = "dog cat cat dog";
+    bool expected = true;
+    EXPECT_EQ( expected, wordPattern( s1, s2 ) );
 }
