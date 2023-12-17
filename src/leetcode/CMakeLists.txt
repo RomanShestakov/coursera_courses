@@ -14,6 +14,7 @@ set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
   ../runGTest.cpp
   leetCodeTasks1.cpp
+  leetCodeTasks1Tests.cpp
 )
 target_include_directories(${RUN_LEET_CODE_TEST}
    ${GTEST_INCLUDE_DIRS} PUBLIC
