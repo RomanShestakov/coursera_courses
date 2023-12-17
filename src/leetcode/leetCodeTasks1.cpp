@@ -2084,6 +2084,65 @@ bool wordPattern(string pattern, string s) {
 }
 
 
+
+// You are given two strings order and s. All the characters of order are unique and were sorted in some custom order previously.
+
+// Permute the characters of s so that they match the order that order was sorted. More specifically, if a character x occurs before a character y in order, then x should occur before y in the permuted string.
+
+// Return any permutation of s that satisfies this property.
+
+
+
+// Example 1:
+
+// Input: order = "cba", s = "abcd"
+// Output: "cbad"
+// Explanation:
+// "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a".
+// Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
+// Example 2:
+
+// Input: order = "cbafg", s = "abcd"
+// Output: "cbad"
+string customSortString(string order, string s) {
+
+    auto less = [ &order ]( char a, char b) {
+        std::unordered_map< char, int > m;
+        for( int r = 0; r < order.size(); r++ ) {
+            if( m.find( order[ r ] ) == m.end() ) {
+                m[ order[ r ] ] = r;
+            }
+        }
+
+        auto it = m.find( a );
+        auto it1 = m.find( b );
+
+        if( it != m.end() && it1 != m.end() ) {
+            return it -> second < it1 -> second;
+        }
+        else if( it != m.end() && it1 == m.end() ) {
+            return true;
+        }
+
+        return false;
+    };
+
+    std::sort( s.begin(), s.end(), less );
+
+    return s;
+}
+
+
+// leetcode solution
+string customSortString1(string order, string s) {
+     sort(s.begin(), s.end(), [&order](char lhs, char rhs) {
+            return order.find(lhs) < order.find(rhs);
+     });
+
+     return s;
+ }
+
+
 using namespace leetcode;
 
 TEST(twoSum, case1) {
@@ -2683,4 +2742,46 @@ TEST(wordPattern, case3) {
     std::string s2 = "dog cat cat dog";
     bool expected = true;
     EXPECT_EQ( expected, wordPattern( s1, s2 ) );
+}
+
+
+
+// Input: order = "cba", s = "abcd"
+// Output: "cbad"
+// Explanation:
+// "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a".
+// Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
+// Example 2:
+
+// Input: order = "cbafg", s = "abcd"
+// Output: "cbad"
+//string customSortString(string order, string s) {
+
+TEST(customSortString, case1) {
+    std::string order = "cba";
+    std::string s2 = "abcd";
+    std::string expected = "cbad";
+    EXPECT_EQ( expected, customSortString( order, s2 ) );
+}
+
+TEST(customSortString, case2) {
+    std::string order = "exv";
+    std::string s2 = "xwvee";
+    std::string expected = "eexvw";
+    EXPECT_EQ( expected, customSortString( order, s2 ) );
+}
+
+
+TEST(customSortString1, case1) {
+    std::string order = "cba";
+    std::string s2 = "abcd";
+    std::string expected = "cbad";
+    EXPECT_EQ( expected, customSortString1( order, s2 ) );
+}
+
+TEST(customSortString1, case2) {
+    std::string order = "exv";
+    std::string s2 = "xwvee";
+    std::string expected = "eexvw";
+    EXPECT_EQ( expected, customSortString1( order, s2 ) );
 }
