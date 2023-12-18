@@ -653,4 +653,14 @@ namespace leetcode {
     }
 
 
+
+//    // Input: word1 = "abc", word2 = "bca"
+//    bool closeStrings(std::string word1, std::string word2);
+    TEST(closeStrings, case1) {
+        std::string word1 = "abc";
+        std::string word2 = "bca";
+        bool expected = true;
+        EXPECT_EQ( expected, closeStrings( word1, word2 ) );
+    }
+
 }

@@ -1206,4 +1206,68 @@ namespace leetcode {
         return s;
     }
 
+
+
+    bool closeStrings(std::string word1, std::string word2) {
+        std::unordered_map< char, int> m1;
+        std::unordered_map< char, int> m2;
+
+        if(word1.size() != word2.size() ) {
+            return false;
+        }
+
+        for( auto c : word1) {
+            m1[ c ]++;
+        }
+
+        for( auto c : word2 ) {
+            m2[ c ]++;
+        }
+
+        if( m1.size() != m2.size() ) {
+            return false;
+        }
+
+        std::vector< int > v1;
+        std::vector< int > v2;
+
+        for( auto &[ k, v] : m1 ) {
+            v1.push_back( v );
+        }
+
+
+        for( auto &[ k, v] : m2 ) {
+            v2.push_back( v );
+        }
+
+        sort( v1.begin(), v1.end());
+        sort( v2.begin(), v2.end());
+
+        if( v1 != v2 ) {
+            return false;
+        }
+
+
+        std::vector< char > v3;
+        std::vector< char > v4;
+
+        for( auto &[ k, v] : m1 ) {
+            v3.push_back( k );
+        }
+
+
+        for( auto &[ k, v] : m2 ) {
+            v4.push_back( k );
+        }
+
+        sort( v3.begin(), v3.end());
+        sort( v4.begin(), v4.end());
+
+        if( v3 != v4 ) {
+            return false;
+        }
+        return true;
+    }
+
+
 }
