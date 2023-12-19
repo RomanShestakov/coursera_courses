@@ -9,9 +9,7 @@ struct LinkedNode {
     LinkedNode( int val ) : val_( val ) {}
 
     ~LinkedNode() {
-        if( verbose_ ) {
-            std::cout << "Removing:" << val_;
-        }
+        std::cout << "Removing:" << val_ << std::endl;
     }
 
     LinkedNode* addNode( LinkedNode* node ) {
@@ -22,10 +20,8 @@ struct LinkedNode {
     }
 
     LinkedNode* deleteNode() {
-
         if( prev_ ) prev_ -> next_ = next_;
         if( next_ ) next_ -> prev_ = prev_;
-//        delete this;
         return prev_;
     }
 
@@ -33,14 +29,14 @@ struct LinkedNode {
 
 int main() {
 
-    auto a = new LinkedNode( 1 );
-    auto b = new LinkedNode( 2 );
-    auto c = new LinkedNode( 3 );
-    auto d = new LinkedNode( 4 );
-    auto e = new LinkedNode( 5 );
+    auto a = std::make_unique< LinkedNode >( 1 ) ;
+    auto b = std::make_unique< LinkedNode >( 2 ) ;
+    auto c = std::make_unique< LinkedNode >( 3 ) ;
+    auto d = std::make_unique< LinkedNode >( 4 ) ;
+    auto e = std::make_unique< LinkedNode >( 5 ) ;
 
-    auto head = a;
-    head -> addNode( b ) -> addNode( c ) -> addNode( d ) -> addNode( e );
+    auto head = a.get();
+    head -> addNode( b.get() ) -> addNode( c.get() ) -> addNode( d.get() ) -> addNode( e.get() );
 
     auto fast = head;
     auto slow = head;
@@ -51,13 +47,6 @@ int main() {
     }
 
     std::cout << "fast:" << fast -> val_ << " slow:" << slow -> val_ << std::endl;
-
-
-    delete a;
-    delete b;
-    delete c;
-    delete d;
-    delete e;
 
     return 0;
 }
