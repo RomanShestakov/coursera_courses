@@ -52,4 +52,23 @@ namespace leetcode {
 
 
 
+    ListNode* kthNode(ListNode *head, int k) {
+        auto slow = head;
+        ListNode* fast = head;
+
+        for( int i = 0; i < k; i++ ) {
+            fast = fast -> next;
+        }
+
+
+        while( fast ) {
+            fast = fast -> next;
+            slow = slow -> next;
+        }
+
+        return slow;
+
+    }
+
+
 }
