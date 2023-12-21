@@ -51,7 +51,6 @@ namespace leetcode {
     }
 
 
-
     ListNode* kthNode(ListNode *head, int k) {
         auto slow = head;
         ListNode* fast = head;
@@ -68,6 +67,34 @@ namespace leetcode {
 
         return slow;
 
+    }
+
+
+    ListNode* middleNode(ListNode* head) {
+        auto slow = head;
+        auto fast = head;
+
+        while( fast && fast -> next ) {
+            fast = fast -> next -> next;
+            slow = slow -> next;
+        }
+
+        return slow;
+    }
+
+
+    ListNode* deleteDuplicates(ListNode* head) {
+        auto node = head;
+        while( node && node -> next ) {
+            if( node -> val == node -> next -> val ) {
+                node -> next = node -> next -> next;
+            }
+            else {
+                node = node -> next;
+            }
+        }
+
+        return head;
     }
 
 

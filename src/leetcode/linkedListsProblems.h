@@ -23,6 +23,11 @@ namespace leetcode {
             next = node;
             return node;
         }
+
+        // ListNode* deleteNode( ListNode* node ) {
+
+        // }
+
     };
 
 
@@ -55,4 +60,29 @@ namespace leetcode {
 // For example, given the linked list that represents 1 -> 2 -> 3 -> 4 -> 5 and k = 2, return the node with value 4, as it is the 2nd node from the end.
 
     ListNode* kthNode(ListNode *head, int k);
+
+
+
+// Given the head of a singly linked list, return the middle node of the linked list.
+
+// If there are two middle nodes, return the second middle node.
+
+
+
+// Example 1:
+
+
+// Input: head = [1,2,3,4,5]
+// Output: [3,4,5]
+// Explanation: The middle node of the list is node 3.
+
+    ListNode* middleNode(ListNode* head) ;
+
+
+
+
+//Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+    ListNode* deleteDuplicates(ListNode* head);
+
 }
