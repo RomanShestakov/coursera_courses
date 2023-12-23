@@ -142,9 +142,23 @@ namespace leetcode {
 
 
 
-    int pairSum(ListNode* head){
 
-        return 6;
+    int pairSum(ListNode* head){
+        auto curr = head;
+
+        auto mid = middleNode( head );
+        auto rev = reverseList( mid);
+
+        int a = 0;
+        while( curr != mid || rev ) {
+            std::cout << " curr:" << curr -> val << " rev: " << rev -> val << std::endl;
+            a = std::max( a, curr -> val + rev -> val );
+            curr = curr -> next;
+            rev = rev -> next;
+
+        }
+
+        return a;
     }
 
 }
