@@ -151,4 +151,95 @@ addNode( e.get() );;
     }
 
 
+
+    TEST( reverseList, case1) {
+
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 4 );
+        auto e = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+
+        std::vector< int > expected { 5, 4, 3, 2, 1};
+        std::vector< int > result;
+
+        auto h = reverseList( head );
+
+//        std::cout << "reverted head:" << head -> val << std::endl;
+
+        while( h ) {
+            result.push_back( h -> val);
+            h = h -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+
+    // // // Input: head = [1,2,3,4]
+    // // // Output: [2,1,4,3]
+    // // // Example 2:
+
+    // // // Input: head = []
+    // // // Output: []
+    // // // Example 3:
+
+    // // // Input: head = [1]
+    // // // Output: [1]
+
+    // // ListNode* swapPairs(ListNode* head);
+
+    TEST( swapPairs, case1) {
+
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 4 );
+
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() );
+
+        std::vector< int > expected { 2,1, 4,3};
+        std::vector< int > result;
+
+        auto h = swapPairs( head );
+
+        std::cout << "reverted head:" << h -> val << std::endl;
+
+        while( h ) {
+            result.push_back( h -> val);
+            h = h -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+
+
+
+    // Input: head = [5,4,2,1]
+    // Output: 6
+    //int pairSum(ListNode* head);
+    TEST( pairSum, case1) {
+
+        auto a = std::make_unique< ListNode >( 5 );
+        auto b = std::make_unique< ListNode >( 4 );
+        auto c = std::make_unique< ListNode >( 2 );
+        auto d = std::make_unique< ListNode >( 1 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() );
+
+        int expected  = 6;
+
+        EXPECT_EQ( expected, pairSum( head ) );
+    }
+
+
 }

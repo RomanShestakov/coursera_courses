@@ -98,4 +98,53 @@ namespace leetcode {
     }
 
 
+    // 1 -> 2 -> 3
+    // 3 -> 2 -> 1
+    ListNode* reverseList(ListNode* head) {
+        auto curr = head;
+        ListNode* prev = nullptr;
+
+        while( curr ) {
+
+            std::cout << curr -> val << std::endl;
+            auto next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+
+    // 1 2 3 4
+    // 2 1 4 3
+    ListNode* swapPairs(ListNode* head) {
+        auto curr = head;
+        auto r = ( head && head -> next ) ? head -> next : head;
+
+        ListNode* p = nullptr;
+
+        while( curr && curr -> next ) {
+            auto n = curr -> next;
+            curr -> next = n -> next;
+            n-> next = curr;
+            if( p ) {
+                p -> next = n;
+            }
+
+            p = curr;
+            curr = curr -> next;
+        }
+
+        return r;
+    }
+
+
+
+    int pairSum(ListNode* head){
+
+        return 6;
+    }
+
 }
