@@ -117,6 +117,16 @@ namespace leetcode {
     }
 
 
+    // 1 2 3 4 5
+    ListNode* reverseListRec(ListNode* head){
+        // base case
+        if( !head -> next ) return head;
+        auto last = reverseListRec( head -> next);
+        last -> next = head;
+        return last;
+    }
+
+
     // 1 2 3 4
     // 2 1 4 3
     ListNode* swapPairs(ListNode* head) {
