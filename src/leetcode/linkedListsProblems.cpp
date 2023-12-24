@@ -161,4 +161,49 @@ namespace leetcode {
         return a;
     }
 
+
+  // ListNode* reverseBetween(ListNode* head, int left, int right) {
+  //     auto curr = head;
+
+  //     if( !head -> next ) return head;
+
+  //     ListNode* p_a = nullptr;
+  //     ListNode* p_b = nullptr;
+
+  //     int count = 1;
+
+  //     while( count <= right ) {
+
+  //         if( count == left - 1 ) {
+  //             p_a = curr;
+  //         }
+
+  //         if( count == right - 1 ) {
+  //             p_b = curr;
+  //         }
+
+  //         count++;
+  //         curr = curr -> next;
+  //     }
+
+  //     auto a = p_a ? p_a -> next : head;
+  //     auto b = p_b -> next;
+
+  //     std::cout << "a:" << a -> val << " b:" << b -> val << std::endl;
+
+
+  //     auto tmp = b -> next;
+
+  //     if( p_a ) {
+  //         p_a -> next = b;
+  //     }
+  //     b -> next = a -> next;
+
+  //     p_b -> next = a;
+  //     a -> next = tmp;
+
+  //     return head;
+  // }
+
+
 }
