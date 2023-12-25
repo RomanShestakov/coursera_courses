@@ -1,0 +1,6 @@
+
+* 2>&1 redirection
+https://superuser.com/questions/71428/what-does-21-do-in-command-line
+
+stderr redirects to stream 1
+&1 is used to destingwish stream1 from file 1
