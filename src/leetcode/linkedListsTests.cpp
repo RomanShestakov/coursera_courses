@@ -178,6 +178,7 @@ addNode( e.get() );;
         EXPECT_EQ( expected, result );
     }
 
+
     TEST( reverseListRec, case1) {
 
         auto a = std::make_unique< ListNode >( 1 );
@@ -193,6 +194,9 @@ addNode( e.get() );;
         std::vector< int > result;
 
         auto h = reverseListRec( head );
+
+        std::cout << "Reverse head" << h-> val << std::endl;
+
         while( h ) {
             result.push_back( h -> val);
             h = h -> next;
@@ -232,7 +236,7 @@ addNode( e.get() );;
 
         auto h = swapPairs( head );
 
-        std::cout << "reverted head:" << h -> val << std::endl;
+      //  std::cout << "reverted head:" << h -> val << std::endl;
 
         while( h ) {
             result.push_back( h -> val);
@@ -265,7 +269,31 @@ addNode( e.get() );;
     }
 
 
-    /*
+
+    TEST( reverseN, case1) {
+
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 4 );
+        auto e = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+
+        std::vector< int > expected {3,2,4,5};
+        std::vector< int > result;
+
+        auto [h, succ] = reverseN( b.get(), 2 );
+
+        while( h ) {
+            result.push_back( h -> val);
+            h = h -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
 
     // ListNode* reverseBetween(ListNode* head, int left, int right) {
     //   }
@@ -285,11 +313,11 @@ addNode( e.get() );;
         std::vector< int > expected { 1,4,3,2,5};
         std::vector< int > result;
 
-        auto h = reverseBetween( head, 2, 4 );
+        head = reverseBetween( head, 2, 4 );
 
-        while( h ) {
-            result.push_back( h -> val);
-            h = h -> next;
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
         }
 
         EXPECT_EQ( expected, result );
@@ -339,25 +367,24 @@ addNode( e.get() );;
 
     // // Input: head = [3,5], left = 1, right = 1
     // // Output: [3,5]
-    // TEST( reverseBetween, case4) {
+    TEST( reverseBetween, case4) {
 
-    //     auto a = std::make_unique< ListNode >( 3 );
-    //     auto b = std::make_unique< ListNode >( 5 );
-    //     auto head = a.get();
-    //     a -> addNode( b.get() );
+        auto a = std::make_unique< ListNode >( 3 );
+        auto b = std::make_unique< ListNode >( 5 );
+        auto head = a.get();
+        a -> addNode( b.get() );
 
-    //     std::vector< int > expected {3,5};
-    //     std::vector< int > result;
+        std::vector< int > expected {3,5};
+        std::vector< int > result;
 
-    //     auto h = reverseBetween( head, 1, 1 );
-    //     while( h ) {
-    //         result.push_back( h -> val);
-    //         h = h -> next;
-    //     }
+        auto h = reverseBetween( head, 1, 1 );
+        while( h ) {
+            result.push_back( h -> val);
+            h = h -> next;
+        }
 
-    //     EXPECT_EQ( expected, result );
-    // }
+        EXPECT_EQ( expected, result );
+    }
 
-*/
 
 }

@@ -122,7 +122,9 @@ namespace leetcode {
         // base case
         if( !head -> next ) return head;
         auto last = reverseListRec( head -> next);
-        last -> next = head;
+        head -> next -> next = head;
+        head -> next = nullptr;
+        //std::cout << "head:" << head -> val << " last" << last -> val << std::endl;
         return last;
     }
 
@@ -161,7 +163,7 @@ namespace leetcode {
 
         int a = 0;
         while( curr != mid || rev ) {
-            std::cout << " curr:" << curr -> val << " rev: " << rev -> val << std::endl;
+            //std::cout << " curr:" << curr -> val << " rev: " << rev -> val << std::endl;
             a = std::max( a, curr -> val + rev -> val );
             curr = curr -> next;
             rev = rev -> next;
@@ -172,48 +174,51 @@ namespace leetcode {
     }
 
 
-  // ListNode* reverseBetween(ListNode* head, int left, int right) {
-  //     auto curr = head;
-
-  //     if( !head -> next ) return head;
-
-  //     ListNode* p_a = nullptr;
-  //     ListNode* p_b = nullptr;
-
-  //     int count = 1;
-
-  //     while( count <= right ) {
-
-  //         if( count == left - 1 ) {
-  //             p_a = curr;
-  //         }
-
-  //         if( count == right - 1 ) {
-  //             p_b = curr;
-  //         }
-
-  //         count++;
-  //         curr = curr -> next;
-  //     }
-
-  //     auto a = p_a ? p_a -> next : head;
-  //     auto b = p_b -> next;
-
-  //     std::cout << "a:" << a -> val << " b:" << b -> val << std::endl;
+    // ListNode successor = null;
+    // ListNode reverseN(ListNode head, int n) {
+    //     if (n == 1) {
+    //         successor = head.next;
+    //         return head;
+    //     }
+    //     ListNode last = reverseN(head.next, n - 1);
+    //     head.next.next = head;
+    //     head.next = successor;
+    //     return last;
+    // }
 
 
-  //     auto tmp = b -> next;
+    // ublic ListNode reverseBetween(ListNode head, int m, int n) {
+    //     if (m == 1) {
+    //         // You can also expand the code here to get rid of the helper function 'reverseN'
+    //         return reverseN(head, n);
+    //     }
+    //     head.next = reverseBetween(head.next, m - 1, n - 1);
+    //     return head;
+    // }
 
-  //     if( p_a ) {
-  //         p_a -> next = b;
-  //     }
-  //     b -> next = a -> next;
+    std::pair<ListNode*, ListNode*> reverseN( ListNode* head, int n) {
+        if( n == 1 ) {
+            return { head, head -> next};
+        }
 
-  //     p_b -> next = a;
-  //     a -> next = tmp;
+        auto [last, succ] = reverseN( head -> next, n - 1 );
+        head -> next -> next = head;
+        head -> next = succ;
+        return {last, succ};
+    }
 
-  //     return head;
-  // }
+
+  ListNode* reverseBetween(ListNode* head, int left, int right) {
+      auto curr = head;
+
+      if( left == 1 ) {
+          return reverseN( curr, right ).first;
+      }
+
+      curr -> next = reverseBetween( curr -> next, left - 1, right - 1);
+
+      return curr;
+  }
 
 
 }
