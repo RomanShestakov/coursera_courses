@@ -225,4 +225,34 @@ namespace leetcode {
 
     }
 
+
+   ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if( !head -> next ) return nullptr;
+
+        auto r = reverseListRec( head );
+
+        auto r1 = r;
+        while( r1 ) {
+            std::cout << r1-> val << std::endl;
+            r1 = r1 -> next;
+        }
+
+        if( n == 1 ) {
+            r = r -> next;
+        }
+        else
+        {
+            auto curr = r;
+
+            for( int i = 1; i < n - 1; i++ ) {
+                curr = curr -> next;
+            }
+//            std::cout << "c:" << curr -> val <<std::endl;
+            curr -> next = curr -> next -> next;
+        }
+
+        return reverseListRec( r );
+    }
+
+
 }
