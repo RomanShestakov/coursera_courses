@@ -142,4 +142,8 @@ namespace leetcode {
     // Input: head = [1,2], n = 1
     // Output: [1]
     ListNode* removeNthFromEnd(ListNode* head, int n);
+    ListNode* removeNthFromEnd1(ListNode* head, int n);
+
+    // // found on leetcode solution - this is insane - use ref to n
+    ListNode* removeNthFromEnd2(ListNode* head, int& n);
 }

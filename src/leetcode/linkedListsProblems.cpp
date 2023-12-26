@@ -255,4 +255,40 @@ namespace leetcode {
     }
 
 
+
+
+   ListNode* removeNthFromEnd1(ListNode* head, int n) {
+       auto first = head;
+       auto second = head;
+
+       for( int i = 0; i <= n; i++) {
+           first = first -> next;
+       }
+
+       while( first ) {
+           first = first -> next;
+           second = second -> next;
+       }
+
+        std::cout << "s:" << second -> val << std::endl;
+
+        second -> next = second -> next -> next;
+
+        return head;
+    }
+
+
+    // !!!this is very cool solution = note a ref to n
+    ListNode* removeNthFromEnd2(ListNode* head, int& n) {
+        if (head == nullptr)  return nullptr;
+
+        ListNode* tmp = removeNthFromEnd2(head->next, n);
+        if (--n) {
+            head->next = tmp;
+            return head;
+        }
+        else return tmp;
+    }
+
+
 }
