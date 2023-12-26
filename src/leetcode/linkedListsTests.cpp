@@ -21,13 +21,13 @@ namespace leetcode {
         auto d = std::make_unique< ListNode >( -4 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) -> addNode( c.get() ) -> addNode( d.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
         d -> next = b.get();
 
         EXPECT_TRUE( hasCycle( head ) );
-
         EXPECT_TRUE( hasCycle1( head ) );
-
     }
 
 
@@ -39,11 +39,12 @@ namespace leetcode {
         auto d = std::make_unique< ListNode >( -4 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) -> addNode( c.get() ) -> addNode( d.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
         d -> next = b.get();
 
         EXPECT_TRUE( hasCycle1( head ) );
-
     }
 
 
@@ -57,15 +58,12 @@ namespace leetcode {
 
         auto head = a.get();
         a -> addNode( b.get() ) ->
-addNode( c.get() ) ->
-addNode( d.get() ) ->
-addNode( e.get() );;
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         EXPECT_EQ( d -> val, kthNode( head, 2 ) -> val );
-
     }
-
-
 
     // Input: head = [1,2,3,4,5]
     // Output: [3,4,5]
@@ -82,7 +80,10 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 5 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         // return middle node
         EXPECT_EQ( c -> val, middleNode( head ) -> val );
@@ -92,7 +93,6 @@ addNode( e.get() );;
         auto f = std::make_unique< ListNode >( 6 );
         e -> addNode( f.get() );
         EXPECT_EQ( d -> val, middleNode( head ) -> val );
-
     }
 
 
@@ -135,7 +135,10 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 3 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         std::vector< int > expected {1,2, 3};
         std::vector< int > result;
@@ -161,14 +164,17 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 5 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         std::vector< int > expected { 5, 4, 3, 2, 1};
         std::vector< int > result;
 
         auto h = reverseList( head );
 
-//        std::cout << "reverted head:" << head -> val << std::endl;
+        // std::cout << "reverted head:" << head -> val << std::endl;
 
         while( h ) {
             result.push_back( h -> val);
@@ -188,7 +194,10 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 5 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         std::vector< int > expected { 5, 4, 3, 2, 1};
         std::vector< int > result;
@@ -229,7 +238,9 @@ addNode( e.get() );;
 
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
 
         std::vector< int > expected { 2,1, 4,3};
         std::vector< int > result;
@@ -247,9 +258,6 @@ addNode( e.get() );;
     }
 
 
-
-
-
     // Input: head = [5,4,2,1]
     // Output: 6
     //int pairSum(ListNode* head);
@@ -261,7 +269,9 @@ addNode( e.get() );;
         auto d = std::make_unique< ListNode >( 1 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
 
         int expected  = 6;
 
@@ -279,7 +289,10 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 5 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         std::vector< int > expected {3,2,4,5};
         std::vector< int > result;
@@ -308,7 +321,10 @@ addNode( e.get() );;
         auto e = std::make_unique< ListNode >( 5 );
 
         auto head = a.get();
-        a -> addNode( b.get() ) ->addNode( c.get() ) ->addNode( d.get() ) ->addNode( e.get() );
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
 
         std::vector< int > expected { 1,4,3,2,5};
         std::vector< int > result;
@@ -381,6 +397,37 @@ addNode( e.get() );;
         while( h ) {
             result.push_back( h -> val);
             h = h -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    TEST( deleteMiddle, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 3 );
+        auto c = std::make_unique< ListNode >( 4 );
+        auto d = std::make_unique< ListNode >( 7 );
+        auto e = std::make_unique< ListNode >( 1 );
+        auto f = std::make_unique< ListNode >( 2 );
+        auto g = std::make_unique< ListNode >( 6 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() );
+
+        std::vector< int > expected {1,3,4,1,2,6};
+        std::vector< int > result;
+
+        head = deleteMiddle( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
         }
 
         EXPECT_EQ( expected, result );

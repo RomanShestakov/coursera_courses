@@ -4,3 +4,18 @@ https://superuser.com/questions/71428/what-does-21-do-in-command-line
 
 stderr redirects to stream 1
 &1 is used to destingwish stream1 from file 1
+
+>& - means join streams
+
+* $? - exit code of last command
+
+* subshell shell
+( echo $PATH )
+( command || false ) >& log.txt
+
+* loops
+
+for i in tests/*; do exho $i; done
+
+* check export
+export -p # show all current export

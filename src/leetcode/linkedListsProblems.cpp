@@ -199,4 +199,30 @@ namespace leetcode {
   }
 
 
+    ListNode* preMid(ListNode* head) {
+        auto slow = head;
+
+        // 1
+        if( !head -> next ) return head;
+
+        // 1 2
+        if( head -> next && !head -> next -> next ) return head;
+
+        auto fast = head -> next -> next;
+
+        while( fast && fast -> next ) {
+            fast = fast -> next -> next;
+            slow = slow -> next;
+        }
+        return slow;
+    }
+
+    ListNode* deleteMiddle(ListNode* head) {
+        if( !head -> next ) return nullptr;
+        auto mid = preMid( head );
+        mid -> next = mid -> next -> next;
+        return head;
+
+    }
+
 }
