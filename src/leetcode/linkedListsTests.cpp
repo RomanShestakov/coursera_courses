@@ -506,8 +506,8 @@ namespace leetcode {
       std::vector< int > expected {1,2,3,5};
         std::vector< int > result;
 
-      int n = 2;
-      head = removeNthFromEnd2( head, n );
+      //int n = 2;
+        head = removeNthFromEnd2( head, 2 );
 
         while( head ) {
             result.push_back( head -> val);

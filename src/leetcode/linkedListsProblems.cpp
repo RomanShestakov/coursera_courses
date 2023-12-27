@@ -279,16 +279,22 @@ namespace leetcode {
 
 
     // !!!this is very cool solution = note a ref to n
-    ListNode* removeNthFromEnd2(ListNode* head, int& n) {
-        if (head == nullptr)  return nullptr;
-
-        ListNode* tmp = removeNthFromEnd2(head->next, n);
+    ListNode* removeNthFromEndImpl(ListNode* head, int& n) {
+        if (head == nullptr) return head;
+        ListNode* last = removeNthFromEndImpl(head->next, n);
         if (--n) {
-            head->next = tmp;
+            head->next = last;
+            //std::cout << n << " head:" << head -> val << std::endl;
             return head;
         }
-        else return tmp;
+        else return last;
     }
+
+    ListNode* removeNthFromEnd2(ListNode* head, int n) {
+        int n1 = n;
+        return removeNthFromEndImpl(head, n1);
+    }
+
 
 
 }
