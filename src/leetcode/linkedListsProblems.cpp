@@ -256,6 +256,24 @@ namespace leetcode {
 
 
 
+    // public ListNode removeNthFromEnd(ListNode head, int n) {
+    //     ListNode dummy = new ListNode(0);
+    //     dummy.next = head;
+    //     ListNode first = dummy;
+    //     ListNode second = dummy;
+    //     // Advances first pointer so that the gap between first and second is n nodes apart
+    //     for (int i = 1; i <= n + 1; i++) {
+    //         first = first.next;
+    //     }
+    //     // Move first to the end, maintaining the gap
+    //     while (first != null) {
+    //         first = first.next;
+    //         second = second.next;
+    //     }
+    //     second.next = second.next.next;
+    //     return dummy.next;
+    // }
+
 
    ListNode* removeNthFromEnd1(ListNode* head, int n) {
        auto first = head;
@@ -296,5 +314,91 @@ namespace leetcode {
     }
 
 
+
+    // 1 2 3 3 4 4 5
+    std::pair<ListNode*, int> deleteDuplicatesImpl(ListNode* head) {
+        if( !head -> next ) return { head,   std::numeric_limits<int>::max() };
+        auto [last, val] = deleteDuplicatesImpl( head -> next);
+        //std::cout << head -> val << " " << last -> val << " " << val << std::endl;
+        if( head -> val == last -> val ) {
+            //std::cout << "drop:" << head -> val << " " << last -> val << std::endl;
+            head -> next = last -> next;
+            return { head, last -> val};
+        }
+        else if ( last -> val == val) {
+            //std::cout << "drop2:" << head -> val << " " << last -> val << std::endl;
+            head -> next = last -> next;
+            return { head, last -> val};
+        }
+        else return { head, std::numeric_limits<int>::max() };
+    }
+
+    ListNode* deleteDuplicates2(ListNode* head) {
+        auto [last, val] = deleteDuplicatesImpl(head -> next);
+        //std::cout << last -> val << " " << val << std::endl;
+        if( head -> val == last -> val) return last -> next;
+        else if( val == last -> val) head -> next = last -> next;
+        return head;
+
+        //return deleteDuplicatesImpl( head ).first;
+    }
+
+
+
+
+    //    class Solution {
+    //     public ListNode deleteDuplicates(ListNode head) {
+    //         // Sentinel
+    //         ListNode sentinel = new ListNode(0, head);
+
+    //         // predecessor = the last node
+    //         // before the sublist of duplicates
+    //         ListNode pred = sentinel;
+
+    //         while (head != null) {
+    //             // If it's a beginning of the duplicates sublist
+    //             // skip all duplicates
+    //             if (head.next != null && head.val == head.next.val) {
+    //                 // Move till the end of the duplicates sublist
+    //                 while (head.next != null && head.val == head.next.val) {
+    //                     head = head.next;
+    //                 }
+
+    //                 // Skip all duplicates
+    //                 pred.next = head.next;
+
+    //             // otherwise, move predecessor
+    //             } else {
+    //                 pred = pred.next;
+    //             }
+
+    //             // move forward
+    //             head = head.next;
+    //         }
+    //         return sentinel.next;
+    //     }
+    // }
+
+
+    ListNode* deleteDuplicates3(ListNode* head) {
+        ListNode* sentinel = new ListNode( 0 );
+        sentinel ->addNode( head );
+        auto pred = sentinel;
+        while( head ) {
+            if( head -> next && head -> val == head -> next -> val ) {
+                while( head -> next && head -> val == head -> next -> val ) {
+                    head = head -> next;
+                }
+                pred -> next = head -> next;
+            }
+            else {
+                pred = pred -> next;
+            }
+
+            head = head -> next;
+        }
+
+        return sentinel -> next;
+    }
 
 }

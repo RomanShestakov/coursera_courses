@@ -490,6 +490,7 @@ namespace leetcode {
         EXPECT_EQ( expected, result );
     }
 
+
     TEST( removeNthFromEnd2, case1) {
         auto a = std::make_unique< ListNode >( 1 );
         auto b = std::make_unique< ListNode >( 2 );
@@ -516,5 +517,171 @@ namespace leetcode {
 
         EXPECT_EQ( expected, result );
     }
+
+
+    // Input: head = [1,2,3,3,4,4,5]
+    // Output: [1,2,5]
+    TEST( deleteDuplicates2, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 3 );
+        auto e = std::make_unique< ListNode >( 4 );
+        auto f = std::make_unique< ListNode >( 4 );
+        auto g = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() );
+
+        std::vector< int > expected {1,2,5};
+        std::vector< int > result;
+
+        head = deleteDuplicates2( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    //[1,1,1,2,3]
+    TEST( deleteDuplicates2, case2) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 1 );
+        auto c = std::make_unique< ListNode >( 1 );
+        auto d = std::make_unique< ListNode >( 2 );
+        auto e = std::make_unique< ListNode >( 3 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
+
+        std::vector< int > expected {2,3};
+        std::vector< int > result;
+
+        head = deleteDuplicates2( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    //[1,2,2]
+    TEST( deleteDuplicates2, case3) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 2 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ;
+
+
+        std::vector< int > expected {1};
+        std::vector< int > result;
+
+        head = deleteDuplicates2( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+    //[1,1]
+    TEST( deleteDuplicates2, case4) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 1 );
+
+        auto head = a.get();
+        a -> addNode( b.get() );
+
+        std::vector< int > expected {};
+        std::vector< int > result;
+
+        head = deleteDuplicates2( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    TEST( deleteDuplicates3, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 3 );
+        auto e = std::make_unique< ListNode >( 4 );
+        auto f = std::make_unique< ListNode >( 4 );
+        auto g = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() );
+
+        std::vector< int > expected {1,2,5};
+        std::vector< int > result;
+
+        head = deleteDuplicates3( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+    //[1,1,1,2,3]
+    TEST( deleteDuplicates3, case2) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 1 );
+        auto c = std::make_unique< ListNode >( 1 );
+        auto d = std::make_unique< ListNode >( 2 );
+        auto e = std::make_unique< ListNode >( 3 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
+
+        std::vector< int > expected {2,3};
+        std::vector< int > result;
+
+        head = deleteDuplicates3( head );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
 
 }

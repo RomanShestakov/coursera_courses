@@ -146,4 +146,19 @@ namespace leetcode {
 
     // found on leetcode solution - this is insanely cool solution
     ListNode* removeNthFromEnd2(ListNode* head, int n);
+
+
+    // 82 - remove dups from sorted list
+    // Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers fro    //m the original list. Return the linked list sorted as well.
+    // Example 1:
+    // Input: head = [1,2,3,3,4,4,5]
+    // Output: [1,2,5]
+    // Example 2:
+    // Input: head = [1,1,1,2,3]
+    // Output: [2,3]
+    ListNode* deleteDuplicates2(ListNode* head);
+
+    // leetcode solution
+    ListNode* deleteDuplicates3(ListNode* head);
+
 }
