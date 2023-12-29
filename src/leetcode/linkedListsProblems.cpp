@@ -7,8 +7,10 @@
 #include <vector>
 #include <unordered_map>
 #include <limits>
+#include <memory>
 #include <map>
 #include <sstream>
+#include <functional>
 #include "linkedListsProblems.h"
 
 namespace leetcode {
@@ -344,46 +346,10 @@ namespace leetcode {
     }
 
 
-
-
-    //    class Solution {
-    //     public ListNode deleteDuplicates(ListNode head) {
-    //         // Sentinel
-    //         ListNode sentinel = new ListNode(0, head);
-
-    //         // predecessor = the last node
-    //         // before the sublist of duplicates
-    //         ListNode pred = sentinel;
-
-    //         while (head != null) {
-    //             // If it's a beginning of the duplicates sublist
-    //             // skip all duplicates
-    //             if (head.next != null && head.val == head.next.val) {
-    //                 // Move till the end of the duplicates sublist
-    //                 while (head.next != null && head.val == head.next.val) {
-    //                     head = head.next;
-    //                 }
-
-    //                 // Skip all duplicates
-    //                 pred.next = head.next;
-
-    //             // otherwise, move predecessor
-    //             } else {
-    //                 pred = pred.next;
-    //             }
-
-    //             // move forward
-    //             head = head.next;
-    //         }
-    //         return sentinel.next;
-    //     }
-    // }
-
-
     ListNode* deleteDuplicates3(ListNode* head) {
-        ListNode* sentinel = new ListNode( 0 );
-        sentinel ->addNode( head );
-        auto pred = sentinel;
+        auto sentinel = std::make_unique<ListNode>(ListNode( 0 ));
+        sentinel.get() -> addNode( head );
+        auto pred = sentinel.get();
         while( head ) {
             if( head -> next && head -> val == head -> next -> val ) {
                 while( head -> next && head -> val == head -> next -> val ) {
@@ -400,5 +366,71 @@ namespace leetcode {
 
         return sentinel -> next;
     }
+
+    ListNode* findKth(ListNode* head, int& k){
+        if( !head -> next ) return head;
+        auto last = findKth( head -> next, k);
+        if( k >= 1  ) {
+            k--;
+            return head;
+        }
+        else return last;
+    }
+
+    // void swap( ListNode* a, ListNode* b ) {
+    //     std::cout << " swap:" << a -> val << " " << a -> next -> val << " " << b -> val << " " << b -> next -> val << std::endl;
+    //     auto tmp = a -> next -> next;
+    //     auto tmp1 = a -> next;
+    //     auto tmp2 = b -> next -> next;
+    //     a -> next = b -> next;
+    //     a -> next -> next = tmp;
+    //     b -> next = tmp1;
+    //     b -> next -> next = tmp2 -> next;
+
+    //  }
+
+    // std::pair<ListNode*, ListNode*> dropNext(ListNode* a ){
+    //     if( !a -> next ) return {a, nullptr};
+    //     auto t = a -> next;
+    //     a -> next = a -> next -> next;
+    //     return { a, t};
+    // }
+
+    // ListNode* insertAfter(ListNode* a, ListNode* b ){
+    //     auto t = a -> next;
+    //     a -> next = b;
+    //     b -> next = t;
+    //     return b;
+    // }
+
+
+    // Input: head = [1,2,3,4,5], k = 1
+    // Output: [5,4,3,2,1]
+     ListNode* swapNodes(ListNode* head, int k){
+         std::vector< ListNode* > v;
+
+         auto curr = head;
+         while( curr ) {
+             v.push_back( curr );
+             curr = curr -> next;
+         }
+
+         auto tmp = v[ k - 1 ];
+         v[ k - 1] = v[ v.size() - k] ;
+         v[ v.size() - k] = tmp;
+
+         auto s = std::make_unique< ListNode>( ListNode( 0 ));
+         auto s1 = s.get();
+         for( int i = 0; i < v.size(); i++ ) {
+             s1 -> next = v[ i ];
+             s1 = s1 -> next;
+         }
+
+         s1 -> next = nullptr;
+
+         return s.get() -> next;
+     }
+
+
 
 }

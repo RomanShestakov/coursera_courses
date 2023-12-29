@@ -161,4 +161,20 @@ namespace leetcode {
     // leetcode solution
     ListNode* deleteDuplicates3(ListNode* head);
 
+
+    // 1721 swapping nodes in linked list
+    // You are given the head of a linked list, and an integer k.
+    // Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from t    // the end (the list is 1-indexed).
+    // Example 1:
+    // Input: head = [1,2,3,4,5], k = 2
+    // Output: [1,4,3,2,5]
+    // Example 2:
+    // Input: head = [7,9,6,6,7,8,3,0,9,5], k = 5
+    // Output: [7,9,6,6,8,7,3,0,9,5]
+
+    // ATTENTION - the q. is asking to swap values not the nodes themselfs!!!
+    // but it is more difficult to swap nodes so worth doing it
+    ListNode* swapNodes(ListNode* head, int k);
+    void swap(ListNode* a, ListNode* b);
+
 }
