@@ -22,7 +22,7 @@ target_link_libraries(${RUN_C_LECTURES_CODE_TEST}
 
 set(NAMES
 divmod
-#${RUN_C_LECTURES_CODE_TEST}
+${RUN_C_LECTURES_CODE_TEST}
 )
 
 install(TARGETS ${NAMES} DESTINATION bin)
