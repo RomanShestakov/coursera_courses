@@ -6,5 +6,5 @@ extern "C" {
 }
 
 TEST(gcd, case1) {
-    EXPECT_EQ( 1, gcd( 39, 13) );
+    EXPECT_EQ( 1, gcd( 35, 13 ) );
 }

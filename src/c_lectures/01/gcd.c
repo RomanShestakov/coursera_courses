@@ -1,19 +1,15 @@
 #include<stdio.h>
+#include<assert.h>
 
-int gcd( int a, int b) {
-
-    printf( "a=%d b=%d\n", a, b);
-    if( a == 1 || b == 1 ) return 1;
-    else if( a == 0 ) return b;
-    else if( b == 0 ) return a;
-    else {
-        if ( a > b ) {
-            return gcd( a % b, b );
-        }
-        else {
-            return gcd( a, b % a );
-        }
+int gcd( int x, int y ) {
+    int q;
+    assert( y != 0 );
+    q = x % y;
+    printf( "x=%d y=%d q=%d\n", x, y, q);
+    if( q == 0 ) {
+        return y;
     }
+    return gcd( y, q );
 }
 
 /* int main() { */
