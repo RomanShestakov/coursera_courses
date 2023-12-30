@@ -175,6 +175,7 @@ namespace leetcode {
     // ATTENTION - the q. is asking to swap values not the nodes themselfs!!!
     // but it is more difficult to swap nodes so worth doing it
     ListNode* swapNodes(ListNode* head, int k);
-    void swap(ListNode* a, ListNode* b);
+    // leetcode solution
+    ListNode* swapNodes2(ListNode* head, int k);
 
 }

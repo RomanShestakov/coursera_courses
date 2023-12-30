@@ -810,6 +810,42 @@ namespace leetcode {
 //ndif
 
 
+    TEST( swapNodes2, case) {
+        auto a = std::make_unique< ListNode >( 7 );
+        auto b = std::make_unique< ListNode >( 9 );
+        auto c = std::make_unique< ListNode >( 6 );
+        auto d = std::make_unique< ListNode >( 6 );
+        auto e = std::make_unique< ListNode >( 7 );
+        auto f = std::make_unique< ListNode >( 8 );
+        auto g = std::make_unique< ListNode >( 3 );
+        auto h = std::make_unique< ListNode >( 0 );
+        auto j = std::make_unique< ListNode >( 9 );
+        auto k = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() ) ->
+             addNode( h.get() ) ->
+             addNode( j.get() ) ->
+             addNode( k.get() );
+
+        //      [7,9,6,6,8,7,3,0,9,5]
+        std::vector< int > expected {7,9,6,6,8,7,3,0,9,5};
+        std::vector< int > result;
+
+        head = swapNodes2(head, 5 );
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
 
 
 

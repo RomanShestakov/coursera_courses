@@ -432,5 +432,58 @@ namespace leetcode {
      }
 
 
+    // // leetcode solution using val swaps
+    // ListNode* swapNodes2(ListNode* head, int k) {
+    //     int listLength = 0;
+    //     ListNode* frontNode = nullptr;
+    //     ListNode* endNode = nullptr;
+    //     ListNode* currentNode = head;
+    //     // set the front node and end node in single pass
+    //     while (currentNode) {
+    //         listLength++;
+    //         if(endNode != NULL) {
+    //             endNode = endNode->next;
+    //         }
+    //         // check if we have reached kth node
+    //         if (listLength == k) {
+    //             frontNode = currentNode;
+    //             endNode = head;
+    //         }
+    //         currentNode = currentNode->next;
+    //     }
+    //     // swap the values of front node and end node
+    //     std::swap(frontNode->val, endNode->val);
+    //     return head;
+    // }
+
+
+    ListNode* swapNodes2(ListNode* head, int k) {
+
+        auto curr = head;
+        ListNode* frontNode = nullptr;
+        ListNode* endNode = nullptr;
+        int currLength = 0;
+
+        while( curr ) {
+            currLength++;
+
+            // put here as we need to skip one step
+            if( endNode ) {
+                endNode = endNode -> next;
+            }
+
+            if( currLength == k ) {
+                frontNode = curr;
+                endNode = head;
+            }
+            curr = curr -> next;
+        }
+
+        //  std::cout << frontNode -> val << " " << endNode -> val << std::endl;
+        std::swap( endNode -> val, frontNode -> val);
+
+        return head;
+    }
+
 
 }
