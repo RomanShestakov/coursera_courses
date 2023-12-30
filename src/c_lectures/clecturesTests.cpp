@@ -1,14 +1,8 @@
 
 #include "gtest/gtest.h"
-// #include <algorithm>
-// #include <numeric>
-// #include <unordered_set>
-// #include <vector>
-// #include <unordered_map>
-// #include <limits>
 
 extern "C" {
-#include "clectures.h"
+    int gcd( int a, int b);
 }
 
 TEST(gcd, case1) {

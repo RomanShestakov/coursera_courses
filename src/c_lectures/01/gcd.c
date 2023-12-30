@@ -1,4 +1,3 @@
-//#include "clectures.h"
 #include<stdio.h>
 
 int gcd( int a, int b) {
@@ -17,11 +16,11 @@ int gcd( int a, int b) {
     }
 }
 
-int main() {
+/* int main() { */
 
-    int a, b;
-    printf( "Input a and b\n");
-    scanf("%d%d", &a, &b );
-    printf( "gcd = %d\n", gcd( a, b ) );
+/*     int a, b; */
+/*     printf( "Input a and b\n"); */
+/*     scanf("%d%d", &a, &b ); */
+/*     printf( "gcd = %d\n", gcd( a, b ) ); */
 
-}
+/* } */
