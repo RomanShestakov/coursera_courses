@@ -486,4 +486,51 @@ namespace leetcode {
     }
 
 
+
+    // recursive solution
+    bool isPalindrome(ListNode* head){
+
+        auto curr = head;
+        std::function< std::pair< ListNode*, bool> ( ListNode*, bool ) > rec;
+
+        rec = [ &curr, &rec ]( ListNode* h, bool init ) {
+            if( !h -> next ) {
+                auto res = std::make_pair( h, curr -> val == h -> val );
+                curr = curr -> next;
+                return res;
+            }
+            auto [last, res] = rec( h -> next, init);
+            if( !res ) {
+                return std::make_pair( h, res );
+            }
+            else {
+                auto res = curr -> val == h -> val;
+                curr = curr -> next;
+                return std::make_pair( h, res);
+            }
+        };
+
+        auto [ h, res ] = rec( head, false);
+
+        return res;
+    }
+
+
+    // nicer rec solution
+    bool isPalindrome1(ListNode* head) {
+        auto front = head;
+        std::function< bool( ListNode*) > rec;
+
+        rec = [ & ]( ListNode* h) {
+            if( h ) {
+                if( !rec( h -> next ) ) return false;
+                if( h -> val != front -> val ) return false;
+                front = front -> next;
+            }
+            return true;
+        };
+
+        return rec( head );
+    }
+
 }

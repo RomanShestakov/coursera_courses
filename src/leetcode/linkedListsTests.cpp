@@ -849,5 +849,49 @@ namespace leetcode {
 
 
 
+//  bool isPalindrome(ListNode* head);
+    TEST( isPalindrome, case1){
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 2 );
+        auto d = std::make_unique< ListNode >( 1 );
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
+
+        EXPECT_EQ( true, isPalindrome( head ) );
+    }
+
+    TEST( isPalindrome, case2){
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto head = a.get();
+        a -> addNode( b.get() );
+        EXPECT_EQ( false,isPalindrome( head ) );
+    }
+
+
+    TEST( isPalindrome1,case1){
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 2 );
+        auto d = std::make_unique< ListNode >( 1 );
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
+
+        EXPECT_EQ( true, isPalindrome1(head ) );
+    }
+
+    TEST( isPalindrome1,case2){
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto head = a.get();
+        a -> addNode( b.get() );
+        EXPECT_EQ( false,isPalindrome1( head ));
+    }
+
 
 }
