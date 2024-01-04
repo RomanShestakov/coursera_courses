@@ -14,9 +14,9 @@ int gcd( int x, int y ) {
 
 /* int main() { */
 
-/*     int a, b; */
-/*     printf( "Input a and b\n"); */
-/*     scanf("%d%d", &a, &b ); */
-/*     printf( "gcd = %d\n", gcd( a, b ) ); */
+/*     //int a, b; */
+/*     printf( "%x\n", 203); */
+/*     /\* scanf("%d%d", &a, &b ); *\/ */
+/*     /\* printf( "gcd = %d\n", gcd( a, b ) ); *\/ */
 
 /* } */
