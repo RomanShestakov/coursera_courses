@@ -894,4 +894,113 @@ namespace leetcode {
     }
 
 
+
+
+
+    // Input: head = [5,2,6,3,9,1,7,3,8,4]
+    // Output: [5,6,2,3,9,1,4,8,3,7]
+    TEST( reverseEvenLengthGroups, case) {
+        auto a = std::make_unique< ListNode >( 5 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 6 );
+        auto d = std::make_unique< ListNode >( 3 );
+        auto e = std::make_unique< ListNode >( 9 );
+        auto f = std::make_unique< ListNode >( 1 );
+        auto g = std::make_unique< ListNode >( 7 );
+        auto h = std::make_unique< ListNode >( 3 );
+        auto j = std::make_unique< ListNode >( 8 );
+        auto k = std::make_unique< ListNode >( 4 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() ) ->
+             addNode( h.get() ) ->
+             addNode( j.get() ) ->
+             addNode( k.get() );
+
+        //[5,6,2,3,9,1,4,8,3,7]
+        std::vector< int > expected { 5,6,2,3,9,1,4,8,3,7};
+        std::vector< int > result;
+
+        head = reverseEvenLengthGroups(head);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    // Input: head = [1,1,0,6]
+    // Output: [1,0,1,6]
+    TEST( reverseEvenLengthGroups, case2) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 1 );
+        auto c = std::make_unique< ListNode >( 0 );
+        auto d = std::make_unique< ListNode >( 6 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
+
+        //[1,0,1,6]
+        std::vector< int > expected {1,0,1,6};
+        std::vector< int > result;
+
+        head = reverseEvenLengthGroups(head);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+
+    //[1,5,0,2,4,7,3,6]
+    // [1,0,5,2,4,7,6,3]
+
+    TEST( reverseEvenLengthGroups, case3) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 5 );
+        auto c = std::make_unique< ListNode >( 0 );
+        auto d = std::make_unique< ListNode >( 2 );
+        auto e = std::make_unique< ListNode >( 4 );
+        auto f = std::make_unique< ListNode >( 7 );
+        auto g = std::make_unique< ListNode >( 3 );
+        auto h = std::make_unique< ListNode >( 6 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() ) ->
+             addNode( h.get() );
+
+
+        //[5,6,2,3,9,1,4,8,3,7]
+        std::vector< int > expected { 1,0,5,2,4,7,6,3 };
+        std::vector< int > result;
+
+        head = reverseEvenLengthGroups(head);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
 }

@@ -188,17 +188,17 @@ namespace leetcode {
     }
 
 
-  ListNode* reverseBetween(ListNode* head, int left, int right) {
-      auto curr = head;
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        auto curr = head;
 
-      if( left == 1 ) {
-          return reverseN( curr, right ).first;
-      }
+        if( left == 1 ) {
+            return reverseN( curr, right ).first;
+        }
 
-      curr -> next = reverseBetween( curr -> next, left - 1, right - 1);
+        curr -> next = reverseBetween( curr -> next, left - 1, right - 1);
 
-      return curr;
-  }
+        return curr;
+    }
 
 
     ListNode* preMid(ListNode* head) {
@@ -532,5 +532,98 @@ namespace leetcode {
 
         return rec( head );
     }
+
+
+
+    std::tuple<ListNode*, ListNode*, bool> revN( ListNode* head, int k, const int group ) {
+
+        auto n = group - k;
+
+        if( n == 1 && group % 2 == 0 )  return { head, head -> next, true };
+        if( n == 1 && group % 2 != 0 )  return { head, head -> next, false };
+
+        if( !head -> next && k % 2 != 0 )  return { head, head -> next, true };
+        if( !head -> next && k % 2 == 0 )  return { head, head -> next, false };
+
+        auto [ last, succ, r ] = revN( head -> next, k + 1, group );
+        if( r ) {
+            head -> next -> next = head;
+            head -> next = succ;
+            return { last, succ, r };
+        }
+        else {
+            return { head, head -> next, false };
+        }
+    }
+
+
+
+    ListNode* reverseEvenLengthGroups(ListNode* head) {
+        auto curr = head;
+        int count = 1;
+        while( curr -> next ) {
+            count++;
+            auto [last, succ, res ]  = revN( curr -> next, 0, count );
+            curr -> next = last;
+            for( int i = 0; i < count; i++ ) {
+                if( !curr -> next ) break;
+                curr = curr -> next;
+            }
+        }
+        return head;
+    }
+
+
+    // leetcode solution
+    // // Reverse function
+    //  ListNode* reverse(ListNode* head) {
+    //      if(head == NULL)
+    //          return head;
+
+    //      ListNode* prev = NULL, *forward = NULL;
+    //      while(head != NULL) {
+    //          forward = head->next;
+    //          head->next = prev;
+    //          prev = head;
+    //          head = forward;
+    //      }
+    //      return prev;
+    //  }
+
+    //  ListNode* reverseEvenLengthGroups(ListNode* head) {
+    //      ListNode* dummy = new ListNode(), *prev = dummy;
+    //      dummy->next = head;
+
+    //      // Step 1 - determine the length of groups
+    //      for(int len = 1; len < 1e5 && head; len++) {
+    //          ListNode* tail = head, *nextHead;
+
+    //          // Determining the length of the current group
+    //          // Its maximum length can be equal to len
+    //          int j = 1;
+    //          while(j < len && tail != NULL && tail->next != NULL) {
+    //              tail = tail->next;
+    //              j++;
+    //          }
+
+    //          // Head of the next group
+    //          nextHead = tail->next;
+    //          if((j % 2) == 0) {
+    //              // If group size is even then reverse the group and set prev and head
+    //              tail->next = NULL;
+    //              prev->next = reverse(head);
+    //              prev = head;
+    //              head->next = nextHead;
+    //              head = nextHead;
+    //          }
+    //          else {     // If group is odd sized then simply go to the next group
+    //              prev = tail;
+    //              head = nextHead;
+    //          }
+    //      }
+
+    //      return dummy->next;
+    //  }
+
 
 }
