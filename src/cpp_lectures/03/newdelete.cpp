@@ -1,7 +1,7 @@
 #include <iostream>
 
-
 // base cPP course - lecture 3, 7:28
+// https://www.youtube.com/watch?v=TQ5VPnKWqoY
 
 struct MySmallClass {
     int t = 1;
