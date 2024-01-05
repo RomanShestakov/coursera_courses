@@ -625,5 +625,29 @@ namespace leetcode {
     //      return dummy->next;
     //  }
 
+    ListNode* remEl(ListNode* head, int val) {
+        if( !head -> next ) return head;
+
+        auto last = remEl( head -> next, val);
+
+        if( last -> val == val ) {
+            head -> next = last -> next;
+            return head;
+        }
+        else return head;
+    }
+
+
+    ListNode* removeElements(ListNode* head, int val) {
+        if( !head ) return nullptr;
+        auto curr = std::make_unique<ListNode>( ListNode( 0 ) );
+        curr -> next = head;
+
+        auto last  = remEl( curr.get(), val );
+
+        return last -> next;
+
+    }
+
 
 }

@@ -1003,4 +1003,69 @@ namespace leetcode {
         EXPECT_EQ( expected, result );
     }
 
+
+    // Input: head = [1,2,6,3,4,5,6], val = 6
+    // Output: [1,2,3,4,5]
+    TEST( removeelements, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 6 );
+        auto d = std::make_unique< ListNode >( 3 );
+        auto e = std::make_unique< ListNode >( 4 );
+        auto f = std::make_unique< ListNode >( 5 );
+        auto g = std::make_unique< ListNode >( 6 );
+
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() ) ->
+             addNode( f.get() ) ->
+             addNode( g.get() ) ;
+
+
+        // [1,2,3,4,5]
+        std::vector< int > expected { 1,2,3,4,5 };
+        std::vector< int > result;
+
+        head = removeElements(head, 6);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+    // Input: head = [7,7,7,7], val = 7
+    // Output: []
+    TEST( removeelements, case2) {
+        auto a = std::make_unique< ListNode >( 7 );
+        auto b = std::make_unique< ListNode >( 7 );
+        auto c = std::make_unique< ListNode >( 7 );
+        auto d = std::make_unique< ListNode >( 7 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() );
+
+        // [1,2,3,4,5]
+        std::vector< int > expected {};
+        std::vector< int > result;
+
+        head = removeElements(head, 7);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
 }
