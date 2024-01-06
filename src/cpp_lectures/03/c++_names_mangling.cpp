@@ -10,4 +10,6 @@ int foo( S* p, int x ) { return p -> foo( x ); };
 
 int foo( int x ) { return x; };
 
+
+// extern C guarantees stable name without mangaling
 extern "C" int bar( int x ) { return x; };

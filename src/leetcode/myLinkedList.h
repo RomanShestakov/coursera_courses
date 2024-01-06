@@ -39,16 +39,9 @@
 
     template< typename T>
     struct NodeTmpl {
-        NodeTmpl( T val, NodeTmpl* prev, NodeTmpl* next ) : val_( val ), prev_( prev ), next_( next ) {
-            if( prev_ ) {
-                next_ = prev_ -> next_;
-                prev_ -> next_ = this;
-            }
-        }
-
+        NodeTmpl( T val ) : val_( val ) {}
         NodeTmpl* prev_ = nullptr;
         NodeTmpl* next_ = nullptr;
-
         T val_;
     };
 
@@ -58,6 +51,7 @@
         std::unordered_set< std::unique_ptr< Node > > s_;
         Node* head_ = nullptr;
         Node* tail_ = nullptr;
+        size_t length_ = 0;
 
     public:
         MyLinkedListTmpl() {}
@@ -85,20 +79,45 @@
         }
 
         void addAtHead(T val) {
-            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val, nullptr, head_ ? head_ : nullptr ) ) );
+            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
+            it -> get() -> next_ = head_;
             head_ = it -> get();
+            if( !tail_ ) tail_ = head_;
+            length_++;
         }
 
         void addAtTail(T val) {
-            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val, tail_ ? tail_ : nullptr, nullptr ) ) );
+            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
+            if( tail_ ) tail_ -> next_ = it -> get();
             tail_ = it -> get();
+            length_++;
         }
 
         void addAtIndex(int index, int val) {
+            if( index > length_ ) return;
+            if( index == length_ ) return addAtTail( val );
 
+            auto h = head_;
+            while( --index ) {
+                if( !h -> next_ ) return;
+                h = h -> next_;
+            }
+            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
+            it -> get() -> next_ = h -> next_;
+            h -> next_ = it -> get();
         }
 
         void deleteAtIndex(int index) {
+            if( index > length_ ) return;
+            auto h = head_;
+            while( --index ) {
+                if( !h -> next_ ) return;
+                h = h -> next_;
+            }
+
+            auto n = h -> next_;
+            h -> next_ = h -> next_ -> next_;
+            //s_.erase( n );
 
         }
     };

@@ -1129,6 +1129,17 @@ namespace leetcode {
         std::cout << *obj << std::endl;
         EXPECT_EQ( 20, obj->get( 1 ) );
 
+        obj -> addAtIndex( 1, 30 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 30, obj->get( 1 ) );
+
+        obj -> addAtIndex( 1, 40 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 40, obj->get( 1 ) );
+
+        obj -> deleteAtIndex( 1 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 30, obj->get( 1 ) );
 
     }
 
