@@ -642,11 +642,19 @@ namespace leetcode {
         if( !head ) return nullptr;
         auto curr = std::make_unique<ListNode>( ListNode( 0 ) );
         curr -> next = head;
-
         auto last  = remEl( curr.get(), val );
-
         return last -> next;
+    }
 
+
+    int getDecimalValue(ListNode* head){
+        int n = head -> val;
+        while( head -> next ) {
+            n = n * 2 + head -> next -> val;
+            head = head -> next;
+        }
+
+        return n;
     }
 
 

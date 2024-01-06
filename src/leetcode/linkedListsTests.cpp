@@ -1068,4 +1068,20 @@ namespace leetcode {
     }
 
 
+
+    //    int getDecimalValue(ListNode* head){
+    // Input: head = [1,0,1]
+    // Output: 5
+    TEST( getDecimalValue, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 0 );
+        auto c = std::make_unique< ListNode >( 1 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() );
+
+        EXPECT_EQ( 5, getDecimalValue( head ) );
+    }
+
 }
