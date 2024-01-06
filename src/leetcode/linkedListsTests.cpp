@@ -8,7 +8,7 @@
 #include <limits>
 #include <memory>
 #include "linkedListsProblems.h"
-
+#include "myLinkedList.h"
 
 namespace leetcode {
 
@@ -1083,5 +1083,54 @@ namespace leetcode {
 
         EXPECT_EQ( 5, getDecimalValue( head ) );
     }
+
+
+    // Input: head = [1,2,3,4,5]
+    // Output: [1,3,5,2,4]
+    TEST( oddEvenList, case1) {
+        auto a = std::make_unique< ListNode >( 1 );
+        auto b = std::make_unique< ListNode >( 2 );
+        auto c = std::make_unique< ListNode >( 3 );
+        auto d = std::make_unique< ListNode >( 4 );
+        auto e = std::make_unique< ListNode >( 5 );
+
+        auto head = a.get();
+        a -> addNode( b.get() ) ->
+             addNode( c.get() ) ->
+             addNode( d.get() ) ->
+             addNode( e.get() );
+
+        std::vector< int > expected { 1,3,5,2,4 };
+        std::vector< int > result;
+
+        head = oddEvenList(head);
+
+        while( head ) {
+            result.push_back( head -> val);
+            head = head -> next;
+        }
+
+        EXPECT_EQ( expected, result );
+    }
+
+
+
+    TEST( MyLinkedList, case1) {
+
+        auto obj = std::make_unique<MyLinkedList>();
+        //int param_1 = obj->get( 1 );
+
+        EXPECT_EQ( -1, obj->get( 1 ) );
+        obj -> addAtHead( 10 );
+        EXPECT_EQ( 10, obj->get( 0 ) );
+
+        obj -> addAtTail( 20 );
+
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 20, obj->get( 1 ) );
+
+
+    }
+
 
 }

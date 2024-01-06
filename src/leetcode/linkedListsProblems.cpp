@@ -658,4 +658,25 @@ namespace leetcode {
     }
 
 
+
+    ListNode* oddEvenList(ListNode* head) {
+
+        if( !head ) return nullptr;
+        if( ! head -> next) return head;
+
+        auto f = head;
+        auto s = head -> next;
+        auto t = head -> next;
+
+        while( s && s -> next && f && f -> next) {
+            f -> next = f -> next -> next;
+            s -> next = s -> next -> next;
+            s = ( s -> next ) ? s -> next : s;
+            f = f -> next ? f -> next : f;
+        }
+        s -> next = nullptr;
+        f -> next = t;
+        return head;
+    }
+
 }
