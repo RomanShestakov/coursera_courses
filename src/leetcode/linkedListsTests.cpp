@@ -1121,13 +1121,16 @@ namespace leetcode {
         //int param_1 = obj->get( 1 );
 
         EXPECT_EQ( -1, obj->get( 1 ) );
+
         obj -> addAtHead( 10 );
+        EXPECT_EQ( 10, obj->getNodeAtIndex( 0 ) -> val_ );
         EXPECT_EQ( 10, obj->get( 0 ) );
 
         obj -> addAtTail( 20 );
-
-        std::cout << *obj << std::endl;
+        EXPECT_EQ( 20, obj->getNodeAtIndex( 1 ) -> val_ );
         EXPECT_EQ( 20, obj->get( 1 ) );
+        EXPECT_EQ( 10, obj->getNodeAtIndex( 1 ) -> prev_ -> val_ );
+        std::cout << *obj << std::endl;
 
         obj -> addAtIndex( 1, 30 );
         std::cout << *obj << std::endl;
@@ -1141,7 +1144,148 @@ namespace leetcode {
         std::cout << *obj << std::endl;
         EXPECT_EQ( 30, obj->get( 1 ) );
 
+
+        obj -> addAtIndex( 0, 50 );
+        EXPECT_EQ( 50, obj->getNodeAtIndex( 0 ) -> val_ );
+        EXPECT_EQ( 50, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+
+        obj -> addAtIndex( 0, 60 );
+        EXPECT_EQ( 60, obj->getNodeAtIndex( 0 ) -> val_ );
+        EXPECT_EQ( 60, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+
     }
 
+
+
+    // ["MyLinkedList","addAtHead","addAtTail","addAtIndex","get","deleteAtIndex","get"]
+    // [[],[1],[3],[1,2],[1],[0],[0]]
+
+    // Use Testcase
+    // Output
+    // [null,null,null,null,2,null,1]
+    // Expected
+    // [null,null,null,null,2,null,2]
+
+//#if 0
+    TEST( MyLinkedList, case2) {
+
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtHead( 1 );
+        obj -> addAtTail( 3 );
+        obj -> addAtIndex( 1, 2 );
+        EXPECT_EQ( 2, obj->get( 1 ) );
+        std::cout << *obj << std::endl;
+        obj -> deleteAtIndex( 0 );
+        EXPECT_EQ( 2, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+    }
+
+
+    // ["MyLinkedList","addAtIndex","addAtIndex","addAtIndex","get"]
+    // [[],[0,10],[0,20],[1,30],[0]]
+    TEST( MyLinkedList, case3) {
+
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtHead( 1 );
+        obj -> addAtTail( 3 );
+        obj -> addAtIndex( 1, 2 );
+        EXPECT_EQ( 2, obj->get( 1 ) );
+        std::cout << *obj << std::endl;
+        obj -> deleteAtIndex( 0 );
+        EXPECT_EQ( 2, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+    }
+    //#endif
+
+
+
+    // ["MyLinkedList","addAtIndex","addAtIndex","addAtIndex","get"]
+    // [[],[0,10],[0,20],[1,30],[0]]
+
+    TEST( MyLinkedList, case4) {
+
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtHead( 10 );
+        obj -> addAtHead( 20 );
+        obj -> addAtHead( 30 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 3, obj->getLength());
+        EXPECT_EQ( 30, obj->get( 0 ) );
+        EXPECT_EQ( 20, obj->get( 1 ) );
+        EXPECT_EQ( 10, obj->get( 2 ) );
+        std::cout << *obj << std::endl;
+    }
+
+
+    TEST( MyLinkedList, case5) {
+
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtIndex( 0, 10 );
+        obj -> addAtIndex( 0, 20 );
+        obj -> addAtIndex( 1, 30 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 3, obj->getLength());
+        EXPECT_EQ( 20, obj->get( 0 ) );
+        EXPECT_EQ( 30, obj->get( 1 ) );
+        EXPECT_EQ( 10, obj->get( 2 ) );
+        std::cout << *obj << std::endl;
+    }
+
+
+    // ["MyLinkedList","addAtTail","get"]
+    // [[],[1],[0]]
+    TEST( MyLinkedList, case6) {
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtTail( 1 );
+        std::cout << *obj << std::endl;
+        EXPECT_EQ( 1, obj->getLength());
+        EXPECT_EQ( 1, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+    }
+
+
+
+    // ["MyLinkedList","addAtHead","deleteAtIndex","addAtHead","addAtHead","addAtHead","addAtHead","addAtHead","addAtTail","get","deleteAtIndex","deleteAtIndex"]
+    // [[],[2],[1],[2],[7],[3],[2],[5],[5],[5],[6],[4]]
+    TEST( MyLinkedList, case7) {
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtHead( 2 );
+        obj -> deleteAtIndex( 1 );
+        obj -> addAtHead( 2 );
+        obj -> addAtHead( 7 );
+        obj -> addAtHead( 3 );
+        obj -> addAtHead( 2 );
+        obj -> addAtHead( 5 );
+        obj -> addAtTail( 5 );
+        EXPECT_EQ( 2, obj->get( 5 ) );
+        //obj->get( 5 );
+        obj -> deleteAtIndex( 6 );
+        obj -> deleteAtIndex( 4 );
+
+        // std::cout << *obj << std::endl;
+        // EXPECT_EQ( 1, obj->getLength());
+        // EXPECT_EQ( 1, obj->get( 0 ) );
+        std::cout << *obj << std::endl;
+    }
+
+    // "MyLinkedList","addAtHead","get","addAtHead","addAtHead","deleteAtIndex","addAtHead","get","get","get","addAtHead","deleteAtIndex"]
+    // [[],[4],[1],[1],[5],[3],[7],[3],[3],[3],[1],[4]]
+    TEST( MyLinkedList, case8) {
+        auto obj = std::make_unique<MyLinkedList>();
+        obj -> addAtHead( 4 );
+        EXPECT_EQ( -1, obj->get( 1 ) );
+        obj -> addAtHead( 1 );
+        obj -> addAtHead( 5 );
+        obj -> deleteAtIndex( 3 );
+        obj -> addAtHead( 7 );
+        EXPECT_EQ( 4, obj->get( 3 ) );
+        EXPECT_EQ( 4, obj->get( 3 ) );
+        EXPECT_EQ( 4, obj->get( 3 ) );
+        obj -> addAtHead( 1 );
+        obj -> deleteAtIndex( 4 );
+        std::cout << *obj << std::endl;
+    }
 
 }

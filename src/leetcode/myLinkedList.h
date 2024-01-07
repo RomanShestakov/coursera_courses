@@ -67,58 +67,83 @@
             return os;
         }
 
-        T get(int index) {
-            if( !head_ ) return -1;
-
+        Node* getNodeAtIndex( int index ) {
             auto h = head_;
-            while( index-- ) {
-                if( !h -> next_ ) return -1;
+            while( index ) {
+                if( !h -> next_ ) return nullptr;
                 h = h -> next_;
+                index--;
             }
+            return h;
+        }
+
+        T get(int index) {
+            if( index >= length_ ) return -1;
+            //if( !head_ ) return -1;
+            auto h = getNodeAtIndex( index );
             return h -> val_;
         }
 
+        size_t getLength() {
+            return length_;
+        }
+
         void addAtHead(T val) {
+            //std::cout << " addAtHead!" << std::endl;
             auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
             it -> get() -> next_ = head_;
+            if( head_ ) head_ -> prev_ = it -> get();
             head_ = it -> get();
             if( !tail_ ) tail_ = head_;
             length_++;
         }
 
         void addAtTail(T val) {
+            //std::cout << " addAtTail!" << std::endl;
+            if( length_ == 0 ) return addAtHead( val );
             auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
             if( tail_ ) tail_ -> next_ = it -> get();
+            it -> get() -> prev_ = tail_;
             tail_ = it -> get();
             length_++;
         }
 
         void addAtIndex(int index, int val) {
-            if( index > length_ ) return;
+            //            std::cout << " addAtIndex!" << index << " " << length_ << std::endl;
+            //if( index > length_ ) return;
+            if( index == 0 ) return addAtHead( val );
             if( index == length_ ) return addAtTail( val );
 
-            auto h = head_;
-            while( --index ) {
-                if( !h -> next_ ) return;
-                h = h -> next_;
+
+            //std::cout << "2 addAtIndex!" << index << std::endl;
+            auto n = getNodeAtIndex( index );
+            if( !n ) {
+                return;
             }
-            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
-            it -> get() -> next_ = h -> next_;
-            h -> next_ = it -> get();
+            {
+                auto prev = n -> prev_;
+                //std::cout << "2 addAtIndex!" << prev -> val_ << std::endl;
+                auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
+                it -> get() -> next_ = prev -> next_;
+                it -> get() -> prev_ = prev;
+                prev -> next_ = it -> get();
+                length_++;
+            }
         }
 
+
         void deleteAtIndex(int index) {
-            if( index > length_ ) return;
-            auto h = head_;
-            while( --index ) {
-                if( !h -> next_ ) return;
-                h = h -> next_;
+            //if( index >= length_ ) return;
+            auto n = getNodeAtIndex( index );
+            if( !n ) return;
+            if( !n -> prev_ ) {
+                head_ = head_ -> next_;
             }
-
-            auto n = h -> next_;
-            h -> next_ = h -> next_ -> next_;
-            //s_.erase( n );
-
+            else{
+                n -> prev_ -> next_ = n -> next_;
+                //s_.erase( n );
+            }
+            length_--;
         }
     };
 
