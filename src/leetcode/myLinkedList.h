@@ -40,7 +40,7 @@
     template< typename T>
     struct NodeTmpl {
         NodeTmpl( T val ) : val_( val ) {}
-        NodeTmpl* prev_ = nullptr;
+        //NodeTmpl* prev_ = nullptr;
         NodeTmpl* next_ = nullptr;
         T val_;
     };
@@ -50,8 +50,8 @@
         using Node = NodeTmpl< T >;
         std::unordered_set< std::unique_ptr< Node > > s_;
         Node* head_ = nullptr;
-        Node* tail_ = nullptr;
-        size_t length_ = 0;
+        //Node* tail_ = nullptr;
+        //size_t length_ = 0;
 
     public:
         MyLinkedListTmpl() {}
@@ -68,6 +68,7 @@
         }
 
         Node* getNodeAtIndex( int index ) {
+            if( index < 0 || !head_ ) return nullptr;
             auto h = head_;
             while( index ) {
                 if( !h -> next_ ) return nullptr;
@@ -77,73 +78,68 @@
             return h;
         }
 
-        T get(int index) {
-            if( index >= length_ ) return -1;
-            //if( !head_ ) return -1;
-            auto h = getNodeAtIndex( index );
-            return h -> val_;
+        Node* getLastNode() {
+            auto h = head_;
+            while( h -> next_ ) {
+                h = h -> next_;
+            }
+            return h;
         }
 
-        size_t getLength() {
-            return length_;
+
+        T get(int index) {
+            auto h = getNodeAtIndex( index );
+            if( !h ) return -1;
+            return h -> val_;
         }
 
         void addAtHead(T val) {
             //std::cout << " addAtHead!" << std::endl;
             auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
             it -> get() -> next_ = head_;
-            if( head_ ) head_ -> prev_ = it -> get();
             head_ = it -> get();
-            if( !tail_ ) tail_ = head_;
-            length_++;
         }
 
         void addAtTail(T val) {
             //std::cout << " addAtTail!" << std::endl;
-            if( length_ == 0 ) return addAtHead( val );
-            auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
-            if( tail_ ) tail_ -> next_ = it -> get();
-            it -> get() -> prev_ = tail_;
-            tail_ = it -> get();
-            length_++;
+            if( !head_ ) {
+                addAtHead( val );
+            }
+            else {
+                auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
+                auto h = getLastNode();
+                h -> next_ = it -> get();
+            }
         }
 
         void addAtIndex(int index, int val) {
-            //            std::cout << " addAtIndex!" << index << " " << length_ << std::endl;
-            //if( index > length_ ) return;
             if( index == 0 ) return addAtHead( val );
-            if( index == length_ ) return addAtTail( val );
-
-
-            //std::cout << "2 addAtIndex!" << index << std::endl;
-            auto n = getNodeAtIndex( index );
-            if( !n ) {
+            if( !head_ && index > 0 ) return;
+            auto h = getNodeAtIndex( index - 1 );
+            if( !h ) {
                 return;
             }
             {
-                auto prev = n -> prev_;
                 //std::cout << "2 addAtIndex!" << prev -> val_ << std::endl;
                 auto [ it, res ] = s_.emplace( std::make_unique< Node >( Node( val ) ) );
-                it -> get() -> next_ = prev -> next_;
-                it -> get() -> prev_ = prev;
-                prev -> next_ = it -> get();
-                length_++;
+                it -> get() -> next_ = h -> next_;
+                h -> next_ = it -> get();
             }
         }
 
 
         void deleteAtIndex(int index) {
-            //if( index >= length_ ) return;
-            auto n = getNodeAtIndex( index );
-            if( !n ) return;
-            if( !n -> prev_ ) {
+            if( index == 0 ) {
                 head_ = head_ -> next_;
+                return;
             }
-            else{
-                n -> prev_ -> next_ = n -> next_;
-                //s_.erase( n );
-            }
-            length_--;
+
+            auto h = getNodeAtIndex( index - 1 );
+            if( !h || !h -> next_ ) return;
+            h -> next_ = h -> next_ -> next_;
+
+            //s_.erase( h -> next );
+
         }
     };
 
