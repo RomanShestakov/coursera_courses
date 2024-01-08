@@ -12,6 +12,9 @@ add_executable(const_ref ./03/const_ref.cpp)
 add_executable(pointer_to_array ./03/pointer_to_array.cpp)
 add_executable(class_init ./04/class_init.cpp)
 add_executable(cntr_delegation ./04/cntr_delegation.cpp)
+add_executable(rvo ./04/rvo.cpp)
+add_executable(cv ./04/cv.cpp)
+add_executable(explicit_convertion ./04/explicit_convertion.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -34,6 +37,9 @@ const_ref
 pointer_to_array
 class_init
 cntr_delegation
+rvo
+cv
+explicit_convertion
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
