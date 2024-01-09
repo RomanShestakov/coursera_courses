@@ -34,6 +34,7 @@ jobs:
     - name: run
       run: |
         export PATH=/tmp/ccpp/bin:$PATH
+        export LD_LIBRARY_PATH=/tmp/ccpp/lib:$LD_LIBRARY_PATH
         echo 2 3 | assignment1 | assert task1 5
         echo 'milk milkshake month' | assignment2 | assert task2 milk
         echo 2 5 2 | assignment3 | assert task3 'x1:-0.5 x2:-2'
