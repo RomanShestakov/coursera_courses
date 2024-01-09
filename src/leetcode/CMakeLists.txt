@@ -11,19 +11,36 @@ add_executable(fizzbuz ./fizzbuz.cpp)
 add_executable(largestSum ./main.cpp)
 add_executable(linkedList ./linkedListExample.cpp)
 
+set(LIB_ARRAYS_PROBLEMS array_problems)
+add_library( ${LIB_ARRAYS_PROBLEMS} SHARED
+  leetCodeTasks1.cpp
+)
+
+set(LIB_LINKED_LIST_PROBLEMS linked_list_problems)
+add_library( ${LIB_LINKED_LIST_PROBLEMS} SHARED
+  linkedListsProblems.cpp
+)
+
+set(LIB_STACK_PROBLEMS stack_problems)
+add_library( ${LIB_STACK_PROBLEMS} SHARED
+  stackProblems.cpp
+)
+
 set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
   ../runGTest.cpp
-  leetCodeTasks1.cpp
   leetCodeTasks1Tests.cpp
-  linkedListsProblems.cpp
   linkedListsTests.cpp
+  stackProblemsTests.cpp
 )
 target_include_directories(${RUN_LEET_CODE_TEST}
    ${GTEST_INCLUDE_DIRS} PUBLIC
 )
 target_link_libraries(${RUN_LEET_CODE_TEST}
-    ${GTEST_LIBRARIES}
+   ${LIB_ARRAYS_PROBLEMS}
+   ${LIB_LINKED_LIST_PROBLEMS}
+   ${LIB_STACK_PROBLEMS}
+   ${GTEST_LIBRARIES}
   )
 
 
@@ -41,7 +58,7 @@ target_link_libraries(${RUN_RC_TEST}
     rapidcheck
   )
 
-set(NAMES
+set(EXEC_NAMES
 isPolindrom
 fizzbuz
 largestSum
@@ -49,4 +66,11 @@ linkedList
 ${RUN_LEET_CODE_TEST}
 )
 
-install(TARGETS ${NAMES} DESTINATION bin)
+set(LIB_NAMES
+${LIB_ARRAYS_PROBLEMS}
+${LIB_LINKED_LIST_PROBLEMS}
+${LIB_STACK_PROBLEMS}
+)
+
+install(TARGETS ${EXEC_NAMES} DESTINATION bin)
+install(TARGETS ${LIB_NAMEs} DESTINATION lib)
