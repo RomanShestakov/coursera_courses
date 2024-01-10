@@ -57,4 +57,5 @@ jobs:
         echo aasssab | isPolindrom | assert isPolindrom false
         runLeetcodeTest
         runWBTest
+        runRBTest
         runCTest
