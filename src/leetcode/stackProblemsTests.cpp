@@ -11,21 +11,26 @@
 
 namespace leetcode {
 
+    // Input: path = "/home/"
+    // Output: "/home"
+    TEST(simplifyPath, case1) {
+        std::string expected{ "/home" };
+        EXPECT_EQ( expected, simplifyPath( "/home/" ) );
+    }
 
-    // TEST(hasCycle, case1) {
+    // Input: path = "/../"
+    // Output: "/"
+    TEST(simplifyPath, case2) {
+        std::string expected{ "/" };
+        EXPECT_EQ( expected, simplifyPath( "/../" ) );
+    }
 
-    //     auto a = std::make_unique< ListNode >( 3 );
-    //     auto b = std::make_unique< ListNode >( 2 );
-    //     auto c = std::make_unique< ListNode >( 0 );
-    //     auto d = std::make_unique< ListNode >( -4 );
+    // Input: path = "/home//foo/"
+    // Output: "/home/foo"
+    TEST(simplifyPath, case3) {
+        std::string expected{ "/home/foo" };
+        EXPECT_EQ( expected, simplifyPath( "/home//foo" ) );
+    }
 
-    //     auto head = a.get();
-    //     a -> addNode( b.get() ) ->
-    //          addNode( c.get() ) ->
-    //          addNode( d.get() );
-    //     d -> next = b.get();
 
-    //     EXPECT_TRUE( hasCycle( head ) );
-    //     EXPECT_TRUE( hasCycle1( head ) );
-    // }
 }

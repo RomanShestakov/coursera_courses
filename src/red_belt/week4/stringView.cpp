@@ -1,6 +1,8 @@
+#include<iostream>
 #include <string_view>
 #include <vector>
 #include <string>
+#include <stack>
 
 namespace red_belt {
 
@@ -27,4 +29,27 @@ namespace red_belt {
         return v;
 
     }
+
+
+    std::vector<std::string_view> split( std::string_view s, char delim ) {
+        std::vector< std::string_view > v;
+
+        while( s.front() == delim ) {
+            s.remove_prefix(1);
+        }
+
+        while( true ) {
+            size_t pos = s.find( delim );
+            v.push_back( s.substr( 0, pos ) );
+            if( pos == s.npos ) {
+                break;
+            } else {
+                s.remove_prefix(pos + 1 );
+            }
+        }
+
+        return v;
+    }
+
+
 }
