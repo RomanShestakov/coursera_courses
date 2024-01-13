@@ -5,6 +5,7 @@
 #include<vector>
 #include<deque>
 #include<sstream>
+#include<cctype>
 #include"stackProblems.h"
 
 namespace leetcode {
@@ -35,7 +36,6 @@ namespace leetcode {
         using std::stack< T, Container >::c;
         auto begin() { return c.begin() ; }
         auto end() { return c.end() ; }
-        auto back() { return c.back() ; }
     };
 
     std::string simplifyPath( std::string path ){
@@ -44,10 +44,7 @@ namespace leetcode {
 
         for( auto w : words ) {
             if( w == "" || w == "." ) continue;
-            if( w == ".." ) {
-                if( !s.empty() ) s.pop();
-                continue;
-            }
+            if( w == ".." ) { if( !s.empty() ) s.pop(); continue; }
             s.push( w );
         }
 
@@ -60,5 +57,50 @@ namespace leetcode {
         return res.size() ? res : "/";
     }
 
+
+    std::string makeGood( std::string s) {
+        stack_iter< char > stack;
+        if( !s.empty() ) stack.push( s[ 0 ] );
+        for( int i = 1; i < s.size(); i++ ) {
+            if( !stack.empty() ) {
+                char c = stack.top();
+                if( c != s[ i ] && std::toupper( c ) == std::toupper( s[ i ] ) ) {
+                    stack.pop();
+                    continue;
+                }
+            }
+            stack.push( s[ i ] );
+        }
+
+        std::stringstream ss;
+        for( auto c : stack ) {
+            ss << c;
+        }
+
+        auto res = ss.str();
+
+        return res;
+    }
+
+
+    // leetcode solution - it is possible to use vector as a stack!
+    std::string makeGood1(std::string s) {
+        // Use stack to store the visited characters.
+        std::vector<char> stack;
+
+        // Iterate over 's'.
+        for (auto currChar : s) {
+            // If the current character make a pair with the last character in the stack,
+            // remove both of them. Otherwise, we add the current character to stack.
+            if (!stack.empty() && abs(stack.back() - currChar) == 32)
+                stack.pop_back();
+            else
+                stack.push_back(currChar);
+        }
+
+        // Returns the string concatenated by all characters left in the stack.
+        std::string ans(stack.begin(), stack.end());
+        return ans;
+    }
 
 }

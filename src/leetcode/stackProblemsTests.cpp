@@ -32,5 +32,29 @@ namespace leetcode {
         EXPECT_EQ( expected, simplifyPath( "/home//foo" ) );
     }
 
+    // Input: s = "leEeetcode"
+    // Output: "leetcode"
+    // Explanation: In the first step, either you choose i = 1 or i = 2, both will result "leEeetcode" to be reduced to "leetcode".
+    // Example 2:
+
+    // Input: s = "abBAcC"
+    // Output: ""
+    // Explanation: We have many possible scenarios, and all lead to the same answer. For example:
+    // "abBAcC" --> "aAcC" --> "cC" --> ""
+    // "abBAcC" --> "abBA" --> "aA" --> ""
+    // Example 3:
+
+    //std::string makeGood( std::string s);
+    TEST(makeGood, case1) {
+        std::string expected{ "leetcode" };
+        EXPECT_EQ( expected, makeGood( "leEeetcode" ) );
+    }
+
+    // Input: s = "abBAcC"
+    // Output: ""
+    TEST(makeGood, case2) {
+        std::string expected{ "" };
+        EXPECT_EQ( expected, makeGood( "abBAcC" ) );
+    }
 
 }
