@@ -15,6 +15,9 @@ add_executable(cntr_delegation ./04/cntr_delegation.cpp)
 add_executable(rvo ./04/rvo.cpp)
 add_executable(cv ./04/cv.cpp)
 add_executable(explicit_convertion ./04/explicit_convertion.cpp)
+add_executable(rvalue ./05/rvalue.cpp)
+add_executable(method_annotation ./05/method_annotation.cpp)
+
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -40,6 +43,8 @@ cntr_delegation
 rvo
 cv
 explicit_convertion
+rvalue
+method_annotation
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
