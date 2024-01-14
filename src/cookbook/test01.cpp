@@ -10,13 +10,15 @@
 #include <memory>
 #include "cookbook.h"
 
+// to be able to use string literals e.g. "forty"s
+using namespace std::string_literals;
+
 namespace cookbook {
 
     template <typename F, typename T>
     auto apply( F&& f, T value ) {
         return f( value );
     }
-
 
     TEST(ch1, auto_init ) {
 
@@ -33,5 +35,31 @@ namespace cookbook {
         // cleanup
         delete[] b;
     }
+
+
+   TEST(ch1, decl_auto ) {
+       auto f = foo{ 42 };
+       decltype( auto ) x = proxy_get( f );
+   }
+
+    // see c++ cookbook, p.12
+    struct {
+        template< typename T, typename U >
+           auto operator()( T const a, U const b) const { return a + b ;}
+    } L;
+
+   TEST(ch1, generic_lambda ) {
+
+       auto ladd = []( auto const a, auto const b) { return a + b; };
+
+       // struct {
+       //     template< typename T, typename U >
+       //     auto operator()( T const a, U const b) const { return a + b ;}
+       // } L;
+
+       EXPECT_EQ( 42, ladd( 40, 2 ) );
+       EXPECT_EQ( "fortytwo", ladd( "forty"s, "two"s ) );
+   }
+
 
 }
