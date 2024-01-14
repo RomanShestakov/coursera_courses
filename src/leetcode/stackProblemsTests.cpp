@@ -57,4 +57,20 @@ namespace leetcode {
         EXPECT_EQ( expected, makeGood( "abBAcC" ) );
     }
 
+
+
+    // Input
+    // ["RecentCounter", "ping", "ping", "ping", "ping"]
+    // [[], [1], [100], [3001], [3002]]
+    // Output
+    // [null, 1, 2, 3, 3]
+    TEST(recentCalls, case1) {
+        RecentCounter counter;
+        EXPECT_EQ( 1, counter.ping( 1 ) );
+        EXPECT_EQ( 2, counter.ping( 100 ) );
+        EXPECT_EQ( 3, counter.ping( 3001 ) );
+        EXPECT_EQ( 3, counter.ping( 3002 ) );
+    }
+
+
 }
