@@ -19,7 +19,7 @@ int main() {
     extern S bar();
     S x {};
 
-    std::cout << "foo()&: " << x.foo() << " foo()&&: " << bar().foo() << std::endl;
+    //std::cout << "foo()&: " << x.foo() << " foo()&&: " << bar().foo() << std::endl;
 
     // https://www.youtube.com/watch?v=_mLDaU4wSOo
     // 41::00

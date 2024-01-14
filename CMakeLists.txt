@@ -21,9 +21,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS=1)
 
 # add sanitizers
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -g -fno-omit-frame-pointer -fno-optimize-sibling-calls")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
- set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=leak")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=memory")
 
@@ -45,5 +45,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/scripts)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/white_belt)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/red_belt)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/leetcode)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/cookbook)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/c_lectures)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/cpp_lectures)
