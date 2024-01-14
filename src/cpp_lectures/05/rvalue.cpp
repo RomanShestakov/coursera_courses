@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<cassert>
 // https://www.youtube.com/watch?v=_mLDaU4wSOo
 // 31:00
 
@@ -14,6 +14,16 @@ int main() {
     int&& z = std::move( x );
 
     z = z + 1;
+
+    //
+    // https://www.youtube.com/watch?v=_mLDaU4wSOo
+    // 59:21
+    // nothing appens here - for int move is not defined
+    int yy = std::move( x );
+
+    assert( yy == x );
+
+    std::cout << "yy:" << yy << " x:" << x << std::endl;
 
     std::cout << "z:" << y << " x:" << x << std::endl;
     std::cout << "&z:" << &z << " &x:" << &x << std::endl;

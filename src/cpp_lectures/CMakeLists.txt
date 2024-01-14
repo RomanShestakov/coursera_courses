@@ -17,7 +17,7 @@ add_executable(cv ./04/cv.cpp)
 add_executable(explicit_convertion ./04/explicit_convertion.cpp)
 add_executable(rvalue ./05/rvalue.cpp)
 add_executable(method_annotation ./05/method_annotation.cpp)
-
+add_executable(silly_pointer ./05/silly_pointer.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -45,6 +45,7 @@ cv
 explicit_convertion
 rvalue
 method_annotation
+silly_pointer
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
