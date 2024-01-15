@@ -73,4 +73,18 @@ namespace leetcode {
     }
 
 
+
+    // Input
+    // ["MovingAverage", "next", "next", "next", "next"]
+    // [[3], [1], [10], [3], [5]]
+    // Output
+    // [null, 1.0, 5.5, 4.66667, 6.0]
+    TEST(movingAverage, case1) {
+        MovingAverage mv( 3 );
+        EXPECT_NEAR( 1.0, mv.next( 1 ), 0.00001 );
+        EXPECT_NEAR( 5.5, mv.next( 10 ), 0.00001 );
+        EXPECT_NEAR( 4.66667, mv.next( 3 ), 0.00001 );
+        EXPECT_NEAR( 6.0, mv.next( 5 ), 0.00001 );
+    }
+
 }
