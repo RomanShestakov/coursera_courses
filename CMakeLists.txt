@@ -8,8 +8,8 @@ project(${PROJECT} VERSION "0.0.1")
 # add protobuf to find_package search path
 #list( APPEND CMAKE_PREFIX_PATH "/opt/protobuf-3.13.0" )
 
-# build with cpp 17
-set(CMAKE_CXX_STANDARD 17)
+# build with cpp 20x
+set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

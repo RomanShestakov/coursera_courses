@@ -19,6 +19,7 @@ add_executable(rvalue ./05/rvalue.cpp)
 add_executable(method_annotation ./05/method_annotation.cpp)
 add_executable(silly_pointer ./05/silly_pointer.cpp)
 add_executable(static_and_friend ./06/static_and_friend.cpp)
+add_executable(bit_cast ./06/bit_cast.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -48,6 +49,7 @@ rvalue
 method_annotation
 silly_pointer
 static_and_friend
+bit_cast
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
