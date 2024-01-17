@@ -11,8 +11,8 @@ int main() {
 
     // this is UB - strict aliasing violation
     // [basic.lval/11]
-    int* n = reinterpret_cast< int* >( &p );
-    std::cout << "N:" << *n << std::endl;
+    int n = *reinterpret_cast< int* >( &p );
+    std::cout << "N:" << n << std::endl;
 
     // instead can do
     int m = std::bit_cast< int >( p );
