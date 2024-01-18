@@ -8,20 +8,20 @@ template<typename T>
 struct Quat {
     T x, y, z, w;
 
-    //template<typename T >
     friend std::ostream& operator<<( std::ostream&os, Quat& v ) {
         return os << '{' << v.x << ',' << v.y << ',' << v.z << ',' << v.w << '}';
     }
 
     // in class overload
+    // this one wins in overload set
     Quat operator-() {
+        std::cout << "in class" << std::endl;
         return Quat<T>{ -x, -y, -z, -w };
     }
 };
 
-
-// out class overload - this one wins!!!!
 template<typename T> Quat< T > operator-( Quat< T > arg ) {
+    std::cout << "out class" << std::endl;
     return Quat<T>{ -arg.x, -arg.y, -arg.z, -arg.w };
 }
 
