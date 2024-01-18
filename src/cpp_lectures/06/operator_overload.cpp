@@ -17,7 +17,6 @@ struct Quat {
     Quat operator-() {
         return Quat<T>{ -x, -y, -z, -w };
     }
-
 };
 
 
@@ -29,12 +28,14 @@ template<typename T> Quat< T > operator-( Quat< T > arg ) {
 int main() {
 
     Quat<int> q { 1,2,3,4 };
-
     std::cout << q << std::endl;
 
     Quat p = -q;
-
     std::cout << p << std::endl;
+
+    // can call operators directly
+    q.operator-();
+    operator-( q);
 
     return 0;
 }
