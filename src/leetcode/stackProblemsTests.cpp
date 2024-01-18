@@ -85,13 +85,13 @@ namespace leetcode {
 
 
 
-    // // Input: temperatures = [73,74,75,71,69,72,76,73]
-    // // Output: [1,1,4,2,1,1,0,0]
-    // TEST(dailyTemperatures, case21) {
-    //     std::vector<int> v = {73,74,75,71,69,72,76,73};
-    //     std::vector<int> expected = {1,1,4,2,1,1,0,0};
-    //     EXPECT_EQ( expected, dailyTemperatures( v ) );
-    // }
+    // Input: temperatures = [73,74,75,71,69,72,76,73]
+    // Output: [1,1,4,2,1,1,0,0]
+    TEST(dailyTemperatures, case21) {
+        std::vector<int> v = {73,74,75,71,69,72,76,73};
+        std::vector<int> expected = {1,1,4,2,1,1,0,0};
+        EXPECT_EQ( expected, dailyTemperatures( v ) );
+    }
 
 
 }

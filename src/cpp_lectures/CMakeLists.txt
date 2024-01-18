@@ -21,6 +21,7 @@ add_executable(silly_pointer ./05/silly_pointer.cpp)
 add_executable(static_and_friend ./06/static_and_friend.cpp)
 add_executable(bit_cast ./06/bit_cast.cpp)
 add_executable(static_cast ./06/static_cast.cpp)
+add_executable(positive_hack ./06/positive_hack.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -52,6 +53,7 @@ silly_pointer
 static_and_friend
 bit_cast
 static_cast
+positive_hack
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 

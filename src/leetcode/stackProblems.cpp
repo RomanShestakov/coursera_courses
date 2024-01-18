@@ -103,4 +103,25 @@ namespace leetcode {
         return ans;
     }
 
+
+
+    // leetcode solution
+    std::vector<int> dailyTemperatures( std::vector<int>& t ){
+        std::vector< int> a ( t.size() );
+        std::vector< int > s;
+        for( int i = 0; i < t.size(); i++) {
+            while( !s.empty() && t[ s.back() ] < t[ i ] ) {
+                int j = s.back();
+                a[ j ] = i - j;
+                s.pop_back();
+            }
+
+            s.push_back( i );
+        }
+
+        return a;
+    }
+
+
+
 }

@@ -18,5 +18,8 @@ int main() {
     // explici cast
     foo( static_cast< S >( t ) );
 
+    // copy init
+    S ss = static_cast< S > ( t );
+
     return 0;
 }
