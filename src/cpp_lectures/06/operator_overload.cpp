@@ -18,6 +18,23 @@ struct Quat {
         std::cout << "in class" << std::endl;
         return Quat<T>{ -x, -y, -z, -w };
     }
+
+    // cant overload using return param
+
+    // pre-increment
+    Quat& operator++() {
+        x++; y++; z++; w++;
+        return *this;
+    }
+
+    // post increment
+    Quat operator++( int ) {
+        auto q = Quat<T>{ x, y, z, w };
+        x++; y++; z++; w++;
+        return q;
+    }
+
+
 };
 
 template<typename T> Quat< T > operator-( Quat< T > arg ) {
@@ -37,5 +54,11 @@ int main() {
     q.operator-();
     operator-( q);
 
+
+    // pre-increment
+    std::cout << "pre-increment:" << ++q << std::endl;
+
+    auto qq = q++;
+    std::cout << "post_increment:" << qq << " q" << q << std::endl;
     return 0;
 }
