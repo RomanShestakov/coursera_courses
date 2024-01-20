@@ -1,12 +1,13 @@
-#include <algorithm>
+#include<algorithm>
 #include<iostream>
-#include <iterator>
+#include<iterator>
 #include<string>
 #include<string_view>
 #include<stack>
 #include<vector>
 #include<deque>
 #include<sstream>
+#include<set>
 #include<cctype>
 #include"stackProblems.h"
 
@@ -143,6 +144,47 @@ namespace leetcode {
             d.push_back( nums[ i ] );
             d.pop_front();
             a.push_back( *std::max_element( d.begin(), d.end()));
+        }
+
+        return a;
+    }
+
+
+    // leetcode
+    std::vector<int> maxSlidingWindow1(std::vector<int>& nums, int k) {
+        std::multiset<int>st;
+        std::vector<int>ans;
+        for(int i=0;i<nums.size();i++){
+            st.insert(nums[i]);
+            if(i-k>=0){
+                st.erase(st.find(nums[i-k]));
+            }
+            if(i>=k-1){
+                ans.push_back(*st.rbegin());
+            }
+        }
+        return ans;
+    }
+
+
+    std::vector<int> maxSlidingWindow2(std::vector<int>& nums, int k){
+        std::vector<int> a;
+        std::deque<int> d;
+
+        for( int i = 0; i < nums.size(); i++ ) {
+            while( !d.empty() && nums[ i ] > nums[ d.back() ]) {
+                d.pop_back();
+            }
+
+            d.push_back( i );
+
+            if( d.front() + k == i )  {
+                d.pop_front();
+            }
+
+            if( i >= k - 1 ) {
+                a.push_back( nums[ d.front()] );
+            }
         }
 
         return a;
