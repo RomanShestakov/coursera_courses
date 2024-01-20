@@ -25,7 +25,9 @@ add_executable(positive_hack ./06/positive_hack.cpp)
 add_executable(operator_overload ./06/operator_overload.cpp)
 add_executable(post_pre_increment ./06/post_pre_increment.cpp)
 add_executable(strange_implicit_cast ./06/strange_implicit_cast.cpp)
-
+add_executable(spaceship ./07/spaceship.cpp)
+add_executable(addressof ./07/addressof.cpp)
+add_executable(pointer_to_class_memeber ./07/pointer_to_class_memeber.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -61,6 +63,9 @@ positive_hack
 operator_overload
 post_pre_increment
 strange_implicit_cast
+spaceship
+addressof
+pointer_to_class_memeber
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
