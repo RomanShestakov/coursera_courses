@@ -1,4 +1,6 @@
+#include <algorithm>
 #include<iostream>
+#include <iterator>
 #include<string>
 #include<string_view>
 #include<stack>
@@ -122,6 +124,29 @@ namespace leetcode {
         return a;
     }
 
+    // no efficient
+    std::vector<int> maxSlidingWindow(std::vector<int>& nums, int k){
+        std::deque<int> d(nums.begin(), nums.begin() + k);
+        std::vector< int > a;
+
+        // how to init deque wit back_inseter
+        // std::deque<int> d;
+        // std::copy( nums.begin(), nums.begin() + k, std::back_inserter( d ) );
+
+        // for( auto e : d ) {
+        //     std::cout << "D:" << e << std::endl;
+        // }
+
+        a.push_back( *std::max_element( d.begin(), d.end()));
+
+        for( int i = k; i < nums.size(); ++i ) {
+            d.push_back( nums[ i ] );
+            d.pop_front();
+            a.push_back( *std::max_element( d.begin(), d.end()));
+        }
+
+        return a;
+    }
 
 
 }

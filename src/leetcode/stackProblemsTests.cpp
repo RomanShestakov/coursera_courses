@@ -94,4 +94,14 @@ namespace leetcode {
     }
 
 
+
+    // Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+    // Output: [3,3,5,5,6,7]
+    TEST(maxSlidingWindow, case1) {
+        std::vector<int> v = {1,3,-1,-3,5,3,6,7};
+        std::vector<int> expected = {3,3,5,5,6,7};
+        EXPECT_EQ( expected, maxSlidingWindow( v, 3 ) );
+    }
+
+
 }

@@ -24,6 +24,7 @@ add_executable(static_cast ./06/static_cast.cpp)
 add_executable(positive_hack ./06/positive_hack.cpp)
 add_executable(operator_overload ./06/operator_overload.cpp)
 add_executable(post_pre_increment ./06/post_pre_increment.cpp)
+add_executable(strange_implicit_cast ./06/strange_implicit_cast.cpp)
 
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
@@ -59,6 +60,7 @@ static_cast
 positive_hack
 operator_overload
 post_pre_increment
+strange_implicit_cast
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
