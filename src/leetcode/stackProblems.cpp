@@ -191,4 +191,39 @@ namespace leetcode {
     }
 
 
+
+    int longestSubarray(std::vector<int>& nums, int limit){
+        std::deque<int> incr;
+        std::deque<int> decr;
+        int left = 0;
+        int a = 0;
+
+        for( int i = 0; i < nums.size(); i++ ) {
+            while( !incr.empty() && incr.back() > nums[ i ] ) {
+                incr.pop_back();
+            }
+            while( !decr.empty() && decr.back() < nums[ i ] ) {
+                decr.pop_back();
+            }
+
+            incr.push_back( nums[ i ]);
+            decr.push_back( nums[ i ]);
+
+            while( decr.front() - incr.front() > limit ) {
+                if( nums[ left ] == decr.front() ) {
+                    decr.pop_front();
+                }
+                if( nums[left] == incr.front() ) {
+                    incr.pop_front();
+                }
+
+                left++;
+            }
+
+            a = std::max( a, i - left + 1 );
+        }
+
+        return a;
+    }
+
 }

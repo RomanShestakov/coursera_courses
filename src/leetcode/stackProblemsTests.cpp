@@ -93,8 +93,6 @@ namespace leetcode {
         EXPECT_EQ( expected, dailyTemperatures( v ) );
     }
 
-
-
     // Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
     // Output: [3,3,5,5,6,7]
     TEST(maxSlidingWindow, case1) {
@@ -103,5 +101,13 @@ namespace leetcode {
         EXPECT_EQ( expected, maxSlidingWindow( v, 3 ) );
     }
 
+
+    // Input: nums = [8,2,4,7], limit = 4
+    // Output: 2
+    TEST(longestSubarray, case1) {
+        std::vector<int> v = {8,2,4,7};
+        int expected = 2;
+        EXPECT_EQ( expected, longestSubarray( v, 4 ) );
+    }
 
 }
