@@ -663,4 +663,20 @@ namespace leetcode {
         EXPECT_EQ( expected, closeStrings( word1, word2 ) );
     }
 
+
+    // Input: nums = [0,1]
+    // Output: 2
+    // Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
+    // Example 2:
+
+    // Input: nums = [0,1,0]
+    // Output: 2
+    // Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
+    TEST(findMaxLength, case1) {
+        std::vector<int> v = {5,2,1,2,5,2,1,2,5};
+        int expected = 2;
+        EXPECT_EQ( expected, findMaxLength( v ) );
+    }
+
+
 }
