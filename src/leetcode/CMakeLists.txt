@@ -13,7 +13,7 @@ add_executable(linkedList ./linkedListExample.cpp)
 
 set(LIB_ARRAYS_PROBLEMS array_problems)
 add_library( ${LIB_ARRAYS_PROBLEMS} SHARED
-  leetCodeTasks1.cpp
+  stringAndarray.cpp
 )
 
 set(LIB_LINKED_LIST_PROBLEMS linked_list_problems)
@@ -29,7 +29,7 @@ add_library( ${LIB_STACK_PROBLEMS} SHARED
 set(RUN_LEET_CODE_TEST runLeetcodeTest)
 add_executable( ${RUN_LEET_CODE_TEST}
   ../runGTest.cpp
-  leetCodeTasks1Tests.cpp
+  stringAndarrayTests.cpp
   linkedListsTests.cpp
   stackProblemsTests.cpp
 )

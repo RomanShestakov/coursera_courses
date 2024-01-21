@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <limits>
-#include "leetCodeTasks1.h"
+#include "stringAndarray.h"
 
 
 namespace leetcode {

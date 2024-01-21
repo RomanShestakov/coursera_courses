@@ -10,7 +10,7 @@
 #include <limits>
 #include <map>
 #include <sstream>
-#include "leetCodeTasks1.h"
+#include "stringAndarray.h"
 
 namespace leetcode {
 
