@@ -30,6 +30,7 @@ add_executable(addressof ./07/addressof.cpp)
 add_executable(pointer_to_class_memeber ./07/pointer_to_class_memeber.cpp)
 add_executable(inheritance ./08/inheritance.cpp)
 add_executable(virtual_destructor ./08/virtual_destructor.cpp)
+add_executable(deleter ./08/deleter.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -70,6 +71,7 @@ addressof
 pointer_to_class_memeber
 inheritance
 virtual_destructor
+deleter
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
