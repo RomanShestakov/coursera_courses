@@ -28,6 +28,8 @@ add_executable(strange_implicit_cast ./06/strange_implicit_cast.cpp)
 add_executable(spaceship ./07/spaceship.cpp)
 add_executable(addressof ./07/addressof.cpp)
 add_executable(pointer_to_class_memeber ./07/pointer_to_class_memeber.cpp)
+add_executable(inheritance ./08/inheritance.cpp)
+add_executable(virtual_destructor ./08/virtual_destructor.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -66,6 +68,8 @@ strange_implicit_cast
 spaceship
 addressof
 pointer_to_class_memeber
+inheritance
+virtual_destructor
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
