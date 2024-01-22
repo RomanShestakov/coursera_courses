@@ -31,6 +31,7 @@ add_executable(pointer_to_class_memeber ./07/pointer_to_class_memeber.cpp)
 add_executable(inheritance ./08/inheritance.cpp)
 add_executable(virtual_destructor ./08/virtual_destructor.cpp)
 add_executable(deleter ./08/deleter.cpp)
+add_executable(static_binding ./08/static_binding.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -72,6 +73,7 @@ pointer_to_class_memeber
 inheritance
 virtual_destructor
 deleter
+static_binding
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
