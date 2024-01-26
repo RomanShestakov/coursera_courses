@@ -33,6 +33,7 @@ add_executable(virtual_destructor ./08/virtual_destructor.cpp)
 add_executable(deleter ./08/deleter.cpp)
 add_executable(static_binding ./08/static_binding.cpp)
 add_executable(multiple_inheritance ./09/multiple_inheritance.cpp)
+add_executable(slicing ./11/slicing.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -76,7 +77,7 @@ virtual_destructor
 deleter
 static_binding
 multiple_inheritance
-
+slicing
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
