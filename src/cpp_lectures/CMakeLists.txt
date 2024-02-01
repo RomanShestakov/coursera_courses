@@ -41,7 +41,7 @@ add_executable(vec2 ./12/vec2.cpp)
 add_executable(template_specialization ./16/template_specialization.cpp)
 add_executable(lazy_instantiation ./16/lazy_instantiation.cpp)
 add_executable(liskov_subs_violation ./16/liskov_subs_violation.cpp)
-
+add_executable(typename ./16/typename.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -93,6 +93,7 @@ vec2
 template_specialization
 lazy_instantiation
 liskov_subs_violation
+typename
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
