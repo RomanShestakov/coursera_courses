@@ -42,6 +42,11 @@ add_executable(template_specialization ./16/template_specialization.cpp)
 add_executable(lazy_instantiation ./16/lazy_instantiation.cpp)
 add_executable(liskov_subs_violation ./16/liskov_subs_violation.cpp)
 add_executable(typename ./16/typename.cpp)
+add_executable(init_list ./16/init_list.cpp)
+add_executable(integral_const ./16/integral_const.cpp)
+add_executable(variable_templ ./19/variable_templ.cpp)
+add_executable(void_t ./19/void_t.cpp)
+add_executable(fib_iter ./20/fib_iter.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -94,6 +99,11 @@ template_specialization
 lazy_instantiation
 liskov_subs_violation
 typename
+init_list
+integral_const
+variable_templ
+void_t
+fib_iter
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
