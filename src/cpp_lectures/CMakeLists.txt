@@ -47,6 +47,7 @@ add_executable(integral_const ./16/integral_const.cpp)
 add_executable(variable_templ ./19/variable_templ.cpp)
 add_executable(void_t ./19/void_t.cpp)
 add_executable(fib_iter ./20/fib_iter.cpp)
+add_executable(iter_category ./20/iter_category.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -104,6 +105,7 @@ integral_const
 variable_templ
 void_t
 fib_iter
+iter_category
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
