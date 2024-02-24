@@ -49,6 +49,7 @@ add_executable(void_t ./19/void_t.cpp)
 add_executable(fib_iter ./20/fib_iter.cpp)
 add_executable(iter_category ./20/iter_category.cpp)
 add_executable(bit_set ./21/bit_set.cpp)
+add_executable(constexpr ./26/constexpr.cpp)
 
 # set(RUN_C_LECTURES_CODE_TEST runCTest)
 # add_executable( ${RUN_C_LECTURES_CODE_TEST}
@@ -108,6 +109,7 @@ void_t
 fib_iter
 iter_category
 bit_set
+constexpr
 #${RUN_CPP_LECTURES_CODE_TEST}
 )
 
