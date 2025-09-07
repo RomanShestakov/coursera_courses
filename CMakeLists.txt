@@ -9,7 +9,7 @@ project(${PROJECT} VERSION "0.0.1")
 #list( APPEND CMAKE_PREFIX_PATH "/opt/protobuf-3.13.0" )
 
 # build with cpp 20x
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -17,6 +17,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_EXPORT_COMPILE_COMMANDS=1)
 
 # add sanitizers
@@ -48,4 +49,5 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/leetcode)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/cookbook)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/c_lectures)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/cpp_lectures)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/templates)
 #add_subdirectory(${PROJECT_SOURCE_DIR}/src/cpp_magister_2024)

@@ -47,6 +47,7 @@ target_link_libraries(${RUN_LEET_CODE_TEST}
 set(RUN_RC_TEST runRCTest)
 add_executable( ${RUN_RC_TEST}
   rc_example.cpp
+  rc_custom_type_example.cpp
 )
 target_include_directories(${RUN_RC_TEST}
    ${GTEST_INCLUDE_DIRS} PUBLIC
