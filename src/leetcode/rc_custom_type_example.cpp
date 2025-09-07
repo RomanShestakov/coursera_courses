@@ -35,7 +35,8 @@ namespace rc {
 // template <>
 template <typename T> struct Arbitrary<MyType<T>> {
   static Gen<MyType<T>> arbitrary() {
-    // return *rc::gen::arbitrary<MyType<T>>();
+    // FIXME - why the line below doesn't work?
+    //  return *rc::gen::arbitrary<MyType<T>>();
     return gen::build<MyType<T>>(gen::set(&MyType<T>::size_));
   }
 };
