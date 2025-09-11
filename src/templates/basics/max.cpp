@@ -37,4 +37,14 @@ int main() {
   decltype(declval<Tricky<int>>().foo()) t = 0;
 
   std::cout << t << std::endl;
+
+  // decltype(auto)
+
+  int xx = 1;
+  decltype(auto) yy = xx;
+
+  // int &
+  decltype(auto) yref = (xx);
+
+  std::cout << yy << std::endl;
 }

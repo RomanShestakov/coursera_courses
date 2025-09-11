@@ -10,6 +10,7 @@ constexpr auto max(T1 a, T2 b)
 
 template <typename T> T foo(T *p) {
   // undeclared(p);
+
   static_assert(sizeof(int) < 10, "int is too small");
   return *p;
 }
